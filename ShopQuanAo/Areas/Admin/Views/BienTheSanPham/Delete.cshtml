@@ -1,0 +1,22 @@
+﻿@model ShopQuanAo.Models.BienTheSanPham
+@{
+    ViewData["Title"] = "Xóa Biến Thể";
+}
+
+<div class="card shadow border-0 col-md-6 mx-auto mt-5 border-danger border-top border-4 text-center p-4">
+    <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+    <h4 class="fw-bold">Xác nhận xóa biến thể?</h4>
+    <p class="fs-5 mt-3">Sản phẩm: <strong class="text-primary">@Model.SanPham.TenSP</strong></p>
+    <p>Màu: <strong>@Model.MauSac</strong> | Size: <strong>@Model.KichThuoc</strong></p>
+    
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <form asp-action="Delete" class="mt-4">
+        <input type="hidden" asp-for="MaBienThe" />
+        <a asp-action="Index" class="btn btn-secondary px-4 me-2">Hủy</a>
+        <button type="submit" class="btn btn-danger px-4">Xác nhận Xóa</button>
+    </form>
+</div>

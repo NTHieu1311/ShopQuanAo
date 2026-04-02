@@ -1,0 +1,29 @@
+﻿@model ShopQuanAo.Models.DanhGia
+@{
+    ViewData["Title"] = "Duyệt Đánh Giá";
+}
+
+<div class="card shadow border-0 col-md-6 mx-auto mt-4">
+    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-warning">Kiểm duyệt đánh giá</h6></div>
+    <div class="card-body">
+        <div class="alert alert-info">
+            <strong>Sản phẩm:</strong> @Model.SanPham.TenSP <br />
+            <strong>Nội dung khách viết:</strong> "@Model.NoiDung"
+        </div>
+
+        <form asp-action="Edit" method="post">
+            <input type="hidden" name="id" value="@Model.MaDanhGia" />
+            <div class="mb-4">
+                <label class="form-label fw-bold">Trạng thái hiển thị trên web:</label>
+                <select name="TrangThai" class="form-select" asp-for="TrangThai">
+                    <option value="1">Cho phép hiển thị</option>
+                    <option value="0">Ẩn đánh giá này</option>
+                </select>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                <button type="submit" class="btn btn-warning fw-bold"><i class="fas fa-save"></i> Cập nhật</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShopQuanAo.Models.TaiKhoan>
+@{
+    ViewData["Title"] = "Quản lý Tài Khoản";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="card shadow border-0 mb-4">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách Toàn bộ Tài Khoản</h6>
+        <a asp-action="Create" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tạo Tài Khoản Mới</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Đăng Nhập</th>
+                    <th>Email</th>
+                    <th>Ngày Tạo</th>
+                    <th>Trạng Thái</th>
+                    <th class="text-center">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaTK</td>
+                        <td class="fw-bold text-dark"><i class="fas fa-user-circle text-muted"></i> @item.TenDangNhap</td>
+                        <td>@item.Email</td>
+                        <td>@item.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @if (item.TrangThai == 1)
+                            {
+                                <span class="badge bg-success">Hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Bị Khóa</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.MaTK" class="btn btn-sm btn-warning" title="Chỉnh sửa/Khóa"><i class="fas fa-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.MaTK" class="btn btn-sm btn-danger" title="Xóa"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

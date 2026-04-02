@@ -1,0 +1,44 @@
+﻿@model ShopQuanAo.Models.QuanTriVien
+@{
+    ViewData["Title"] = "Chỉnh sửa Quản trị viên";
+}
+
+<div class="card shadow border-0 col-md-8 mx-auto mt-4">
+    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-warning">Cập nhật thông tin nhân sự</h6></div>
+    <div class="card-body">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="MaTK" />
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="HoTen" class="form-label fw-bold">Họ và tên</label>
+                    <input asp-for="HoTen" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ChucVu" class="form-label fw-bold">Chức vụ</label>
+                    <input asp-for="ChucVu" class="form-control" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="SoDienThoai" class="form-label fw-bold">Số điện thoại</label>
+                    <input asp-for="SoDienThoai" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NgayVaoLam" class="form-label fw-bold">Ngày vào làm</label>
+                    <input asp-for="NgayVaoLam" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" required />
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-3">
+                <i class="fas fa-info-circle"></i> Tài khoản đăng nhập của nhân sự này là: <strong>@Model.TaiKhoan?.TenDangNhap</strong>.
+                Để đổi mật khẩu hoặc khóa tài khoản, vui lòng vào mục <strong>Tất cả Tài Khoản</strong>.
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                <button type="submit" class="btn btn-warning fw-bold text-dark"><i class="fas fa-save"></i> Cập nhật</button>
+            </div>
+        </form>
+    </div>
+</div>

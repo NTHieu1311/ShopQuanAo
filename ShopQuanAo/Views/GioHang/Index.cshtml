@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ShopQuanAo.Models.CartItem>
+@{
+    ViewData["Title"] = "Giỏ Hàng Của Bạn";
+    decimal tongTien = Model.Sum(x => x.ThanhTien);
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="fw-bold text-dark text-uppercase mb-4"><i class="fas fa-shopping-bag text-danger"></i> Giỏ Hàng Của Bạn</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4 text-center py-5">
+            <div class="card-body">
+                <i class="fas fa-cart-arrow-down fa-4x text-muted mb-3"></i>
+                <h4 class="text-muted">Giỏ hàng của bạn đang trống!</h4>
+                <p class="mb-4">Hãy nhanh tay chọn cho mình những bộ đồ ưng ý nhé.</p>
+                <a href="/" class="btn btn-danger rounded-pill px-4 fw-bold">TIẾP TỤC MUA SẮM</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-body p-0">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4">Sản Phẩm</th>
+                                    <th>Phân Loại</th>
+                                    <th class="text-center">Đơn Giá</th>
+                                    <th class="text-center">Số Lượng</th>
+                                    <th class="text-end pe-4">Thành Tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center py-2">
+                                                <img src="@item.HinhAnh" class="rounded" style="width: 70px; height: 90px; object-fit: cover;" alt="@item.TenSP">
+                                                <div class="ms-3">
+                                                    <h6 class="fw-bold mb-1"><a href="/SanPham/Details/@item.MaSP" class="text-dark text-decoration-none">@item.TenSP</a></h6>
+                                                    <a asp-action="Xoa" asp-route-id="@item.MaBienThe" class="text-danger small text-decoration-none" onclick="return confirm('Bạn muốn xóa sản phẩm này khỏi giỏ?');">
+                                                        <i class="fas fa-trash-alt"></i> Xóa
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-secondary">Màu: @item.MauSac</span><br />
+                                            <span class="badge bg-dark mt-1">Size: @item.KichThuoc</span>
+                                        </td>
+                                        <td class="text-center fw-bold">@item.DonGia.ToString("#,##0") đ</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-light text-dark border fs-6">@item.SoLuong</span>
+                                        </td>
+                                        <td class="text-end text-danger fw-bold pe-4">@item.ThanhTien.ToString("#,##0") đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <a href="/" class="text-decoration-none text-primary fw-bold"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold border-bottom pb-3 mb-3">TÓM TẮT ĐƠN HÀNG</h5>
+                        
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Tổng số sản phẩm:</span>
+                            <span class="fw-bold">@Model.Sum(x => x.SoLuong)</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Phí vận chuyển:</span>
+                            <span class="fw-bold text-success">Miễn phí</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold fs-5">TỔNG CỘNG:</span>
+                            <span class="fw-bold text-danger fs-4">@tongTien.ToString("#,##0") đ</span>
+                        </div>
+                        
+                        <a href="/ThanhToan" class="btn btn-danger w-100 py-3 rounded-pill fw-bold fs-5 shadow">
+                            TIẾN HÀNH THANH TOÁN <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                        
+                        <div class="mt-4 text-center">
+                            <p class="text-muted small mb-2">Chấp nhận thanh toán</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/174/174861.png" width="30" class="mx-1" alt="Paypal">
+                            <img src="https://cdn-icons-png.flaticon.com/512/349/349221.png" width="30" class="mx-1" alt="Visa">
+                            <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" width="30" class="mx-1" alt="MasterCard">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ShopQuanAo.Models.BienTheSanPham>
+@{
+    ViewData["Title"] = "Quản lý Biến thể";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card shadow mb-4 border-0">
+    <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách Biến thể Sản phẩm</h6>
+        <a asp-action="Create" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Sản phẩm gốc</th>
+                    <th>Màu sắc</th>
+                    <th>Kích thước (Size)</th>
+                    <th>Số lượng tồn kho</th>
+                    <th class="text-center">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold text-primary">@item.SanPham.TenSP</td>
+                        <td><span class="badge bg-secondary">@item.MauSac</span></td>
+                        <td><span class="badge bg-dark">@item.KichThuoc</span></td>
+                        <td class="text-center">
+                            @if (item.SoLuongTon > 10)
+                            {
+                                <span class="text-success fw-bold">@item.SoLuongTon</span>
+                            }
+                            else if (item.SoLuongTon > 0)
+                            {
+
+                                <span class="text-warning fw-bold">@item.SoLuongTon (Sắp hết)</span>
+                            }
+                            else
+                            {
+
+                                <span class="text-danger fw-bold">Hết hàng</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.MaBienThe" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.MaBienThe" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

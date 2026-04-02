@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Quản Trị Hệ Thống</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sidebar-bg: #4e73df;
+            --sidebar-hover: #224abe;
+            --bg-light: #f8f9fc;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            overflow-x: hidden;
+            color: #5a5c69;
+        }
+
+        /* --- BỐ CỤC CHÍNH --- */
+        #wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* --- SIDEBAR (THANH BÊN TRÁI) --- */
+        #sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, var(--sidebar-bg) 10%, var(--sidebar-hover) 100%);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        #sidebar.toggled {
+            width: 0;
+            overflow: hidden;
+        }
+        .sidebar-brand {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-brand i { font-size: 1.5rem; transform: rotate(-15deg); }
+        
+        .nav-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .nav-link i { font-size: 1.1rem; width: 25px; }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+
+        /* --- VÙNG NỘI DUNG --- */
+        #content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* --- TOPBAR (THANH TRÊN CÙNG) --- */
+        .topbar {
+            height: 70px;
+            background: #fff;
+            box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        #sidebarToggleTop {
+            background: transparent;
+            border: none;
+            color: var(--sidebar-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #sidebarToggleTop:hover { color: var(--sidebar-hover); background: #eaecf4; border-radius: 50%; width: 40px; height: 40px; }
+
+        .topbar-divider {
+            width: 0;
+            border-right: 1px solid #e3e6f0;
+            height: calc(4.375rem - 2rem);
+            margin: auto 1rem;
+        }
+
+        .img-profile { height: 2rem; width: 2rem; border-radius: 50%; }
+
+        /* --- FOOTER --- */
+        footer.sticky-footer {
+            padding: 1.5rem 0;
+            background-color: #fff;
+            box-shadow: 0 -.15rem 1.75rem 0 rgba(58,59,69,.15);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="sidebar">
+            <a class="sidebar-brand" href="/Admin">
+                <i class="fas fa-laugh-wink me-2"></i>
+                <div class="sidebar-brand-text">ADMIN <sup>PRO</sup></div>
+            </a>
+
+            <ul class="nav flex-column mt-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Home/Index">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Tổng Quan</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item mt-2">
+                    <div class="px-3 text-uppercase text-light" style="font-size: 0.7rem; font-weight: 800; opacity: 0.5;">Sản phẩm & Cửa hàng</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/DanhMuc">
+                        <i class="fas fa-fw fa-tags"></i> <span>Quản lý Danh Mục</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/SanPham">
+                        <i class="fas fa-fw fa-tshirt"></i> <span>Quản lý Sản Phẩm</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/BienTheSanPham">
+                        <i class="fas fa-fw fa-cubes"></i> <span>Kho & Biến thể</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/DanhGia">
+                        <i class="fas fa-fw fa-star"></i> <span>Đánh Giá Khách Hàng</span>
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <div class="px-3 text-uppercase text-light" style="font-size: 0.7rem; font-weight: 800; opacity: 0.5;">Kinh Doanh</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/DonHang">
+                        <i class="fas fa-fw fa-clipboard-list"></i> <span>Xử lý Đơn Hàng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/KhachHang">
+                        <i class="fas fa-fw fa-users"></i> <span>Tệp Khách Hàng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/PhuongThucThanhToan">
+                        <i class="fas fa-fw fa-credit-card"></i> <span>Cổng Thanh Toán</span>
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <div class="px-3 text-uppercase text-light" style="font-size: 0.7rem; font-weight: 800; opacity: 0.5;">Hệ Thống</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/TaiKhoan">
+                        <i class="fas fa-fw fa-user-shield"></i> <span>Tất cả Tài Khoản</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/QuanTriVien">
+                        <i class="fas fa-fw fa-user-tie"></i> <span>Nhân sự Quản Trị</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item mt-auto mb-3 border-0 text-center px-3 pt-4">
+                    <a href="/" class="btn btn-success btn-sm w-100 rounded-pill fw-bold shadow-sm" target="_blank">
+                        <i class="fas fa-store me-1"></i> Xem Website
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content-wrapper">
+            <nav class="topbar">
+                <div class="d-flex align-items-center">
+                    <button id="sidebarToggleTop">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <form class="d-none d-sm-inline-block form-inline ms-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm mã đơn hàng..." aria-label="Search" aria-describedby="basic-addon2" style="border-radius: 5px 0 0 5px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" style="border-radius: 0 5px 5px 0;">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <ul class="navbar-nav d-flex flex-row align-items-center mb-0 list-unstyled">
+                    <li class="nav-item mx-1 position-relative me-3">
+                        <a class="nav-link text-gray-400" href="#" style="color: #d1d3e2; font-size: 1.2rem;">
+                            <i class="fas fa-bell fa-fw text-secondary"></i>
+                            <span class="position-absolute top-25 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" style="width: 10px; height: 10px;"></span>
+                        </a>
+                    </li>
+                    
+                    <div class="topbar-divider"></div>
+
+                    <li class="nav-item dropdown pe-3">
+                        <a class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="me-2 d-none d-lg-inline text-gray-600 small fw-bold">Admin Manager</span>
+                            <img class="img-profile shadow-sm" src="https://ui-avatars.com/api/?name=Admin&background=4e73df&color=fff" alt="Admin Avatar">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" style="min-width: 200px;">
+                            <li><a class="dropdown-item py-2" href="/Admin/TaiKhoan/HoSo"><i class="fas fa-user fa-sm fa-fw me-2 text-muted"></i> Thông tin tài khoản</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-muted"></i> Cài đặt hệ thống</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 text-danger fw-bold" href="/TaiKhoan/Logout"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i> Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="flex-grow-1 p-4">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert">
+                        <i class="fas fa-check-circle me-2"></i> @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i> @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @RenderBody()
+            </main>
+
+            <footer class="sticky-footer mt-auto">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto fw-bold text-muted">
+                        <span>Bản quyền &copy; FASHION STORE ADMIN 2026</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Nút bấm thu gọn menu
+            const toggleBtn = document.getElementById("sidebarToggleTop");
+            const sidebar = document.getElementById("sidebar");
+            
+            toggleBtn.addEventListener("click", function() {
+                sidebar.classList.toggle("toggled");
+            });
+
+            // Tự động làm sáng menu đang được chọn (Active state)
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('#sidebar .nav-link');
+            navLinks.forEach(link => {
+                // Kiểm tra xem href của link có nằm trong url hiện tại không
+                if(currentPath.includes(link.getAttribute('href')) && link.getAttribute('href') !== '/Admin') {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

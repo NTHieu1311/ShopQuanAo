@@ -1,0 +1,97 @@
+﻿@model ShopQuanAo.Models.KhachHang
+@{
+    ViewData["Title"] = "Thanh Toán Đơn Hàng";
+    var gioHang = ViewBag.GioHang as List<ShopQuanAo.Models.CartItem>;
+    decimal tongTien = ViewBag.TongTien;
+    var phuongThucs = ViewBag.PhuongThuc as List<ShopQuanAo.Models.PhuongThucThanhToan>;
+}
+
+<div class="container mt-4 mb-5">
+    <h2 class="fw-bold mb-4 text-dark"><i class="fas fa-money-check-alt text-danger"></i> Thanh Toán</h2>
+
+    <form asp-action="DatHang" method="post">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card shadow-sm border-0 rounded-4 mb-4">
+                    <div class="card-header bg-white py-3 border-bottom"><h5 class="mb-0 fw-bold">1. Thông tin giao hàng</h5></div>
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Họ và tên người nhận</label>
+                            <input type="text" name="TenNguoiNhan" class="form-control" value="@Model?.HoTen" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Số điện thoại liên hệ</label>
+                            <input type="tel" name="SDTNguoiNhan" class="form-control" value="@Model?.SoDienThoai" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Địa chỉ giao hàng chi tiết</label>
+                            <textarea name="DiaChiGiao" class="form-control" rows="3" required>@Model?.DiaChi</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ghi chú đơn hàng (Tùy chọn)</label>
+                            <input type="text" name="GhiChu" class="form-control" placeholder="Ví dụ: Giao hàng giờ hành chính">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm border-0 rounded-4 mb-4">
+                    <div class="card-header bg-white py-3 border-bottom"><h5 class="mb-0 fw-bold">2. Phương thức thanh toán</h5></div>
+                    <div class="card-body p-4">
+                        @if (phuongThucs != null)
+                        {
+                            foreach (var pt in phuongThucs)
+                            {
+                                <div class="form-check p-3 border rounded mb-2" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                                    <input class="form-check-input ms-1" type="radio" name="MaPT" id="pt_@pt.MaPT" value="@pt.MaPT" required>
+                                    <label class="form-check-label ms-3 fw-bold w-100" style="cursor: pointer;" for="pt_@pt.MaPT">
+                                        @pt.TenPhuongThuc
+                                        <small class="d-block text-muted fw-normal mt-1">@pt.MoTa</small>
+                                    </label>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card shadow-sm border-0 rounded-4 position-sticky" style="top: 100px;">
+                    <div class="card-header bg-light py-3 border-bottom"><h5 class="mb-0 fw-bold">Tóm tắt đơn hàng</h5></div>
+                    <div class="card-body p-4">
+                        @foreach (var item in gioHang)
+                        {
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="@item.HinhAnh" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-dark" style="font-size: 0.9rem;">@item.TenSP</h6>
+                                        <small class="text-muted">Màu: @item.MauSac | Size: @item.KichThuoc x <strong>@item.SoLuong</strong></small>
+                                    </div>
+                                </div>
+                                <span class="fw-bold text-danger text-end">@item.ThanhTien.ToString("#,##0") đ</span>
+                            </div>
+                        }
+                        
+                        <hr class="my-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Tạm tính:</span>
+                            <span class="fw-bold">@tongTien.ToString("#,##0") đ</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Phí vận chuyển:</span>
+                            <span class="fw-bold text-success">Miễn phí</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4 border-top pt-3">
+                            <span class="fw-bold fs-5">TỔNG CỘNG:</span>
+                            <span class="fw-bold text-danger fs-3">@tongTien.ToString("#,##0") đ</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger w-100 py-3 rounded-pill fw-bold fs-5 shadow-sm hover-up">
+                            ĐẶT HÀNG NGAY
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

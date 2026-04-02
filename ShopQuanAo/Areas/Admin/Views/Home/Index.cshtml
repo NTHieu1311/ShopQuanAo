@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "Tổng quan (Dashboard)";
+    // Lấy dữ liệu mảng biểu đồ từ Controller
+    var thongKe = ViewBag.ThongKeDonHang as List<int>;
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800 fw-bold"><i class="fas fa-tachometer-alt me-2"></i> Bảng Điều Khiển</h1>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 border-start border-success border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-success text-uppercase mb-1">TỔNG DOANH THU</div>
+                            <div class="h4 mb-0 fw-bold text-gray-800">@ViewBag.DoanhThu.ToString("#,##0") đ</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300" style="opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 border-start border-warning border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-warning text-uppercase mb-1">ĐƠN HÀNG MỚI</div>
+                            <div class="h4 mb-0 fw-bold text-gray-800">@ViewBag.DonMoi Đơn</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300" style="opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 border-start border-primary border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-primary text-uppercase mb-1">TỔNG KHÁCH HÀNG</div>
+                            <div class="h4 mb-0 fw-bold text-gray-800">@ViewBag.SoKhachHang Người</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300" style="opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 border-start border-danger border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-danger text-uppercase mb-1">SẮP HẾT HÀNG (< 10 sp)</div>
+                            <div class="h4 mb-0 fw-bold text-gray-800">@ViewBag.SapHetHang Mẫu</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-exclamation-triangle fa-2x text-gray-300" style="opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7 mb-4">
+            <div class="card shadow border-0 mb-4 h-100">
+                <div class="card-header py-3 bg-white border-bottom">
+                    <h6 class="m-0 fw-bold text-primary">Tỉ Lệ Trạng Thái Đơn Hàng</h6>
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center pb-4">
+                    <div style="width: 70%;">
+                        <canvas id="orderChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow border-0 mb-4 h-100 bg-dark text-white">
+                <div class="card-body p-4 d-flex flex-column justify-content-center">
+                    <h4 class="fw-bold mb-3">Chào mừng trở lại, Admin! 👋</h4>
+                    <p>Hệ thống ghi nhận bạn đang có <strong class="text-warning">@ViewBag.DonMoi</strong> đơn hàng cần được xử lý đóng gói và giao cho khách.</p>
+                    <p>Bên cạnh đó, có <strong class="text-danger">@ViewBag.SapHetHang</strong> phân loại sản phẩm sắp cạn kiệt trong kho, vui lòng kiểm tra và lên kế hoạch nhập hàng mới.</p>
+                    <a href="/Admin/DonHang" class="btn btn-danger rounded-pill mt-3 align-self-start fw-bold px-4">Xử lý đơn ngay <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Lấy dữ liệu từ C# Razor truyền vào JavaScript
+    var dataData = [
+    @thongKe[0], // Chờ xác nhận
+    @thongKe[1], // Đang giao
+    @thongKe[2], // Hoàn thành
+    @thongKe[3]  // Đã hủy
+    ];
+
+    var ctx = document.getElementById('orderChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'doughnut', // Biểu đồ hình bánh Donut
+    data: {
+    labels: ['Chờ xác nhận', 'Đang giao', 'Hoàn thành', 'Đã hủy'],
+    datasets: [{
+    data: dataData,
+    backgroundColor: [
+    '#f6c23e', // Vàng
+    '#36b9cc', // Xanh lơ
+    '#1cc88a', // Xanh lá
+    '#858796'  // Xám
+    ],
+    hoverBackgroundColor: ['#dda20a', '#2c9faf', '#17a673', '#60616f'],
+    hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }]
+    },
+    options: {
+    maintainAspectRatio: false,
+    plugins: {
+    legend: {
+    position: 'bottom',
+    labels: { padding: 20, font: { size: 14 } }
+    }
+    }
+    }
+    });
+    });
+</script>

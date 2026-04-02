@@ -1,0 +1,65 @@
+﻿@model ShopQuanAo.Models.KhachHang
+@{
+    ViewData["Title"] = "Chi tiết Khách Hàng";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="card shadow border-0 mb-4">
+            <div class="card-header bg-white py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Hồ sơ khách hàng</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr><th width="30%">Họ và tên:</th><td class="fw-bold">@Model.HoTen</td></tr>
+                    <tr><th>Tên đăng nhập:</th><td>@Model.TaiKhoan.TenDangNhap</td></tr>
+                    <tr><th>Email:</th><td>@Model.TaiKhoan.Email</td></tr>
+                    <tr><th>Số điện thoại:</th><td>@Model.SoDienThoai</td></tr>
+                    <tr><th>Địa chỉ:</th><td>@Model.DiaChi</td></tr>
+                    <tr><th>Ngày sinh:</th><td>@(Model.NgaySinh?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")</td></tr>
+                    <tr><th>Ngày tạo TK:</th><td>@Model.TaiKhoan.NgayTao.ToString("dd/MM/yyyy HH:mm")</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card shadow border-0 mb-4 border-left-warning">
+            <div class="card-header bg-white py-3">
+                <h6 class="m-0 font-weight-bold text-warning">Quyền Quản Trị</h6>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" name="id" value="@Model.MaTK" />
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Điểm tích lũy (Có thể cộng/trừ điểm thủ công):</label>
+                        <input type="number" name="DiemTichLuy" class="form-control text-warning fw-bold fs-5" value="@Model.DiemTichLuy" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Trạng thái tài khoản (Đăng nhập):</label>
+                        <select name="TrangThai" class="form-select border-2 @(Model.TaiKhoan.TrangThai == 1 ? "border-success" : "border-danger")">
+                            @if (Model.TaiKhoan.TrangThai == 1)
+                            {
+                                <option value="1" selected>✅ Đang hoạt động (Bình thường)</option>
+                                <option value="0">❌ Khóa tài khoản (Cấm đăng nhập)</option>
+                            }
+                            else
+                            {
+                                <option value="1">✅ Đang hoạt động (Bình thường)</option>
+                                <option value="0" selected>❌ Khóa tài khoản (Cấm đăng nhập)</option>
+                            }
+                        </select>
+                        <small class="text-muted d-block mt-2">Nếu khóa, khách hàng sẽ không thể đăng nhập để mua hàng được nữa.</small>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                        <button type="submit" class="btn btn-warning fw-bold text-dark"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

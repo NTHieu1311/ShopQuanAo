@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ShopQuanAo.Models.PhuongThucThanhToan>
+@{
+    ViewData["Title"] = "Phương Thức Thanh Toán";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card shadow mb-4 border-0">
+    <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách Phương thức Thanh toán</h6>
+        <a asp-action="Create" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th width="5%">ID</th>
+                    <th width="25%">Tên Phương Thức</th>
+                    <th width="40%">Mô Tả</th>
+                    <th width="15%">Trạng Thái</th>
+                    <th width="15%" class="text-center">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaPT</td>
+                        <td class="fw-bold text-dark">@item.TenPhuongThuc</td>
+                        <td class="text-muted">@item.MoTa</td>
+                        <td>
+                            @if (item.TrangThai == 1)
+                            {
+                                <span class="badge bg-success">Hoạt động</span>
+                            }
+                            else
+                            {
+
+                                <span class="badge bg-secondary">Tạm ngưng</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.MaPT" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.MaPT" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

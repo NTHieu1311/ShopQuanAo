@@ -1,0 +1,52 @@
+﻿@model ShopQuanAo.Models.QuanTriVien
+@{
+    ViewData["Title"] = "Thêm Quản trị viên";
+}
+
+<div class="card shadow border-0 col-md-8 mx-auto mt-4">
+    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-primary">Thông tin Quản trị viên mới</h6></div>
+    <div class="card-body">
+        <form asp-action="Create">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="HoTen" class="form-label fw-bold">Họ và tên</label>
+                    <input asp-for="HoTen" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ChucVu" class="form-label fw-bold">Chức vụ</label>
+                    <input asp-for="ChucVu" class="form-control" placeholder="VD: Quản lý kho, Kế toán..." required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="SoDienThoai" class="form-label fw-bold">Số điện thoại</label>
+                    <input asp-for="SoDienThoai" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NgayVaoLam" class="form-label fw-bold">Ngày vào làm</label>
+                    <input asp-for="NgayVaoLam" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                </div>
+            </div>
+            <hr />
+            <h6 class="text-muted mb-3">Thông tin tài khoản đăng nhập</h6>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Tên đăng nhập</label>
+                <input name="TenDangNhap" class="form-control" required />
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Mật khẩu</label>
+                    <input name="MatKhau" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Email</label>
+                    <input name="Email" type="email" class="form-control" required />
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                <button type="submit" class="btn btn-primary fw-bold">Hoàn tất thiết lập</button>
+            </div>
+        </form>
+    </div>
+</div>

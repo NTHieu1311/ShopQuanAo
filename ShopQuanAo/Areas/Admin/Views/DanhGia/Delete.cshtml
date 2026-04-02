@@ -1,0 +1,21 @@
+﻿@model ShopQuanAo.Models.DanhGia
+@{
+    ViewData["Title"] = "Xóa Đánh Giá";
+}
+
+<div class="card shadow border-0 col-md-6 mx-auto mt-5 border-danger border-top border-4 text-center p-4">
+    <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+    <h4 class="fw-bold">Xác nhận xóa đánh giá?</h4>
+    
+    <div class="bg-light p-3 rounded mt-3 text-start">
+        <p><strong>Khách hàng:</strong> @Model.TaiKhoan.TenDangNhap</p>
+        <p><strong>Sản phẩm:</strong> @Model.SanPham.TenSP</p>
+        <p class="mb-0"><strong>Nội dung:</strong> "@Model.NoiDung"</p>
+    </div>
+
+    <form asp-action="Delete" class="mt-4">
+        <input type="hidden" asp-for="MaDanhGia" />
+        <a asp-action="Index" class="btn btn-secondary px-4 me-2">Hủy</a>
+        <button type="submit" class="btn btn-danger px-4">Xác nhận Xóa</button>
+    </form>
+</div>

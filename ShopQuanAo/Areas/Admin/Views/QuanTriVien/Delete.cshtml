@@ -1,0 +1,22 @@
+﻿@model ShopQuanAo.Models.QuanTriVien
+@{
+    ViewData["Title"] = "Xóa Quản trị viên";
+}
+
+<div class="card shadow border-0 col-md-6 mx-auto mt-5 border-danger border-top border-4 text-center p-4">
+    <i class="fas fa-user-minus fa-3x text-danger mb-3"></i>
+    <h4 class="fw-bold">Xác nhận cho nghỉ việc / Xóa nhân sự?</h4>
+    
+    <div class="bg-light p-3 rounded mt-3 text-start">
+        <p><strong>Họ tên:</strong> @Model.HoTen</p>
+        <p><strong>Chức vụ:</strong> @Model.ChucVu</p>
+        <p><strong>Ngày vào làm:</strong> @Model.NgayVaoLam.ToString("dd/MM/yyyy")</p>
+        <p class="mb-0 text-danger fw-bold">Tài khoản [@Model.TaiKhoan?.TenDangNhap] cũng sẽ bị xóa vĩnh viễn!</p>
+    </div>
+
+    <form asp-action="Delete" class="mt-4">
+        <input type="hidden" asp-for="MaTK" />
+        <a asp-action="Index" class="btn btn-secondary px-4 me-2">Hủy</a>
+        <button type="submit" class="btn btn-danger px-4">Xác nhận Xóa</button>
+    </form>
+</div>

@@ -1,0 +1,328 @@
+﻿@model ShopQuanAo.Models.SanPham
+@{
+    ViewData["Title"] = Model.TenSP;
+    var sanPhamCungLoai = ViewBag.SanPhamCungLoai as IEnumerable<ShopQuanAo.Models.SanPham>;
+}
+
+<style>
+    .product-price-box { background-color: #fafafa; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; }
+    .nav-tabs .nav-link { color: #2f3542; font-weight: bold; border: none; border-bottom: 3px solid transparent; padding: 10px 20px; }
+    .nav-tabs .nav-link.active { color: #ff4757; border-bottom: 3px solid #ff4757; background: transparent; }
+    .nav-tabs { border-bottom: 2px solid #eee; }
+    .star-rating i { color: #feca57; }
+    
+    /* CSS cho form đánh giá 5 sao */
+    .rating-input { direction: rtl; display: inline-flex; gap: 5px; }
+    .rating-input input { display: none; }
+    .rating-input label { color: #ddd; font-size: 2rem; cursor: pointer; transition: 0.2s; }
+    .rating-input label:hover,
+    .rating-input label:hover ~ label,
+    .rating-input input:checked ~ label { color: #feca57; }
+    
+    /* CSS cho nút chọn Màu / Size */
+    .variant-btn { min-width: 60px; border-width: 2px; }
+    .variant-btn.active { background-color: #ff4757 !important; color: white !important; border-color: #ff4757 !important; }
+</style>
+
+<div class="container mt-4 mb-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-muted"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/SanPham?category=@Model.DanhMuc.TenDM" class="text-decoration-none text-muted">@Model.DanhMuc.TenDM</a></li>
+            <li class="breadcrumb-item active fw-bold text-dark" aria-current="page">@Model.TenSP</li>
+        </ol>
+    </nav>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show rounded-4"><i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show rounded-4"><i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    }
+
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-5">
+        <div class="row g-0">
+            <div class="col-md-5 p-4 bg-light text-center d-flex align-items-center justify-content-center">
+                <img src="@(!string.IsNullOrEmpty(Model.HinhAnhChinh) ? Model.HinhAnhChinh : "https://via.placeholder.com/500x600?text=No+Image")" 
+                     class="img-fluid rounded shadow-sm" alt="@Model.TenSP" style="max-height: 500px; object-fit: contain;">
+            </div>
+
+            <div class="col-md-7 p-5">
+                <h2 class="fw-bold text-dark mb-2">@Model.TenSP</h2>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div class="star-rating me-2 fs-5">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= ViewBag.DiemTrungBinh) { <i class="fas fa-star"></i> }
+                            else if (i - 0.5 <= ViewBag.DiemTrungBinh) { <i class="fas fa-star-half-alt"></i> }
+                            else { <i class="far fa-star"></i> }
+                        }
+                    </div>
+                    <span class="text-muted border-start ps-2 ms-2">@ViewBag.DiemTrungBinh / 5.0 (@ViewBag.SoLuotDanhGia Đánh giá)</span>
+                </div>
+
+                <div class="product-price-box d-flex align-items-end">
+                    @if (Model.GiaGoc > Model.GiaBan)
+                    {
+                        <span class="text-muted text-decoration-line-through fs-5 me-3">@Model.GiaGoc.ToString("#,##0") đ</span>
+                        <h1 class="text-danger fw-bold mb-0 me-3">@Model.GiaBan.ToString("#,##0") đ</h1>
+                        int salePercent = (int)Math.Round((1 - (Model.GiaBan / Model.GiaGoc)) * 100);
+                        <span class="badge bg-danger fs-6 align-self-center">-@salePercent% GIẢM</span>
+                    }
+                    else
+                    {
+                        <h1 class="text-danger fw-bold mb-0">@Model.GiaBan.ToString("#,##0") đ</h1>
+                    }
+                </div>
+
+                <form action="/GioHang/Them" method="post" class="mt-4" id="addToCartForm">
+                    <input type="hidden" name="MaSP" value="@Model.MaSP" />
+                    <input type="hidden" name="MaBienThe" id="hiddenMaBienThe" value="" required />
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label class="fw-bold mb-2 text-dark">Màu sắc:</label>
+                                <div class="d-flex flex-wrap gap-2" id="color-group">
+                                    @foreach (var color in Model.BienTheSanPhams.Select(b => b.MauSac).Distinct())
+                                    {
+                                        <button type="button" class="btn btn-outline-danger variant-btn color-btn" data-color="@color">@color</button>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="fw-bold mb-2 text-dark">Kích thước:</label>
+                                <div class="d-flex flex-wrap gap-2" id="size-group">
+                                    @foreach (var size in Model.BienTheSanPhams.Select(b => b.KichThuoc).Distinct())
+                                    {
+                                        <button type="button" class="btn btn-outline-danger variant-btn size-btn" data-size="@size">@size</button>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div id="stock-info" class="text-muted small fw-bold mt-2">Vui lòng chọn Màu sắc và Kích thước</div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="fw-bold mb-2 text-dark">Số lượng:</label>
+                            <div class="input-group input-group-lg">
+                                <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('qty').stepDown()"><i class="fas fa-minus"></i></button>
+                                <input id="qty" type="number" name="SoLuong" class="form-control text-center fw-bold text-dark" value="1" min="1" required />
+                                <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('qty').stepUp()"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="submit" class="btn btn-outline-danger btn-lg w-50 fw-bold rounded-pill p-3" id="btnThemGio">
+                            <i class="fas fa-cart-plus fs-5 me-2"></i> THÊM VÀO GIỎ
+                        </button>
+                        <button type="submit" formaction="/GioHang/MuaNgay" class="btn btn-danger btn-lg w-50 fw-bold rounded-pill p-3 shadow" id="btnMuaNgay">
+                            MUA NGAY
+                        </button>
+                    </div>
+                </form>
+
+                <div class="row mt-5 pt-4 border-top text-muted small">
+                    <div class="col-4 text-center"><i class="fas fa-undo-alt text-danger fs-3 mb-2 d-block"></i> 7 ngày đổi trả miễn phí</div>
+                    <div class="col-4 text-center border-start border-end"><i class="fas fa-shield-alt text-danger fs-3 mb-2 d-block"></i> Hàng chính hãng 100%</div>
+                    <div class="col-4 text-center"><i class="fas fa-truck text-danger fs-3 mb-2 d-block"></i> Miễn phí vận chuyển</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-4 p-4 mb-5">
+        <ul class="nav nav-tabs mb-4" id="productTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fs-5" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button" role="tab">CHI TIẾT SẢN PHẨM</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fs-5" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab">ĐÁNH GIÁ CỦA KHÁCH HÀNG (@ViewBag.SoLuotDanhGia)</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="productTabContent">
+            
+            <div class="tab-pane fade show active" id="desc" role="tabpanel">
+                <div class="p-3" style="line-height: 1.8; font-size: 1.1rem; color: #444;">
+                    @Html.Raw(Model.MoTaChiTiet.Replace("\n", "<br/>"))
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="review" role="tabpanel">
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="bg-light p-4 rounded-4 mb-5 border">
+                        <h5 class="fw-bold mb-3">Viết đánh giá của bạn</h5>
+                        <form action="/SanPham/ThemDanhGia" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="MaSP" value="@Model.MaSP" />
+                            
+                            <div class="mb-3">
+                                <label class="fw-bold d-block mb-2">Bạn chấm sản phẩm này bao nhiêu sao?</label>
+                                <div class="rating-input">
+                                    <input type="radio" id="star5" name="DiemSao" value="5" checked />
+                                    <label for="star5" title="5 sao"><i class="fas fa-star"></i></label>
+                                    
+                                    <input type="radio" id="star4" name="DiemSao" value="4" />
+                                    <label for="star4" title="4 sao"><i class="fas fa-star"></i></label>
+                                    
+                                    <input type="radio" id="star3" name="DiemSao" value="3" />
+                                    <label for="star3" title="3 sao"><i class="fas fa-star"></i></label>
+                                    
+                                    <input type="radio" id="star2" name="DiemSao" value="2" />
+                                    <label for="star2" title="2 sao"><i class="fas fa-star"></i></label>
+                                    
+                                    <input type="radio" id="star1" name="DiemSao" value="1" />
+                                    <label for="star1" title="1 sao"><i class="fas fa-star"></i></label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <textarea name="NoiDung" class="form-control rounded-3" rows="3" placeholder="Hãy chia sẻ cảm nhận của bạn về chất lượng sản phẩm..." required></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-muted"><i class="fas fa-camera me-2"></i>Thêm hình ảnh thực tế (Tùy chọn)</label>
+                                <input type="file" name="HinhAnhUpload" class="form-control bg-white" accept="image/png, image/jpeg, image/jpg">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-danger rounded-pill px-4 fw-bold">GỬI ĐÁNH GIÁ</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-secondary rounded-4 text-center py-4 mb-5">
+                        Vui lòng <a href="/TaiKhoan/Login" class="text-danger fw-bold text-decoration-none">Đăng nhập</a> để viết đánh giá cho sản phẩm này.
+                    </div>
+                }
+
+                @if (Model.DanhGias.Any())
+                {
+                    <div class="row mt-4">
+                        @foreach (var dg in Model.DanhGias.OrderByDescending(d => d.NgayDanhGia))
+                        {
+                            <div class="col-md-12 mb-4 border-bottom pb-3">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <img src="https://ui-avatars.com/api/?name=@dg.TaiKhoan.TenDangNhap&background=random" class="rounded-circle" width="50" />
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">@dg.TaiKhoan.TenDangNhap <span class="badge bg-success ms-2" style="font-size:0.7rem;"><i class="fas fa-check-circle"></i> Đã mua hàng</span></h6>
+                                        <div class="star-rating small mb-2">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                if (i <= dg.DiemSao) { <i class="fas fa-star"></i> } else { <i class="far fa-star"></i> }
+                                            }
+                                            <span class="text-muted ms-2">@dg.NgayDanhGia.ToString("dd/MM/yyyy HH:mm")</span>
+                                        </div>
+                                        <p class="mb-2 text-dark" style="font-size: 1.05rem;">@dg.NoiDung</p>
+                                        
+                                        @if (!string.IsNullOrEmpty(dg.HinhAnh))
+                                        {
+                                            <div class="mt-2">
+                                                <img src="@dg.HinhAnh" alt="Ảnh đánh giá của khách" class="img-thumbnail shadow-sm" style="max-height: 120px; border-radius: 8px;">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 text-muted">
+                        <i class="far fa-comment-dots fa-3x mb-3"></i>
+                        <h5>Chưa có đánh giá nào cho sản phẩm này.</h5>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (sanPhamCungLoai != null && sanPhamCungLoai.Any())
+    {
+        <h3 class="fw-bold text-dark text-uppercase mb-4">CÓ THỂ BẠN CŨNG THÍCH</h3>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var sp in sanPhamCungLoai)
+            {
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm" style="border-radius: 15px; overflow: hidden; transition: 0.3s;" onmouseover="this.classList.add('shadow-lg'); this.style.transform='translateY(-5px)';" onmouseout="this.classList.remove('shadow-lg'); this.style.transform='translateY(0)';">
+                        <a href="/SanPham/Details/@sp.MaSP">
+                            <img src="@(!string.IsNullOrEmpty(sp.HinhAnhChinh) ? sp.HinhAnhChinh : "https://via.placeholder.com/300x400")" class="card-img-top" style="height: 250px; object-fit: cover;">
+                        </a>
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold"><a href="/SanPham/Details/@sp.MaSP" class="text-decoration-none text-dark">@sp.TenSP</a></h6>
+                            <span class="text-danger fw-bold fs-5">@sp.GiaBan.ToString("#,##0") đ</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const variants = [
+            @foreach(var bt in Model.BienTheSanPhams)
+            {
+                <text>{ id: @bt.MaBienThe, color: '@Html.Raw(bt.MauSac)', size: '@Html.Raw(bt.KichThuoc)', stock: @bt.SoLuongTon },</text>
+            }
+        ];
+
+        let selectedColor = null;
+        let selectedSize = null;
+
+        const colorBtns = document.querySelectorAll('.color-btn');
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        const hiddenInput = document.getElementById('hiddenMaBienThe');
+        const stockInfo = document.getElementById('stock-info');
+        const qtyInput = document.getElementById('qty');
+
+        colorBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                colorBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedColor = this.getAttribute('data-color');
+                checkVariant();
+            });
+        });
+
+        sizeBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                sizeBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedSize = this.getAttribute('data-size');
+                checkVariant();
+            });
+        });
+
+        function checkVariant() {
+            if (selectedColor && selectedSize) {
+                const match = variants.find(v => v.color === selectedColor && v.size === selectedSize);
+                if (match && match.stock > 0) {
+                    hiddenInput.value = match.id;
+                    stockInfo.innerHTML = `<span class="text-success"><i class="fas fa-check-circle"></i> Còn ${match.stock} sản phẩm</span>`;
+                    qtyInput.max = match.stock; 
+                } else {
+                    hiddenInput.value = "";
+                    stockInfo.innerHTML = `<span class="text-danger"><i class="fas fa-times-circle"></i> Mẫu này hiện đã hết hàng</span>`;
+                }
+            }
+        }
+
+        document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+            if (!hiddenInput.value) {
+                e.preventDefault();
+                alert('Vui lòng chọn Màu sắc và Kích thước trước khi thêm vào giỏ!');
+            }
+        });
+    });
+</script>

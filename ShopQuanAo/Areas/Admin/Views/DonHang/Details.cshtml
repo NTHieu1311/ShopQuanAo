@@ -1,0 +1,91 @@
+﻿@model ShopQuanAo.Models.DonHang
+@{
+    ViewData["Title"] = "Chi tiết Đơn hàng #" + Model.MaDH;
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow border-0 mb-4">
+            <div class="card-header bg-white py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Thông tin giao hàng</h6>
+            </div>
+            <div class="card-body">
+                <p><strong>Người nhận:</strong> @Model.TenNguoiNhan</p>
+                <p><strong>Số điện thoại:</strong> @Model.SDTNguoiNhan</p>
+                <p><strong>Địa chỉ:</strong> @Model.DiaChiGiao</p>
+                <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
+                <p><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.GhiChu) ? "Không có" : Model.GhiChu)</p>
+                
+                <hr />
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" name="id" value="@Model.MaDH" />
+                    <div class="mb-3">
+                        <label class="fw-bold text-dark">Cập nhật trạng thái:</label>
+                        <select name="TrangThaiDH" class="form-select mt-2" asp-for="TrangThaiDH">
+                            <option value="0">Chờ duyệt</option>
+                            <option value="1">Đang giao hàng</option>
+                            <option value="2">Hoàn thành</option>
+                            <option value="3">Đã hủy</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100 fw-bold">Lưu Trạng Thái</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow border-0">
+            <div class="card-header bg-white py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Sản phẩm đã đặt</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Phân loại</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-end">Đơn giá</th>
+                            <th class="text-end">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.ChiTietDonHangs)
+                        {
+                            var thanhTien = c.SoLuong * c.DonGiaXuat;
+                            <tr>
+                                <td class="fw-bold text-primary">
+                                    @if (!string.IsNullOrEmpty(c.BienTheSanPham.SanPham.HinhAnhChinh))
+                                    {
+                                        <img src="@c.BienTheSanPham.SanPham.HinhAnhChinh" style="width: 40px; height: 40px; object-fit: cover" class="rounded me-2" />
+                                    }
+                                    @c.BienTheSanPham.SanPham.TenSP
+                                </td>
+                                <td>Màu: @c.BienTheSanPham.MauSac - Size: @c.BienTheSanPham.KichThuoc</td>
+                                <td class="text-center">@c.SoLuong</td>
+                                <td class="text-end">@c.DonGiaXuat.ToString("#,##0") đ</td>
+                                <td class="text-end text-danger fw-bold">@thanhTien.ToString("#,##0") đ</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-end fw-bold fs-5">TỔNG CỘNG:</td>
+                            <td class="text-end fw-bold text-danger fs-5">@Model.TongTien.ToString("#,##0") đ</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <a asp-action="Index" class="btn btn-secondary mt-3"><i class="fas fa-arrow-left"></i> Quay lại danh sách</a>
+            </div>
+        </div>
+    </div>
+</div>

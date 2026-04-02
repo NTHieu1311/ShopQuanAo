@@ -1,0 +1,63 @@
+﻿@model ShopQuanAo.Models.DonHang
+@{
+    ViewData["Title"] = "Cổng Thanh Toán Điện Tử";
+    var giaoDich = Model.GiaoDichThanhToans.FirstOrDefault();
+    
+    // Cấu hình ngân hàng nhận tiền của Shop (Bạn có thể đổi mbbank thành vcb, bidv...)
+    string nganHang = "mbbank";
+    string soTaiKhoan = "0123456789";
+    string tenTaiKhoan = "FASHION STORE";
+    string noiDung = giaoDich.NoiDungChuyenKhoan;
+    decimal soTien = Model.TongTien;
+    
+    // API VietQR tự động sinh ảnh QR Code
+    string qrUrl = $"https://img.vietqr.io/image/{nganHang}-{soTaiKhoan}-compact2.png?amount={soTien}&addInfo={noiDung}&accountName={tenTaiKhoan}";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-header bg-dark text-white text-center py-4">
+                    <h4 class="mb-0 fw-bold">CỔNG THANH TOÁN @(giaoDich.PhuongThucThanhToan.TenPhuongThuc.ToUpper())</h4>
+                </div>
+                
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <p class="text-muted mb-1">Mã đơn hàng của bạn</p>
+                        <h3 class="fw-bold text-danger">#@Model.MaDH</h3>
+                        <p class="fs-5 mt-2 mb-0">Số tiền cần thanh toán: <strong class="text-dark fs-4">@soTien.ToString("#,##0") đ</strong></p>
+                    </div>
+
+                    <div class="bg-light p-4 rounded-4 text-center border mb-4">
+                        <h6 class="fw-bold mb-3"><i class="fas fa-qrcode me-2"></i>MỞ APP NGÂN HÀNG ĐỂ QUÉT MÃ</h6>
+                        <img src="@qrUrl" alt="QR Code Thanh Toán" class="img-fluid rounded shadow-sm" style="max-width: 300px; border: 5px solid white;">
+                        <p class="text-muted small mt-3 mb-0">Hệ thống sẽ tự động điền số tiền và nội dung chuyển khoản.</p>
+                    </div>
+
+                    <div class="border-start border-4 border-danger ps-3 mb-5">
+                        <p class="mb-1 text-muted small">Hoặc chuyển khoản thủ công theo thông tin:</p>
+                        <p class="mb-1">Ngân hàng: <strong>MB Bank (Ngân hàng Quân Đội)</strong></p>
+                        <p class="mb-1">Số tài khoản: <strong class="text-primary fs-5">@soTaiKhoan</strong></p>
+                        <p class="mb-1">Chủ tài khoản: <strong>@tenTaiKhoan</strong></p>
+                        <p class="mb-0">Nội dung CK: <strong class="text-danger">@noiDung</strong></p>
+                    </div>
+
+                    <form asp-action="XacNhanThanhToanOnline" method="post" class="text-center">
+                        <input type="hidden" name="id" value="@Model.MaDH" />
+                        <hr class="mb-4">
+                        <p class="text-muted small mb-3"><i class="fas fa-info-circle"></i> Trong môi trường thực tế, hệ thống sẽ tự động bắt Webhook khi có tiền vào. Tại đây, vui lòng bấm nút bên dưới sau khi chuyển khoản thành công.</p>
+                        
+                        <button type="submit" class="btn btn-success btn-lg rounded-pill px-5 fw-bold shadow-sm" id="btnConfirmPay">
+                            <i class="fas fa-check-circle me-2"></i> TÔI ĐÃ CHUYỂN KHOẢN THÀNH CÔNG
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="/TaiKhoan/DonHang" class="text-muted text-decoration-none"><i class="fas fa-arrow-left me-1"></i> Bỏ qua và thanh toán sau</a>
+            </div>
+        </div>
+    </div>
+</div>

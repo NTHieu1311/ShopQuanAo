@@ -1,0 +1,151 @@
+﻿@model IEnumerable<ShopQuanAo.Models.SanPham>
+@{
+    ViewData["Title"] = "Cửa hàng";
+    int currentPage = ViewBag.CurrentPage;
+    int totalPages = ViewBag.TotalPages;
+}
+
+<style>
+    .filter-sidebar { background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+    .filter-title { font-weight: 800; text-transform: uppercase; font-size: 1rem; border-bottom: 2px solid #f1f2f6; padding-bottom: 10px; margin-bottom: 20px; }
+    .product-card { transition: 0.3s; border-radius: 15px; overflow: hidden; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .product-img-wrap { position: relative; height: 300px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center; }
+    .product-img-wrap img { max-height: 100%; object-fit: cover; }
+    .page-link { color: #2f3542; font-weight: bold; border-radius: 8px; margin: 0 5px; border: none; background: #f1f2f6; }
+    .page-item.active .page-link { background-color: #ff4757; color: white; }
+    .page-link:hover { background-color: #ff4757; color: white; }
+</style>
+
+<div class="container mt-4 mb-5">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+        <h2 class="fw-bold mb-0">@(!string.IsNullOrEmpty(ViewBag.Category) ? ViewBag.Category : "TẤT CẢ SẢN PHẨM")</h2>
+        <span class="text-muted fw-bold">Tìm thấy @ViewBag.TotalItems sản phẩm</span>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 mb-4">
+            <div class="filter-sidebar">
+                <form action="/SanPham/Index" method="get">
+                    <input type="hidden" name="keyword" value="@ViewBag.Keyword" />
+                    <input type="hidden" name="category" value="@ViewBag.Category" />
+
+                    <h5 class="filter-title">Khoảng Giá</h5>
+                    <div class="row g-2 mb-4">
+                        <div class="col-6">
+                            <input type="number" name="minPrice" class="form-control text-center" placeholder="TỪ" value="@ViewBag.MinPrice">
+                        </div>
+                        <div class="col-6">
+                            <input type="number" name="maxPrice" class="form-control text-center" placeholder="ĐẾN" value="@ViewBag.MaxPrice">
+                        </div>
+                    </div>
+
+                    <h5 class="filter-title">Màu Sắc</h5>
+                    <div class="mb-4">
+                        <select name="color" class="form-select fw-bold text-dark">
+                            <option value="">-- Tất cả màu --</option>
+                            @foreach (var c in ViewBag.AllColors)
+                            {
+                                if (ViewBag.Color == c)
+                                {
+                                    <option value="@c" selected>@c</option>
+                                }
+                                else
+                                {
+                                    <option value="@c">@c</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <h5 class="filter-title">Kích thước</h5>
+                    <div class="mb-4">
+                        <select name="size" class="form-select fw-bold text-dark">
+                            <option value="">-- Tất cả Size --</option>
+                            @foreach (var s in ViewBag.AllSizes)
+                            {
+                                if (ViewBag.Size == s)
+                                {
+                                    <option value="@s" selected>Size @s</option>
+                                }
+                                else
+                                {
+                                    <option value="@s">Size @s</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger w-100 fw-bold rounded-pill py-2">ÁP DỤNG LỌC</button>
+                    <a href="/SanPham" class="btn btn-outline-secondary w-100 fw-bold rounded-pill py-2 mt-2">Xóa Bộ Lọc</a>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+                    <h4 class="text-muted fw-bold">Không tìm thấy sản phẩm nào phù hợp!</h4>
+                    <p>Vui lòng thử điều chỉnh lại bộ lọc hoặc từ khóa tìm kiếm.</p>
+                </div>
+            }
+            else
+            {
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+                    @foreach (var sp in Model)
+                    {
+                        <div class="col">
+                            <div class="card product-card h-100">
+                                <a href="/SanPham/Details/@sp.MaSP">
+                                    <div class="product-img-wrap">
+                                        @if(sp.GiaGoc > sp.GiaBan)
+                                        {
+                                            <span class="badge bg-danger position-absolute top-0 end-0 m-3 fs-6">-@Math.Round((1 - sp.GiaBan/sp.GiaGoc)*100)%</span>
+                                        }
+                                        <img src="@(!string.IsNullOrEmpty(sp.HinhAnhChinh) ? sp.HinhAnhChinh : "https://via.placeholder.com/300x400")" alt="@sp.TenSP">
+                                    </div>
+                                </a>
+                                <div class="card-body text-center p-4">
+                                    <small class="text-muted fw-bold d-block mb-1">@sp.DanhMuc?.TenDM</small>
+                                    <h6 class="card-title fw-bold text-truncate mb-2"><a href="/SanPham/Details/@sp.MaSP" class="text-dark text-decoration-none">@sp.TenSP</a></h6>
+                                    
+                                    @if(sp.GiaGoc > sp.GiaBan)
+                                    {
+                                        <span class="text-muted text-decoration-line-through me-2">@sp.GiaGoc.ToString("#,##0") đ</span>
+                                    }
+                                    <span class="text-danger fw-bold fs-5">@sp.GiaBan.ToString("#,##0") đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @if (totalPages > 1)
+                {
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            
+                            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = currentPage - 1, keyword = ViewBag.Keyword, category = ViewBag.Category, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, color = ViewBag.Color, size = ViewBag.Size })"><i class="fas fa-chevron-left"></i></a>
+                            </li>
+
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                <li class="page-item @(i == currentPage ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = i, keyword = ViewBag.Keyword, category = ViewBag.Category, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, color = ViewBag.Color, size = ViewBag.Size })">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = currentPage + 1, keyword = ViewBag.Keyword, category = ViewBag.Category, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, color = ViewBag.Color, size = ViewBag.Size })"><i class="fas fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+            }
+        </div>
+    </div>
+</div>

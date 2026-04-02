@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ShopQuanAo.Models.DonHang>
+@{
+    ViewData["Title"] = "Lịch Sử Đơn Hàng";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="list-group shadow-sm rounded-4 border-0">
+                <a href="/TaiKhoan/HoSo" class="list-group-item list-group-item-action py-3"><i class="fas fa-user-circle me-2"></i> Hồ sơ của tôi</a>
+                <a href="/TaiKhoan/DonHang" class="list-group-item list-group-item-action py-3 active bg-danger border-danger"><i class="fas fa-clipboard-list me-2"></i> Lịch sử đơn hàng</a>
+                <a href="/TaiKhoan/Logout" class="list-group-item list-group-item-action py-3 text-danger"><i class="fas fa-sign-out-alt me-2"></i> Đăng xuất</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h3 class="fw-bold mb-4">ĐƠN HÀNG CỦA TÔI</h3>
+            
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show rounded-4"><i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show rounded-4"><i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+            }
+
+            @if (!Model.Any())
+            {
+                <div class="card border-0 shadow-sm rounded-4 text-center py-5">
+                    <div class="card-body">
+                        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Bạn chưa có đơn hàng nào.</h5>
+                        <a href="/" class="btn btn-outline-danger mt-3 rounded-pill">Bắt đầu mua sắm</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @foreach (var dh in Model)
+                {
+                    <div class="card border-0 shadow-sm rounded-4 mb-4">
+                        <div class="card-header bg-light py-3 d-flex justify-content-between align-items-center border-bottom">
+                            <div>
+                                <span class="fw-bold">Mã ĐH: #@dh.MaDH</span>
+                                <span class="text-muted ms-3"><i class="far fa-clock"></i> @dh.NgayDat.ToString("dd/MM/yyyy HH:mm")</span>
+                            </div>
+                            
+                            <div class="d-flex align-items-center gap-3">
+                                @if (dh.TrangThaiDH == 1)
+                                {
+                                    <span class="badge bg-warning text-dark px-3 py-2"><i class="fas fa-spinner"></i> Chờ xác nhận</span>
+                                    <form asp-action="HuyDonHang" asp-controller="TaiKhoan" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn hủy đơn hàng #@dh.MaDH không? Quá trình này không thể hoàn tác.');">
+                                        <input type="hidden" name="id" value="@dh.MaDH" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger fw-bold rounded-pill px-3">Hủy Đơn</button>
+                                    </form>
+                                }
+                                else if (dh.TrangThaiDH == 2)
+                                {
+
+                                    <span class="badge bg-info px-3 py-2"><i class="fas fa-truck"></i> Đang giao hàng</span>
+                                }
+                                else if (dh.TrangThaiDH == 3)
+                                {
+
+                                    <span class="badge bg-success px-3 py-2"><i class="fas fa-check"></i> Đã hoàn thành</span>
+                                }
+                                else
+                                {
+
+                                    <span class="badge bg-secondary px-3 py-2"><i class="fas fa-times"></i> Đã hủy</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                @foreach (var ct in dh.ChiTietDonHangs)
+                                {
+                                    <li class="list-group-item p-3">
+                                        <div class="d-flex align-items-center">
+                                            <img src="@(!string.IsNullOrEmpty(ct.BienTheSanPham?.SanPham?.HinhAnhChinh) ? ct.BienTheSanPham.SanPham.HinhAnhChinh : "https://via.placeholder.com/70x80")" width="70" class="rounded shadow-sm" style="height: 80px; object-fit: cover;">
+                                            <div class="ms-3 flex-grow-1">
+                                                <h6 class="fw-bold mb-1"><a href="/SanPham/Details/@ct.BienTheSanPham?.SanPham?.MaSP" class="text-dark text-decoration-none">@ct.BienTheSanPham?.SanPham?.TenSP</a></h6>
+                                                <small class="text-muted">Phân loại: @ct.BienTheSanPham?.MauSac, Size @ct.BienTheSanPham?.KichThuoc</small>
+                                                <div class="mt-1">x @ct.SoLuong</div>
+                                            </div>
+                                            <div class="text-danger fw-bold">@ct.DonGiaXuat.ToString("#,##0") đ</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-white py-3 text-end">
+                            <span class="text-muted me-2">Thành tiền:</span>
+                            <span class="fs-5 fw-bold text-danger">@dh.TongTien.ToString("#,##0") đ</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

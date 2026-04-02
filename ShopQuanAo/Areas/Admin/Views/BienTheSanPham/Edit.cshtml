@@ -1,0 +1,32 @@
+﻿@model ShopQuanAo.Models.BienTheSanPham
+@{
+    ViewData["Title"] = "Sửa Biến Thể";
+}
+
+<div class="card shadow border-0 col-md-6 mx-auto mt-4">
+    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-warning">Chỉnh Sửa Biến Thể</h6></div>
+    <div class="card-body">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="MaBienThe" />
+            <div class="mb-3">
+                <label asp-for="MaSP" class="form-label fw-bold">Sản phẩm</label>
+                <select asp-for="MaSP" class="form-select" asp-items="ViewBag.MaSP"></select>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="MauSac" class="form-label fw-bold">Màu sắc</label>
+                    <input asp-for="MauSac" class="form-control" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="KichThuoc" class="form-label fw-bold">Kích thước</label>
+                    <input asp-for="KichThuoc" class="form-control" required />
+                </div>
+            </div>
+            <div class="mb-4">
+                <label asp-for="SoLuongTon" class="form-label fw-bold">Số lượng tồn kho</label>
+                <input asp-for="SoLuongTon" type="number" class="form-control" min="0" required />
+            </div>
+            <button type="submit" class="btn btn-warning w-100 fw-bold"><i class="fas fa-save"></i> Cập nhật</button>
+        </form>
+    </div>
+</div>

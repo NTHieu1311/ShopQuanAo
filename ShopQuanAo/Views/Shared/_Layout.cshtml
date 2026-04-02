@@ -1,0 +1,357 @@
+﻿@using Microsoft.AspNetCore.Http
+@using System.Text.Json
+@using ShopQuanAo.Models
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FASHION STORE</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --dark-color: #2f3542;
+            --light-bg: #f8f9fa;
+        }
+        
+        body { 
+            font-family: 'Nunito', sans-serif; 
+            background-color: var(--light-bg); 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .navbar-brand { font-family: 'Jost', sans-serif; }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: var(--dark-color);
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .top-bar a { color: #fff; text-decoration: none; transition: 0.3s; }
+        .top-bar a:hover { color: var(--primary-color); }
+
+        /* --- NAVBAR --- */
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand { font-weight: 800; font-size: 1.8rem; letter-spacing: 1px; color: var(--dark-color) !important; }
+        
+        /* Hiệu ứng gạch chân cho Menu */
+        .nav-link { 
+            font-weight: 600; 
+            color: var(--dark-color) !important; 
+            text-transform: uppercase; 
+            font-size: 0.95rem; 
+            margin: 0 12px; 
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--primary-color) !important; }
+
+        /* --- THANH TÌM KIẾM MỚI --- */
+        .search-box {
+            background-color: #f1f2f6;
+            border-radius: 50px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+        }
+        .search-box input {
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            outline: none;
+            padding-left: 10px;
+            width: 200px;
+            transition: width 0.4s ease;
+        }
+        .search-box input:focus { width: 250px; }
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--dark-color);
+            transition: 0.3s;
+        }
+        .search-box button:hover { color: var(--primary-color); }
+
+        /* --- ICONS HÀNH ĐỘNG --- */
+        .action-icon {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-left: 20px;
+            position: relative;
+            transition: transform 0.3s ease, color 0.3s;
+            text-decoration: none;
+        }
+        .action-icon:hover { 
+            color: var(--primary-color); 
+            transform: translateY(-3px);
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            height: 20px;
+            min-width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+
+        /* --- DROPDOWN USER --- */
+        .dropdown-menu-custom {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 10px 0;
+            min-width: 220px;
+        }
+        .dropdown-menu-custom .dropdown-item {
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .dropdown-menu-custom .dropdown-item:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color) !important;
+            padding-left: 25px;
+        }
+
+        /* --- FOOTER --- */
+        main { flex: 1; } /* Đẩy footer xuống đáy trang */
+        .footer { 
+            background-color: var(--dark-color); 
+            color: #ced6e0; 
+            padding: 70px 0 30px; 
+            margin-top: 60px;
+        }
+        .footer h5 { color: #fff; font-weight: 700; letter-spacing: 1px; margin-bottom: 25px; }
+        .footer a { color: #ced6e0; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .footer a:hover { color: var(--primary-color); transform: translateX(5px); }
+        .footer .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #fff;
+            margin-right: 10px;
+        }
+        .footer .social-links a:hover { background-color: var(--primary-color); transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+    <div class="top-bar d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="fas fa-phone-alt text-danger me-2"></i> Hotline: <strong>0909.123.456</strong></span>
+                <span><i class="fas fa-envelope text-danger me-2"></i> cskh@fashionstore.com</span>
+            </div>
+            <div>
+                <marquee scrollamount="5" style="width: 300px; color: #ff4757; font-weight: bold;">
+                    🔥 FREESHIP TOÀN QUỐC CHO ĐƠN HÀNG TỪ 500K! SĂN SALE NGAY HÔM NAY! 🔥
+                </marquee>
+            </div>
+            <div class="d-flex gap-3">
+                <a href="/Home/HeThongCuaHang"><i class="fas fa-map-marker-alt me-1"></i> Hệ thống cửa hàng</a>
+                <a href="#"><i class="fas fa-truck me-1"></i> Tra cứu đơn hàng</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <i class="fas fa-tshirt text-danger"></i> FASHION<span style="color: #ff4757;">STORE</span>
+                </a>
+                
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fas fa-bars fs-2 text-dark"></i>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="SanPham" asp-action="Index">Sản phẩm mới</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/SanPham?category=Nam">Thời trang Nam</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/SanPham?category=Nữ">Thời trang Nữ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Khuyến mãi</a></li>
+                    </ul>
+                    
+                    <div class="d-flex align-items-center mt-3 mt-lg-0">
+                        <form class="search-box me-2" action="/SanPham/Index" method="get">
+                            <input type="search" name="keyword" placeholder="Tìm kiếm áo thun, váy..." value="@ViewBag.Keyword" required>
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+
+                        @{
+                            int soLuongGioHang = 0;
+                            var cartData = Context.Session.GetString("MYCART");
+                            if (cartData != null)
+                            {
+                                var cartList = JsonSerializer.Deserialize<List<CartItem>>(cartData);
+                                soLuongGioHang = cartList.Sum(x => x.SoLuong);
+                            }
+                        }
+                        
+                        <a href="/GioHang/Index" class="action-icon" title="Giỏ hàng">
+                            <i class="fas fa-shopping-bag"></i>
+                            @if(soLuongGioHang > 0)
+                            {
+                                <span class="cart-badge">@soLuongGioHang</span>
+                            }
+                            else
+                            {
+                                <span class="cart-badge bg-secondary">0</span>
+                            }
+                        </a>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="dropdown">
+                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="far fa-user-circle"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom mt-3">
+                                    <li class="px-3 py-2 border-bottom mb-2 bg-light">
+                                        <small class="text-muted d-block">Xin chào,</small>
+                                        <strong class="text-dark">@User.Identity.Name</strong>
+                                    </li>
+                                    <li><a class="dropdown-item text-dark" href="/TaiKhoan/DonHang"><i class="fas fa-box-open me-2 text-muted"></i> Đơn hàng của tôi</a></li>
+                                    <li><a class="dropdown-item text-dark" href="/TaiKhoan/HoSo"><i class="fas fa-id-card me-2 text-muted"></i> Hồ sơ cá nhân</a></li>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-primary" href="/Admin"><i class="fas fa-shield-alt me-2"></i> Trang Quản Trị</a></li>
+                                    }
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="/TaiKhoan/Logout"><i class="fas fa-sign-out-alt me-2"></i> Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="/TaiKhoan/Login" class="btn btn-dark rounded-pill px-4 fw-bold ms-3 shadow-sm hover-up">Đăng nhập</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-4 col-md-6 mb-4 pe-lg-5">
+                    <h3 class="text-white fw-bold mb-4"><i class="fas fa-tshirt text-danger"></i> FASHION<span class="text-danger">STORE</span></h3>
+                    <p style="line-height: 1.8;">Điểm đến lý tưởng cho những người yêu thời trang. Chúng tôi mang đến xu hướng mới nhất, chất lượng tuyệt đỉnh và dịch vụ chăm sóc khách hàng tận tâm.</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Danh mục</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="/SanPham?category=Nam"><i class="fas fa-angle-right me-2 text-danger"></i>Thời trang Nam</a></li>
+                        <li class="mb-3"><a href="/SanPham?category=Nữ"><i class="fas fa-angle-right me-2 text-danger"></i>Thời trang Nữ</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-angle-right me-2 text-danger"></i>Bộ sưu tập mới</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-angle-right me-2 text-danger"></i>Hàng giảm giá</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Hỗ trợ khách hàng</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="#"><i class="fas fa-angle-right me-2 text-danger"></i>Chính sách đổi trả</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-angle-right me-2 text-danger"></i>Hướng dẫn chọn size</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-angle-right me-2 text-danger"></i>Chính sách bảo mật</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-angle-right me-2 text-danger"></i>Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5>Đăng ký nhận tin</h5>
+                    <p class="mb-4">Nhận ngay mã giảm giá 10% cho đơn hàng đầu tiên khi đăng ký bản tin của chúng tôi!</p>
+                    <form action="#" method="post">
+                        <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden p-1 bg-white">
+                            <input type="email" class="form-control border-0 shadow-none px-3" placeholder="Nhập email của bạn..." required>
+                            <button class="btn btn-danger rounded-pill px-4 fw-bold" type="submit">ĐĂNG KÝ</button>
+                        </div>
+                    </form>
+                    <div class="mt-4">
+                        <p class="mb-2"><i class="fas fa-headset me-2 text-danger"></i> Hỗ trợ: <strong>0909.123.456</strong> (8:00 - 22:00)</p>
+                        <p><i class="fas fa-envelope-open-text me-2 text-danger"></i> cskh@fashionstore.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-top border-secondary pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-0 text-center text-md-start">&copy; 2026 FASHION STORE. Nền tảng Thương mại Điện tử. Mọi quyền được bảo lưu.</p>
+                <div class="mt-3 mt-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" height="25" class="me-2 bg-white p-1 rounded" alt="PayPal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" height="25" class="me-2 bg-white p-1 rounded" alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" height="25" class="bg-white p-1 rounded" alt="MasterCard">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '8px 0';
+                navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.boxShadow = '0 4px 15px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

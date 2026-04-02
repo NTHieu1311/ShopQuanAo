@@ -1,0 +1,103 @@
+﻿@model ShopQuanAo.Models.KhachHang
+@{
+    ViewData["Title"] = "Hồ Sơ Cá Nhân";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="list-group shadow-sm rounded-4 border-0">
+                <a href="/TaiKhoan/HoSo" class="list-group-item list-group-item-action py-3 active bg-danger border-danger"><i class="fas fa-user-circle me-2"></i> Hồ sơ của tôi</a>
+                <a href="/TaiKhoan/DonHang" class="list-group-item list-group-item-action py-3"><i class="fas fa-clipboard-list me-2"></i> Lịch sử đơn hàng</a>
+                <a href="/TaiKhoan/Logout" class="list-group-item list-group-item-action py-3 text-danger"><i class="fas fa-sign-out-alt me-2"></i> Đăng xuất</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <h3 class="fw-bold mb-4">HỒ SƠ CỦA TÔI</h3>
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show rounded-4"><i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show rounded-4"><i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+            }
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <h5 class="fw-bold mb-4 border-bottom pb-3"><i class="fas fa-user-edit text-danger me-2"></i> Thông tin cá nhân</h5>
+                    <form asp-action="CapNhatHoSo" method="post">
+                        <input type="hidden" asp-for="MaTK" />
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold mb-2 text-muted">Tên đăng nhập</label>
+                                <input type="text" class="form-control bg-light" value="@Model.TaiKhoan?.TenDangNhap" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold mb-2 text-muted">Email liên hệ</label>
+                                <input type="text" class="form-control bg-light" value="@Model.TaiKhoan?.Email" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold mb-2">Họ và tên <span class="text-danger">*</span></label>
+                                <input type="text" asp-for="HoTen" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold mb-2">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input type="tel" asp-for="SoDienThoai" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="fw-bold mb-2">Địa chỉ nhận hàng mặc định <span class="text-danger">*</span></label>
+                                    <textarea asp-for="DiaChi" class="form-control" rows="3" required></textarea>
+                                    <small class="text-muted mt-1 d-block">Địa chỉ này sẽ được tự động điền khi bạn tiến hành Thanh toán.</small>
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="fw-bold mb-2">Điểm tích lũy thành viên</label>
+                                    <h4 class="text-warning fw-bold"><i class="fas fa-star"></i> @Model.DiemTichLuy điểm</h4>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-danger rounded-pill px-5 py-2 fw-bold">LƯU THAY ĐỔI</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4">
+                        <div class="card-body p-4 p-md-5">
+                            <h5 class="fw-bold mb-4 border-bottom pb-3"><i class="fas fa-lock text-dark me-2"></i> Đổi mật khẩu</h5>
+                            <form asp-action="DoiMatKhau" method="post">
+                                <div class="mb-3">
+                                    <label class="fw-bold mb-2">Mật khẩu hiện tại <span class="text-danger">*</span></label>
+                                    <input type="password" name="MatKhauHienTai" class="form-control" required placeholder="Nhập mật khẩu cũ...">
+                                </div>
+                        
+                                <div class="row mb-4">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-bold mb-2">Mật khẩu mới <span class="text-danger">*</span></label>
+                                        <input type="password" name="MatKhauMoi" class="form-control" required minlength="6" placeholder="Nhập mật khẩu mới...">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-bold mb-2">Xác nhận mật khẩu mới <span class="text-danger">*</span></label>
+                                        <input type="password" name="XacNhanMatKhau" class="form-control" required minlength="6" placeholder="Nhập lại mật khẩu mới...">
+                                    </div>
+                                </div>
+                        
+                                <div class="mt-2">
+                                    <button type="submit" class="btn btn-dark rounded-pill px-5 py-2 fw-bold">CẬP NHẬT MẬT KHẨU</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>

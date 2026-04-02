@@ -1,0 +1,28 @@
+﻿@model ShopQuanAo.Models.PhuongThucThanhToan
+@{
+    ViewData["Title"] = "Thêm PT Thanh Toán";
+}
+
+<div class="card shadow border-0 col-md-6 mx-auto mt-4">
+    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-primary">Thêm Phương Thức Mới</h6></div>
+    <div class="card-body">
+        <form asp-action="Create">
+            <div class="mb-3">
+                <label asp-for="TenPhuongThuc" class="form-label fw-bold">Tên phương thức (VD: Tiền mặt, VNPay)</label>
+                <input asp-for="TenPhuongThuc" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label asp-for="MoTa" class="form-label fw-bold">Mô tả chi tiết</label>
+                <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="mb-4">
+                <label asp-for="TrangThai" class="form-label fw-bold">Trạng thái</label>
+                <select asp-for="TrangThai" class="form-select">
+                    <option value="1">Hoạt động</option>
+                    <option value="0">Tạm ngưng</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-save"></i> Lưu Dữ Liệu</button>
+        </form>
+    </div>
+</div>
