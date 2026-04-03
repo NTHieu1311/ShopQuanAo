@@ -16,15 +16,34 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         }
 
         // ==========================================
-        // 1. HIỂN THỊ DANH SÁCH ĐƠN HÀNG
+        // 1. HIỂN THỊ DANH SÁCH & TÌM KIẾM ĐƠN HÀNG
         // ==========================================
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchKeyword)
         {
-            // Lấy danh sách đơn hàng, sắp xếp ngày đặt mới nhất lên đầu
-            var donHangs = await _context.DonHangs
-                .Include(d => d.TaiKhoan)
-                .OrderByDescending(d => d.NgayDat)
-                .ToListAsync();
+            // Lấy danh sách đơn hàng (Bao gồm dữ liệu bảng TaiKhoan để View không bị lỗi)
+            var query = _context.DonHangs.Include(d => d.TaiKhoan).AsQueryable();
+
+            // Nếu Admin có gõ tìm kiếm
+            if (!string.IsNullOrEmpty(searchKeyword))
+            {
+                // Lọc bỏ dấu # đi (nếu Admin quen tay gõ #1537) và xóa khoảng trắng thừa
+                searchKeyword = searchKeyword.Replace("#", "").Trim();
+
+                // Kiểm tra xem Admin đang gõ số (tìm theo Mã Đơn Hàng) hay gõ chữ (tìm theo SĐT/Tên)
+                if (int.TryParse(searchKeyword, out int maDH))
+                {
+                    // Tìm chính xác theo Mã đơn hàng
+                    query = query.Where(d => d.MaDH == maDH);
+                }
+                else
+                {
+                    // Tìm tương đối theo Số điện thoại hoặc Tên người nhận
+                    query = query.Where(d => d.SDTNguoiNhan.Contains(searchKeyword) || d.TenNguoiNhan.Contains(searchKeyword));
+                }
+            }
+
+            // Sắp xếp đơn mới nhất lên đầu và trả về View
+            var donHangs = await query.OrderByDescending(d => d.NgayDat).ToListAsync();
             return View(donHangs);
         }
 

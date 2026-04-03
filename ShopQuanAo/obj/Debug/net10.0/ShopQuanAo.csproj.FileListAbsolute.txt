@@ -337,3 +337,4 @@ C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\refint\ShopQ
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\ShopQuanAo.pdb
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\ShopQuanAo.genruntimeconfig.cache
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\ref\ShopQuanAo.dll
+C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\ShopQuanAo.sourcelink.json

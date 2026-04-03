@@ -43,7 +43,13 @@ namespace ShopQuanAo.Controllers
                 ViewData["Title"] = string.IsNullOrEmpty(category) ? "Tất cả sản phẩm" : $"Thời trang {category}";
             }
 
-            if (!string.IsNullOrEmpty(category)) query = query.Where(s => s.DanhMuc != null && s.DanhMuc.TenDM == category);
+            if (!string.IsNullOrEmpty(category))
+            {
+                var cat = category.Trim().ToLower(); // Ép từ khóa trên URL về chữ thường
+
+                // Ép luôn tên Danh Mục trong DB về chữ thường để so sánh
+                query = query.Where(s => s.DanhMuc != null && s.DanhMuc.TenDM.ToLower().Contains(cat));
+            }
             if (minPrice.HasValue) query = query.Where(s => s.GiaBan >= minPrice.Value);
             if (maxPrice.HasValue) query = query.Where(s => s.GiaBan <= maxPrice.Value);
             if (!string.IsNullOrEmpty(color)) query = query.Where(s => s.BienTheSanPhams.Any(b => b.MauSac == color && b.SoLuongTon > 0));
