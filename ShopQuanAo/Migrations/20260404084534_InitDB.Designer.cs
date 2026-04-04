@@ -12,7 +12,7 @@ using ShopQuanAo.Data;
 namespace ShopQuanAo.Migrations
 {
     [DbContext(typeof(ShopQuanAoContext))]
-    [Migration("20260331011030_InitDB")]
+    [Migration("20260404084534_InitDB")]
     partial class InitDB
     {
         /// <inheritdoc />
@@ -34,14 +34,12 @@ namespace ShopQuanAo.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaBienThe"));
 
                     b.Property<string>("KichThuoc")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaSP")
                         .HasColumnType("int");
 
                     b.Property<string>("MauSac")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SoLuongTon")
@@ -105,7 +103,6 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("HinhAnh")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaDH")
@@ -121,7 +118,6 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NoiDung")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TrangThai")
@@ -147,11 +143,9 @@ namespace ShopQuanAo.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaDM"));
 
                     b.Property<string>("MoTa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenDM")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TrangThai")
@@ -171,11 +165,9 @@ namespace ShopQuanAo.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaDH"));
 
                     b.Property<string>("DiaChiGiao")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GhiChu")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaTK")
@@ -185,11 +177,9 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SDTNguoiNhan")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenNguoiNhan")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TongTien")
@@ -217,14 +207,12 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MaGiaoDichDoiTac")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaPT")
                         .HasColumnType("int");
 
                     b.Property<string>("NoiDungChuyenKhoan")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SoTien")
@@ -272,21 +260,18 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DiaChi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DiemTichLuy")
                         .HasColumnType("int");
 
                     b.Property<string>("HoTen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("NgaySinh")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SoDienThoai")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MaTK");
@@ -303,7 +288,6 @@ namespace ShopQuanAo.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaPT"));
 
                     b.Property<string>("MoTa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenPhuongThuc")
@@ -358,14 +342,12 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("decimal(18, 0)");
 
                     b.Property<string>("HinhAnhChinh")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaDM")
                         .HasColumnType("int");
 
                     b.Property<string>("MoTaChiTiet")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("NgayTao")
@@ -398,7 +380,6 @@ namespace ShopQuanAo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MatKhau")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("NgayTao")

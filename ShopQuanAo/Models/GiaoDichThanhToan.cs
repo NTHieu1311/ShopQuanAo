@@ -17,11 +17,11 @@ namespace ShopQuanAo.Models
         [ForeignKey("PhuongThucThanhToan")]
         public int MaPT { get; set; }
 
-        public string MaGiaoDichDoiTac { get; set; } = null!;
+        public string? MaGiaoDichDoiTac { get; set; } = null!;
         public decimal SoTien { get; set; }
         public DateTime ThoiGianThanhToan { get; set; }
         public int TrangThaiGiaoDich { get; set; }
-        public string NoiDungChuyenKhoan { get; set; } = null!;
+        public string? NoiDungChuyenKhoan { get; set; } = null!;
 
         public virtual DonHang DonHang { get; set; } = null!;
         public virtual PhuongThucThanhToan PhuongThucThanhToan { get; set; } = null!;

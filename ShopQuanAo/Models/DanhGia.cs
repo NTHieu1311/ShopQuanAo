@@ -21,8 +21,8 @@ namespace ShopQuanAo.Models
         public int MaDH { get; set; }
 
         public int DiemSao { get; set; }
-        public string NoiDung { get; set; } = null!;
-        public string HinhAnh { get; set; } = null!;
+        public string? NoiDung { get; set; } = null!;
+        public string? HinhAnh { get; set; } = null!;
         public DateTime NgayDanhGia { get; set; }
         public int TrangThai { get; set; }
 

@@ -2,68 +2,83 @@
     ViewData["Title"] = "Đăng Ký Tài Khoản";
 }
 
-<div class="container mt-5 mb-5">
+<div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="card shadow border-0 rounded-lg">
-                <div class="card-header bg-success text-white text-center py-4">
-                    <h4 class="font-weight-light my-0"><i class="fas fa-user-plus"></i> ĐĂNG KÝ THÀNH VIÊN</h4>
+        <div class="col-lg-8 col-xl-7">
+            <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger rounded-circle mb-3" style="width: 70px; height: 70px;">
+                        <i class="fas fa-user-plus fa-2x"></i>
+                    </div>
+                    <h2 class="fw-bold" style="font-family: 'Jost', sans-serif; color: #2f3542;">TẠO TÀI KHOẢN MỚI</h2>
+                    <p class="text-muted">Gia nhập cộng đồng FASHION STORE để nhận nhiều ưu đãi hấp dẫn!</p>
                 </div>
-                <div class="card-body p-4">
-                    @if (ViewBag.ErrorMessage != null)
-                    {
-                        <div class="alert alert-danger text-center">@ViewBag.ErrorMessage</div>
-                    }
 
-                    <form asp-action="Register" method="post">
-                        <h6 class="text-muted border-bottom pb-2 mb-3">Thông tin đăng nhập</h6>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" name="TenDangNhap" type="text" placeholder="Tên đăng nhập" required />
-                                    <label>Tên đăng nhập</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input class="form-control" name="MatKhau" type="password" placeholder="Mật khẩu" required />
-                                    <label>Mật khẩu</label>
-                                </div>
-                            </div>
-                        </div>
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show rounded-3" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i> @ViewBag.ErrorMessage
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
 
-                        <h6 class="text-muted border-bottom pb-2 mb-3 mt-4">Thông tin cá nhân</h6>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" name="HoTen" type="text" placeholder="Họ và Tên" required />
-                            <label>Họ và Tên</label>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" name="SoDienThoai" type="tel" placeholder="Số điện thoại" required />
-                                    <label>Số điện thoại</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input class="form-control" name="Email" type="email" placeholder="Email" required />
-                                    <label>Email</label>
-                                </div>
+                <form asp-action="Register" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control rounded-3 shadow-none" name="HoTen" id="HoTen" placeholder="Họ và tên" required>
+                                <label for="HoTen" class="text-muted">Họ và tên <span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" name="DiaChi" type="text" placeholder="Địa chỉ giao hàng" required />
-                            <label>Địa chỉ nhận hàng</label>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control rounded-3 shadow-none" name="TenDangNhap" id="TenDangNhap" placeholder="Tên đăng nhập" required>
+                                <label for="TenDangNhap" class="text-muted">Tên đăng nhập <span class="text-danger">*</span></label>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="mt-4 mb-0">
-                            <button type="submit" class="btn btn-success w-100 py-2 fw-bold">TẠO TÀI KHOẢN</button>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="email" class="form-control rounded-3 shadow-none" name="Email" id="Email" placeholder="Email" required>
+                                <label for="Email" class="text-muted">Địa chỉ Email <span class="text-danger">*</span></label>
+                            </div>
                         </div>
-                    </form>
-                </div>
-                <div class="card-footer text-center py-3">
-                    <div class="small">Đã có tài khoản? <a asp-action="Login">Đi đến đăng nhập</a></div>
-                </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control rounded-3 shadow-none" name="MatKhau" id="MatKhau" placeholder="Mật khẩu" required>
+                                <label for="MatKhau" class="text-muted">Mật khẩu <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control rounded-3 shadow-none" name="SoDienThoai" id="SoDienThoai" placeholder="Số điện thoại" required>
+                                <label for="SoDienThoai" class="text-muted">Số điện thoại <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control rounded-3 shadow-none" name="DiaChi" id="DiaChi" placeholder="Địa chỉ giao hàng" required>
+                                <label for="DiaChi" class="text-muted">Địa chỉ giao hàng <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="small text-muted text-center mb-4">
+                        Bằng việc đăng ký, bạn đồng ý với <a href="#" class="text-danger text-decoration-none">Điều khoản dịch vụ</a> & <a href="#" class="text-danger text-decoration-none">Chính sách bảo mật</a> của chúng tôi.
+                    </p>
+
+                    <button class="btn w-100 py-3 text-white fw-bold rounded-pill mb-3 shadow" style="background-color: #ff4757; font-size: 1.1rem; letter-spacing: 1px;" type="submit">ĐĂNG KÝ TÀI KHOẢN</button>
+                    
+                    <div class="text-center mt-3">
+                        <span class="text-muted">Đã có tài khoản?</span>
+                        <a href="/TaiKhoan/Login" style="color: #ff4757; text-decoration: none; font-weight: 700;" class="ms-1">Đăng nhập tại đây</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

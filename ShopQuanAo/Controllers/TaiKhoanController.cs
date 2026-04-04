@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
 using System.Security.Claims;
+using ShopQuanAo.Helpers;
 
 namespace ShopQuanAo.Controllers
 {
@@ -24,16 +25,21 @@ namespace ShopQuanAo.Controllers
         public IActionResult Login()
         {
             // Nếu đã đăng nhập rồi thì chuyển hướng luôn
-            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(string TenDangNhap, string MatKhau)
         {
+            // Mã hóa mật khẩu người dùng nhập vào để so sánh
+            string matKhauDaMaHoa = MaHoaHelper.ToSHA256(MatKhau);
+
             // Kiểm tra trong DB (Quy ước: TrangThai = 1 là đang hoạt động)
             var taiKhoan = await _context.TaiKhoans
-                .SingleOrDefaultAsync(t => t.TenDangNhap == TenDangNhap && t.MatKhau == MatKhau && t.TrangThai == 1);
+                .SingleOrDefaultAsync(t => t.TenDangNhap == TenDangNhap && t.MatKhau == matKhauDaMaHoa && t.TrangThai == 1);
 
             if (taiKhoan != null)
             {
@@ -78,18 +84,28 @@ namespace ShopQuanAo.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(string TenDangNhap, string MatKhau, string Email, string HoTen, string SoDienThoai, string DiaChi)
         {
-            // Kiểm tra xem Username hoặc Email đã tồn tại chưa
-            if (_context.TaiKhoans.Any(t => t.TenDangNhap == TenDangNhap))
+            // [ĐÃ SỬA]: Kiểm tra trùng Tên đăng nhập
+            if (await _context.TaiKhoans.AnyAsync(t => t.TenDangNhap == TenDangNhap))
             {
-                ViewBag.ErrorMessage = "Tên đăng nhập đã tồn tại!";
+                ViewBag.ErrorMessage = "Tên đăng nhập này đã tồn tại, vui lòng chọn tên khác!";
                 return View();
             }
+
+            // [ĐÃ SỬA]: Kiểm tra trùng Email
+            if (await _context.TaiKhoans.AnyAsync(t => t.Email == Email))
+            {
+                ViewBag.ErrorMessage = "Email này đã được sử dụng cho tài khoản khác!";
+                return View();
+            }
+
+            // Mã hóa mật khẩu trước khi tạo tài khoản
+            string matKhauDaMaHoa = MaHoaHelper.ToSHA256(MatKhau);
 
             // 1. Tạo Tài Khoản (QuyenTruyCap = 1 là Khách Hàng)
             var taiKhoan = new TaiKhoan
             {
                 TenDangNhap = TenDangNhap,
-                MatKhau = MatKhau,
+                MatKhau = matKhauDaMaHoa, // Lưu mật khẩu mã hóa
                 Email = Email,
                 QuyenTruyCap = 1,
                 TrangThai = 1,
@@ -123,13 +139,17 @@ namespace ShopQuanAo.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
+
         // ==========================================
         // 4. XEM LỊCH SỬ ĐƠN HÀNG
         // ==========================================
         [Authorize]
         public async Task<IActionResult> DonHang()
         {
-            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdClaim)) return RedirectToAction("Login");
+
+            var maTK = int.Parse(userIdClaim);
 
             // Lấy toàn bộ đơn hàng của Khách hàng này, bao gồm cả Chi tiết và Hình ảnh sản phẩm
             var donHangs = await _context.DonHangs
@@ -149,35 +169,27 @@ namespace ShopQuanAo.Controllers
         [Authorize]
         public async Task<IActionResult> HoSo()
         {
-            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            // [KHU VỰC VÁ LỖI]: Kiểm tra xem người đang bấm có phải là Admin không?
+            if (User.IsInRole("Admin"))
+            {
+                // Nếu đúng là Admin -> Chuyển hướng thẳng vào trang Hồ sơ của Admin
+                return RedirectToAction("HoSo", "TaiKhoan", new { area = "Admin" });
+            }
+
+            // Nếu là Khách hàng bình thường thì chạy logic cũ
+            var maTKStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(maTKStr)) return RedirectToAction("Login");
+
+            var maTK = int.Parse(maTKStr);
             var khachHang = await _context.KhachHangs
                 .Include(k => k.TaiKhoan)
                 .FirstOrDefaultAsync(k => k.MaTK == maTK);
 
             if (khachHang == null) return NotFound();
+
             return View(khachHang);
         }
 
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> CapNhatHoSo(KhachHang model)
-        {
-            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if (maTK != model.MaTK) return BadRequest();
-
-            var kh = await _context.KhachHangs.FindAsync(maTK);
-            if (kh != null)
-            {
-                kh.HoTen = model.HoTen;
-                kh.SoDienThoai = model.SoDienThoai;
-                kh.DiaChi = model.DiaChi;
-
-                _context.Update(kh);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Cập nhật hồ sơ thành công!";
-            }
-            return RedirectToAction(nameof(HoSo));
-        }
         // ==========================================
         // 6. HỦY ĐƠN HÀNG (Khách hàng tự hủy)
         // ==========================================
@@ -185,7 +197,7 @@ namespace ShopQuanAo.Controllers
         [Authorize]
         public async Task<IActionResult> HuyDonHang(int id)
         {
-            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
 
             // Lấy thông tin Đơn hàng và các Chi tiết đơn hàng bên trong
             var donHang = await _context.DonHangs
@@ -237,6 +249,7 @@ namespace ShopQuanAo.Controllers
 
             return RedirectToAction(nameof(DonHang));
         }
+
         // ==========================================
         // 7. ĐỔI MẬT KHẨU
         // ==========================================
@@ -244,13 +257,16 @@ namespace ShopQuanAo.Controllers
         [Authorize]
         public async Task<IActionResult> DoiMatKhau(string MatKhauHienTai, string MatKhauMoi, string XacNhanMatKhau)
         {
-            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
             var taiKhoan = await _context.TaiKhoans.FindAsync(maTK);
 
             if (taiKhoan == null) return NotFound();
 
+            // Mã hóa mật khẩu hiện tại để so sánh với DB
+            string matKhauHienTaiDaMaHoa = MaHoaHelper.ToSHA256(MatKhauHienTai);
+
             // 1. Kiểm tra mật khẩu hiện tại có đúng không
-            if (taiKhoan.MatKhau != MatKhauHienTai)
+            if (taiKhoan.MatKhau != matKhauHienTaiDaMaHoa)
             {
                 TempData["ErrorMessage"] = "Mật khẩu hiện tại không đúng!";
                 return RedirectToAction(nameof(HoSo));
@@ -263,8 +279,8 @@ namespace ShopQuanAo.Controllers
                 return RedirectToAction(nameof(HoSo));
             }
 
-            // 3. Cập nhật mật khẩu mới vào Database
-            taiKhoan.MatKhau = MatKhauMoi;
+            // 3. Cập nhật mật khẩu mới vào Database (Nhớ mã hóa)
+            taiKhoan.MatKhau = MaHoaHelper.ToSHA256(MatKhauMoi);
             _context.Update(taiKhoan);
             await _context.SaveChangesAsync();
 

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
 using System.Security.Claims;
+using ShopQuanAo.Helpers;
 
 namespace ShopQuanAo.Areas.Admin.Controllers
 {
@@ -26,7 +27,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         }
 
         // ==========================================
-        // 2. TẠO TÀI KHOẢN MỚI (Ví dụ: Tạo TK Admin)
+        // 2. TẠO TÀI KHOẢN MỚI
         // ==========================================
         public IActionResult Create()
         {
@@ -35,21 +36,57 @@ namespace ShopQuanAo.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TaiKhoan taiKhoan)
+        // [ĐÃ SỬA LỖI]: Thêm dấu ? vào các biến string để báo rằng chúng không bắt buộc (có thể null)
+        public async Task<IActionResult> Create(TaiKhoan taiKhoan, string? HoTen, string? SoDienThoai, string? DiaChi, string? ChucVu)
         {
-            // Bỏ qua kiểm tra các bảng liên kết để tránh lỗi ModelState false
             ModelState.Remove("KhachHang");
             ModelState.Remove("DonHangs");
             ModelState.Remove("DanhGias");
+            ModelState.Remove("QuanTriVien");
+
+            // KIỂM TRA TRÙNG LẶP
+            if (_context.TaiKhoans.Any(t => t.TenDangNhap == taiKhoan.TenDangNhap))
+            {
+                ModelState.AddModelError("TenDangNhap", "Tên đăng nhập này đã tồn tại!");
+                return View(taiKhoan);
+            }
+            if (_context.TaiKhoans.Any(t => t.Email == taiKhoan.Email))
+            {
+                ModelState.AddModelError("Email", "Email này đã được sử dụng!");
+                return View(taiKhoan);
+            }
 
             if (ModelState.IsValid)
             {
-                // Tự động gán ngày tạo là thời điểm hiện tại
+                taiKhoan.MatKhau = MaHoaHelper.ToSHA256(taiKhoan.MatKhau);
                 taiKhoan.NgayTao = DateTime.Now;
+
+                // TỰ ĐỘNG SINH HỒ SƠ VỚI DỮ LIỆU THẬT TỪ FORM
+                if (taiKhoan.QuyenTruyCap == 1)
+                {
+                    taiKhoan.KhachHang = new KhachHang
+                    {
+                        HoTen = string.IsNullOrEmpty(HoTen) ? "Khách Hàng" : HoTen,
+                        SoDienThoai = string.IsNullOrEmpty(SoDienThoai) ? "" : SoDienThoai,
+                        DiaChi = string.IsNullOrEmpty(DiaChi) ? "" : DiaChi,
+                        NgaySinh = DateTime.Now
+                    };
+                }
+                else if (taiKhoan.QuyenTruyCap == 2)
+                {
+                    taiKhoan.QuanTriVien = new QuanTriVien
+                    {
+                        HoTen = string.IsNullOrEmpty(HoTen) ? "Quản Trị Viên" : HoTen,
+                        SoDienThoai = string.IsNullOrEmpty(SoDienThoai) ? "" : SoDienThoai,
+                        ChucVu = string.IsNullOrEmpty(ChucVu) ? "Nhân Viên" : ChucVu,
+                        NgayVaoLam = DateTime.Now
+                    };
+                }
 
                 _context.Add(taiKhoan);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Tạo tài khoản mới thành công!";
+
+                TempData["SuccessMessage"] = "Tạo tài khoản và hồ sơ thành công!";
                 return RedirectToAction(nameof(Index));
             }
             return View(taiKhoan);
@@ -76,11 +113,31 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             ModelState.Remove("KhachHang");
             ModelState.Remove("DonHangs");
             ModelState.Remove("DanhGias");
+            ModelState.Remove("QuanTriVien");
+
+            // Kiểm tra trùng Email khi SỬA
+            if (_context.TaiKhoans.Any(t => t.Email == taiKhoan.Email && t.MaTK != id))
+            {
+                ModelState.AddModelError("Email", "Email này đã được sử dụng bởi một tài khoản khác!");
+                return View(taiKhoan);
+            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Lấy thông tin tài khoản cũ từ Database lên để đối chiếu mật khẩu
+                    var taiKhoanCu = await _context.TaiKhoans.AsNoTracking().FirstOrDefaultAsync(t => t.MaTK == id);
+
+                    if (string.IsNullOrEmpty(taiKhoan.MatKhau))
+                    {
+                        taiKhoan.MatKhau = taiKhoanCu.MatKhau;
+                    }
+                    else if (taiKhoan.MatKhau != taiKhoanCu.MatKhau)
+                    {
+                        taiKhoan.MatKhau = MaHoaHelper.ToSHA256(taiKhoan.MatKhau);
+                    }
+
                     _context.Update(taiKhoan);
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Cập nhật tài khoản thành công!";
@@ -123,8 +180,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                 }
                 catch (DbUpdateException)
                 {
-                    // Nếu tài khoản này đã mua hàng hoặc đánh giá, DB sẽ không cho xóa
-                    TempData["ErrorMessage"] = "Không thể xóa! Tài khoản này đang chứa dữ liệu Khách hàng hoặc Đơn hàng. Vui lòng sử dụng chức năng Khóa tài khoản thay vì xóa.";
+                    TempData["ErrorMessage"] = "Không thể xóa! Tài khoản này đang chứa dữ liệu. Vui lòng sử dụng chức năng Khóa tài khoản thay vì xóa.";
                     return RedirectToAction(nameof(Delete), new { id = id });
                 }
             }
@@ -135,13 +191,13 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         {
             return _context.TaiKhoans.Any(e => e.MaTK == id);
         }
+
         // ==========================================
-        // 1. HIỂN THỊ TRANG HỒ SƠ ADMIN
+        // 5. HIỂN THỊ TRANG HỒ SƠ ADMIN
         // ==========================================
         [HttpGet]
         public async Task<IActionResult> HoSo()
         {
-            // Lấy ID tài khoản đang đăng nhập
             var maTKStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(maTKStr)) return RedirectToAction("Login", "TaiKhoan", new { area = "" });
 
@@ -154,7 +210,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         }
 
         // ==========================================
-        // 2. CẬP NHẬT EMAIL/THÔNG TIN
+        // 6. CẬP NHẬT EMAIL/THÔNG TIN
         // ==========================================
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -163,6 +219,12 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             var taiKhoan = await _context.TaiKhoans.FindAsync(MaTK);
             if (taiKhoan != null)
             {
+                if (_context.TaiKhoans.Any(t => t.Email == Email && t.MaTK != MaTK))
+                {
+                    TempData["Error"] = "Email này đã tồn tại trong hệ thống!";
+                    return RedirectToAction(nameof(HoSo));
+                }
+
                 taiKhoan.Email = Email;
                 _context.Update(taiKhoan);
                 await _context.SaveChangesAsync();
@@ -173,7 +235,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         }
 
         // ==========================================
-        // 3. ĐỔI MẬT KHẨU ADMIN
+        // 7. ĐỔI MẬT KHẨU ADMIN
         // ==========================================
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -182,22 +244,21 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             var taiKhoan = await _context.TaiKhoans.FindAsync(MaTK);
             if (taiKhoan == null) return NotFound();
 
-            // Kiểm tra mật khẩu cũ
-            if (taiKhoan.MatKhau != MatKhauHienTai)
+            string matKhauHienTaiDaMaHoa = MaHoaHelper.ToSHA256(MatKhauHienTai);
+
+            if (taiKhoan.MatKhau != matKhauHienTaiDaMaHoa)
             {
                 TempData["Error"] = "Mật khẩu hiện tại không đúng!";
                 return RedirectToAction(nameof(HoSo));
             }
 
-            // Kiểm tra xác nhận mật khẩu
             if (MatKhauMoi != XacNhanMatKhau)
             {
                 TempData["Error"] = "Mật khẩu mới và xác nhận không khớp!";
                 return RedirectToAction(nameof(HoSo));
             }
 
-            // Lưu mật khẩu mới
-            taiKhoan.MatKhau = MatKhauMoi;
+            taiKhoan.MatKhau = MaHoaHelper.ToSHA256(MatKhauMoi);
             _context.Update(taiKhoan);
             await _context.SaveChangesAsync();
 

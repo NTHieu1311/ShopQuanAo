@@ -4,22 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Hosting; // Bổ sung thư viện
-using Microsoft.AspNetCore.Http;    // Bổ sung thư viện
-using System.IO;                    // Bổ sung thư viện
+using ShopQuanAo.Helpers; // [ĐÃ THÊM]: Khai báo thư viện chứa CloudinaryHelper
 
 namespace ShopQuanAo.Controllers
 {
     public class SanPhamController : Controller
     {
         private readonly ShopQuanAoContext _context;
-        private readonly IWebHostEnvironment _env; // Thêm biến môi trường để lưu file
+        // [ĐÃ SỬA]: Bỏ IWebHostEnvironment và thay bằng CloudinaryHelper
+        private readonly CloudinaryHelper _cloudinaryHelper;
 
-        // Cập nhật Constructor để tiêm (inject) IWebHostEnvironment
-        public SanPhamController(ShopQuanAoContext context, IWebHostEnvironment env)
+        public SanPhamController(ShopQuanAoContext context, CloudinaryHelper cloudinaryHelper)
         {
             _context = context;
-            _env = env;
+            _cloudinaryHelper = cloudinaryHelper;
         }
 
         // ==========================================
@@ -46,7 +44,6 @@ namespace ShopQuanAo.Controllers
             if (!string.IsNullOrEmpty(category))
             {
                 var cat = category.Trim().ToLower(); // Ép từ khóa trên URL về chữ thường
-
                 // Ép luôn tên Danh Mục trong DB về chữ thường để so sánh
                 query = query.Where(s => s.DanhMuc != null && s.DanhMuc.TenDM.ToLower().Contains(cat));
             }
@@ -123,14 +120,15 @@ namespace ShopQuanAo.Controllers
         }
 
         // ==========================================
-        // 3. THÊM ĐÁNH GIÁ SẢN PHẨM CÓ UPLOAD ẢNH
+        // 3. THÊM ĐÁNH GIÁ SẢN PHẨM CÓ UPLOAD ẢNH (CLOUD)
         // ==========================================
         [HttpPost]
         [Authorize]
-        // 💡 Thêm tham số IFormFile HinhAnhUpload
         public async Task<IActionResult> ThemDanhGia(int MaSP, int DiemSao, string NoiDung, IFormFile HinhAnhUpload)
         {
-            var maTK = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var maTKStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(maTKStr)) return RedirectToAction("Login", "TaiKhoan");
+            int maTK = int.Parse(maTKStr);
 
             // 1. Kiểm tra khách hàng đã mua sản phẩm chưa
             var donHangHopLe = await _context.DonHangs
@@ -146,37 +144,13 @@ namespace ShopQuanAo.Controllers
                 return RedirectToAction("Details", new { id = MaSP });
             }
 
-            // 2. Xử lý Upload file ảnh (Nếu khách có chọn ảnh)
+            // 2. Xử lý Upload file ảnh Lên Cloudinary
             string duongDanAnh = ""; // Mặc định không có ảnh
 
             if (HinhAnhUpload != null && HinhAnhUpload.Length > 0)
             {
-                // Chỉ cho phép định dạng ảnh
-                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-                var extension = Path.GetExtension(HinhAnhUpload.FileName).ToLower();
-
-                if (allowedExtensions.Contains(extension))
-                {
-                    // Tạo thư mục nếu chưa có: wwwroot/uploads/reviews
-                    string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", "reviews");
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
-
-                    // Đổi tên file để tránh trùng lặp
-                    string uniqueFileName = Guid.NewGuid().ToString() + extension;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    // Copy file vào server
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await HinhAnhUpload.CopyToAsync(fileStream);
-                    }
-
-                    // Lưu đường dẫn ảo vào Database
-                    duongDanAnh = "/uploads/reviews/" + uniqueFileName;
-                }
+                // [ĐÃ SỬA]: Thay thế toàn bộ code lưu ảnh rườm rà bằng đúng 1 dòng gọi Cloudinary!
+                duongDanAnh = await _cloudinaryHelper.UploadImageAsync(HinhAnhUpload, "FashionStore/DanhGias");
             }
 
             // 3. Lưu Đánh giá vào Database
@@ -187,7 +161,7 @@ namespace ShopQuanAo.Controllers
                 MaDH = donHangHopLe.MaDH,
                 DiemSao = DiemSao,
                 NoiDung = NoiDung ?? "Không có nội dung",
-                HinhAnh = duongDanAnh, // <--- Cập nhật đường dẫn ảnh vừa upload
+                HinhAnh = duongDanAnh, // <--- Cập nhật đường dẫn ảnh trên Cloudinary
                 NgayDanhGia = DateTime.Now,
                 TrangThai = 1
             };

@@ -14,8 +14,8 @@ namespace ShopQuanAo.Models
         [ForeignKey("SanPham")]
         public int MaSP { get; set; }
 
-        public string KichThuoc { get; set; } = null!;
-        public string MauSac { get; set; } = null!;
+        public string? KichThuoc { get; set; } = null!;
+        public string? MauSac { get; set; } = null!;
         public int SoLuongTon { get; set; }
 
         public virtual SanPham SanPham { get; set; } = null!;

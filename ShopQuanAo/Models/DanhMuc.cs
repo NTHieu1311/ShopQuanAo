@@ -9,10 +9,11 @@ namespace ShopQuanAo.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int MaDM { get; set; }
 
-        public string TenDM { get; set; } = null!;
-        public string MoTa { get; set; } = null!;
+        public string? TenDM { get; set; } = null!;
+        public string? MoTa { get; set; } = null!;
         public int TrangThai { get; set; }
 
         public virtual ICollection<SanPham> SanPhams { get; set; } = new List<SanPham>();

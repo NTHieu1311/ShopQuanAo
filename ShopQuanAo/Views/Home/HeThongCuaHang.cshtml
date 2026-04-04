@@ -3,7 +3,6 @@
 }
 
 <style>
-    /* Thêm cursor pointer để báo hiệu có thể click */
     .store-card {
         transition: all 0.3s ease;
         border-radius: 15px;
@@ -12,7 +11,6 @@
         cursor: pointer;
     }
     
-        /* Hiệu ứng khi hover hoặc khi đang được chọn (active) */
         .store-card:hover, .store-card.active {
             border-color: #ff4757;
             box-shadow: 0 10px 20px rgba(255, 71, 87, 0.1);
@@ -38,7 +36,7 @@
         height: 100%;
         min-height: 500px;
         position: sticky;
-        top: 100px; /* Giữ bản đồ đứng im khi cuộn trang */
+        top: 100px;
     }
 </style>
 
@@ -52,17 +50,17 @@
         <div class="col-lg-5">
             <h4 class="fw-bold mb-4 border-bottom pb-2"><i class="fas fa-map-marked-alt text-danger me-2"></i> Trụ Sở Chính & Các Chi Nhánh</h4>
             
-            <div class="card store-card shadow-sm mb-4 p-3 active" onclick="changeMap('Hồ Hoàn Kiếm, Hà Nội', this)">
+            <div class="card store-card shadow-sm mb-4 p-3 active" onclick="changeMap('123 Đường Tôn Đức Thắng, Đống Đa, Hà Nội', this)">
                 <div class="d-flex align-items-center mb-3">
                     <div class="store-icon-wrap me-3">
                         <i class="fas fa-store"></i>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-1 text-danger">FASHION STORE - Hà Nội (Flagship)</h5>
+                        <h5 class="fw-bold mb-1 text-danger">FASHION STORE - Hà Nội (Trụ sở chính)</h5>
                         <span class="badge bg-success">Đang mở cửa</span>
                     </div>
                 </div>
-                <p class="mb-2"><i class="fas fa-map-marker-alt text-muted me-2"></i> Quận Đống Đa, TP. Hà Nội</p>
+                <p class="mb-2"><i class="fas fa-map-marker-alt text-muted me-2"></i> 123 Đường Tôn Đức Thắng, Q. Đống Đa, Hà Nội</p>
                 <p class="mb-2"><i class="fas fa-phone-alt text-muted me-2"></i> 0909.123.456</p>
                 <p class="mb-0"><i class="fas fa-clock text-muted me-2"></i> 08:00 AM - 10:00 PM</p>
             </div>
@@ -100,13 +98,12 @@
         <div class="col-lg-7">
             <div class="map-container">
                 <iframe id="storeMap"
-                        src="https://maps.google.com/maps?q= Hồ+Hoàn+Kiếm,+Hà+Nội&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        src=""
                         width="100%"
                         height="100%"
                         style="border:0;"
                         allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        loading="lazy">
                 </iframe>
             </div>
         </div>
@@ -115,24 +112,18 @@
 
 <script>
     function changeMap(address, element) {
-        // Dùng URL chuẩn của Google Maps (có tham số q=) để luôn cắm ghim đỏ
-        var mapUrl = "https://maps.google.com/maps?q=" + encodeURIComponent(address) + "&t=&z=15&ie=UTF8&iwloc=&output=embed";
+        var mapUrl = "https://www.google.com/maps?q=" + encodeURIComponent(address) + "&output=embed";
         document.getElementById("storeMap").src = mapUrl;
 
-        // Xóa viền đỏ (class active) ở tất cả các cửa hàng
         var cards = document.querySelectorAll('.store-card');
         cards.forEach(function(card) {
             card.classList.remove('active');
         });
-
-        // Thêm viền đỏ (class active) vào cửa hàng vừa được click
         element.classList.add('active');
     }
 
-    // Tự động load bản đồ của cửa hàng đầu tiên khi vừa vào trang
     window.onload = function() {
-        var firstStoreAddress = "Vincom Phạm Ngọc Thạch, Đống Đa, Hà Nội";
-        var mapUrl = "https://maps.google.com/maps?q=" + encodeURIComponent(firstStoreAddress) + "&t=&z=15&ie=UTF8&iwloc=&output=embed";
-        document.getElementById("storeMap").src = mapUrl;
+        // Mặc định load địa chỉ Hà Nội giống trên hóa đơn
+        changeMap("123 Đường Tôn Đức Thắng, Đống Đa, Hà Nội", document.querySelector('.store-card.active'));
     };
 </script>

@@ -1,55 +1,84 @@
 ﻿@model ShopQuanAo.Models.SanPham
 
 @{
-    ViewData["Title"] = "Xóa Sản Phẩm";
+    ViewData["Title"] = "Xác Nhận Xóa Sản Phẩm";
 }
 
-<div class="card shadow border-0 col-md-8 mx-auto mt-5 border-danger border-top border-4">
-    <div class="card-body p-4">
-        <div class="text-center mb-4">
-            <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
-            <h4 class="fw-bold">Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
-        </div>
-        
-        <div class="row bg-light p-3 rounded">
-            <div class="col-md-4 text-center">
-                @if (!string.IsNullOrEmpty(Model.HinhAnhChinh))
-                {
-                    <img src="@Model.HinhAnhChinh" class="img-fluid rounded shadow-sm" style="max-height: 150px;" />
-                }
-                else
-                {
-                    <div class="p-4 bg-secondary text-white rounded">Không có ảnh</div>
-                }
-            </div>
-            <div class="col-md-8">
-                <table class="table table-sm table-borderless">
-                    <tr>
-                        <th width="30%">Tên sản phẩm:</th>
-                        <td class="fw-bold text-primary">@Model.TenSP</td>
-                    </tr>
-                    <tr>
-                        <th>Danh mục:</th>
-                        <td>@Model.DanhMuc.TenDM</td>
-                    </tr>
-                    <tr>
-                        <th>Giá bán:</th>
-                        <td class="text-danger fw-bold">@Model.GiaBan.ToString("#,##0") VNĐ</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+<div class="container mt-4">
+    <div class="card shadow border-0 col-md-8 mx-auto border-danger border-top border-4">
+        <div class="card-body p-4">
+            
+            @* QUAN TRỌNG: Hiển thị thông báo lỗi nếu dính khóa ngoại (đang nằm trong đơn hàng) *@
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i> <strong>Lỗi:</strong> @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
 
-        <div class="alert alert-warning mt-4 text-center">
-            Hành động này sẽ xóa dữ liệu khỏi cơ sở dữ liệu và <strong>xóa luôn cả file ảnh</strong> trên máy chủ. Không thể hoàn tác!
-        </div>
+            <div class="text-center mb-4">
+                <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+                <h4 class="fw-bold text-dark">Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
+            </div>
+            
+            <div class="row bg-light p-3 rounded align-items-center">
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    @if (!string.IsNullOrEmpty(Model.HinhAnhChinh))
+                    {
+                        <img src="@Model.HinhAnhChinh" class="img-fluid rounded shadow-sm" style="max-height: 180px; object-fit: contain;" alt="@Model.TenSP" />
+                    }
+                    else
+                    {
+                        <div class="p-4 bg-secondary text-white rounded d-flex flex-column align-items-center justify-content-center" style="height: 150px;">
+                            <i class="fas fa-image fa-2x mb-2"></i>
+                            <span>Không có ảnh</span>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-sm table-borderless mb-0">
+                        <tr>
+                            <th width="35%" class="text-muted align-middle">Mã sản phẩm:</th>
+                            <td class="fw-bold align-middle">#@Model.MaSP</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted align-middle">Tên sản phẩm:</th>
+                            <td class="fw-bold text-primary fs-5 align-middle">@Model.TenSP</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted align-middle">Danh mục:</th>
+                            <td class="align-middle">
+                                <span class="badge bg-info text-dark">@(Model.DanhMuc?.TenDM ?? "Không có")</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted align-middle">Giá gốc:</th>
+                            <td class="text-decoration-line-through text-muted align-middle">@Model.GiaGoc.ToString("#,##0") VNĐ</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted align-middle">Giá bán:</th>
+                            <td class="text-danger fw-bold fs-5 align-middle">@Model.GiaBan.ToString("#,##0") VNĐ</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-        <form asp-action="Delete" class="mt-4 text-center">
-            <input type="hidden" asp-for="MaSP" />
-            <a asp-action="Index" class="btn btn-secondary px-4 me-3">Hủy bỏ</a>
-            <button type="submit" class="btn btn-danger px-4">
-                <i class="fas fa-trash"></i> Xác nhận Xóa
-            </button>
-        </form>
+            <div class="alert alert-warning mt-4 text-center border-warning">
+                <i class="fas fa-exclamation-circle me-1"></i> Hành động này sẽ xóa dữ liệu khỏi cơ sở dữ liệu và <strong>xóa luôn cả file ảnh</strong> trên máy chủ. <br />
+                <span class="text-danger fw-bold">Tuyệt đối không thể hoàn tác!</span>
+            </div>
+
+            <form asp-action="Delete" class="mt-4 text-center">
+                <input type="hidden" asp-for="MaSP" />
+                
+                <a asp-action="Index" class="btn btn-outline-secondary px-4 me-3">
+                    <i class="fas fa-arrow-left me-1"></i> Hủy bỏ
+                </a>
+                <button type="submit" class="btn btn-danger px-4 shadow-sm">
+                    <i class="fas fa-trash-alt me-1"></i> Xác nhận Xóa
+                </button>
+            </form>
+        </div>
     </div>
 </div>

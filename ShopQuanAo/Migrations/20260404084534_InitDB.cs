@@ -17,8 +17,8 @@ namespace ShopQuanAo.Migrations
                 {
                     MaDM = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenDM = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenDM = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -33,7 +33,7 @@ namespace ShopQuanAo.Migrations
                     MaPT = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenPhuongThuc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -48,7 +48,7 @@ namespace ShopQuanAo.Migrations
                     MaTK = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenDangNhap = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MatKhau = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MatKhau = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QuyenTruyCap = table.Column<int>(type: "int", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
@@ -67,10 +67,10 @@ namespace ShopQuanAo.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaDM = table.Column<int>(type: "int", nullable: false),
                     TenSP = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MoTaChiTiet = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MoTaChiTiet = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GiaGoc = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     GiaBan = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
-                    HinhAnhChinh = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HinhAnhChinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
                     NgayTao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -93,12 +93,12 @@ namespace ShopQuanAo.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaTK = table.Column<int>(type: "int", nullable: false),
                     NgayDat = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TenNguoiNhan = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SDTNguoiNhan = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiaChiGiao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenNguoiNhan = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SDTNguoiNhan = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DiaChiGiao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TongTien = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     TrangThaiDH = table.Column<int>(type: "int", nullable: false),
-                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,9 +136,9 @@ namespace ShopQuanAo.Migrations
                 columns: table => new
                 {
                     MaTK = table.Column<int>(type: "int", nullable: false),
-                    HoTen = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SoDienThoai = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HoTen = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SoDienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DiemTichLuy = table.Column<int>(type: "int", nullable: false)
                 },
@@ -181,8 +181,8 @@ namespace ShopQuanAo.Migrations
                     MaBienThe = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaSP = table.Column<int>(type: "int", nullable: false),
-                    KichThuoc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MauSac = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    KichThuoc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MauSac = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SoLuongTon = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -206,8 +206,8 @@ namespace ShopQuanAo.Migrations
                     MaSP = table.Column<int>(type: "int", nullable: false),
                     MaDH = table.Column<int>(type: "int", nullable: false),
                     DiemSao = table.Column<int>(type: "int", nullable: false),
-                    NoiDung = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NoiDung = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NgayDanhGia = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false)
                 },
@@ -239,11 +239,11 @@ namespace ShopQuanAo.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaDH = table.Column<int>(type: "int", nullable: false),
                     MaPT = table.Column<int>(type: "int", nullable: false),
-                    MaGiaoDichDoiTac = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MaGiaoDichDoiTac = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SoTien = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     ThoiGianThanhToan = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TrangThaiGiaoDich = table.Column<int>(type: "int", nullable: false),
-                    NoiDungChuyenKhoan = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NoiDungChuyenKhoan = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -3,33 +3,95 @@
     ViewData["Title"] = "Tạo Tài Khoản";
 }
 
-<div class="card shadow border-0 col-md-6 mx-auto mt-4">
-    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-primary">Cấp Tài Khoản Mới</h6></div>
-    <div class="card-body">
-        <form asp-action="Create">
-            <div class="mb-3">
-                <label asp-for="TenDangNhap" class="form-label fw-bold">Tên đăng nhập (Username)</label>
-                <input asp-for="TenDangNhap" class="form-control" required />
+<div class="card shadow border-0 col-md-8 mx-auto mt-4">
+    <div class="card-header bg-white py-3">
+        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user-plus me-2"></i>Cấp Tài Khoản Mới</h6>
+    </div>
+    <div class="card-body p-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger fw-bold mb-3 small"></div>
+
+            <div class="row">
+                <div class="col-md-6 border-end pe-4">
+                    <h6 class="fw-bold text-secondary mb-3 border-bottom pb-2">Thông tin Đăng nhập</h6>
+                    
+                    <div class="mb-3">
+                        <label asp-for="TenDangNhap" class="form-label fw-bold">Tên đăng nhập <span class="text-danger">*</span></label>
+                        <input asp-for="TenDangNhap" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email <span class="text-danger">*</span></label>
+                        <input asp-for="Email" type="email" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MatKhau" class="form-label fw-bold">Mật khẩu <span class="text-danger">*</span></label>
+                        <input asp-for="MatKhau" type="password" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="QuyenTruyCap" class="form-label fw-bold text-primary">Loại tài khoản <span class="text-danger">*</span></label>
+                        <select asp-for="QuyenTruyCap" class="form-select border-primary" id="loaiTaiKhoan">
+                            <option value="1">Khách Hàng</option>
+                            <option value="2">Quản Trị Viên (Admin)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="TrangThai" class="form-label fw-bold">Trạng thái</label>
+                        <select asp-for="TrangThai" class="form-select">
+                            <option value="1">Hoạt động</option>
+                            <option value="0">Đang Khóa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6 ps-4">
+                    <h6 class="fw-bold text-secondary mb-3 border-bottom pb-2">Thông tin Hồ sơ (Tùy chọn)</h6>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Họ và tên</label>
+                        <input type="text" name="HoTen" class="form-control" placeholder="Nhập họ tên thực tế..." />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Số điện thoại</label>
+                        <input type="tel" name="SoDienThoai" class="form-control" placeholder="09xx..." />
+                    </div>
+
+                    <div class="mb-3" id="khungDiaChi">
+                        <label class="form-label fw-bold">Địa chỉ giao hàng</label>
+                        <textarea name="DiaChi" class="form-control" rows="2" placeholder="Nhập địa chỉ..."></textarea>
+                    </div>
+
+                    <div class="mb-3" id="khungChucVu" style="display: none;">
+                        <label class="form-label fw-bold">Chức vụ (Dành cho Admin)</label>
+                        <input type="text" name="ChucVu" class="form-control" placeholder="Ví dụ: Quản lý, Kế toán..." />
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label fw-bold">Địa chỉ Email</label>
-                <input asp-for="Email" type="email" class="form-control" required />
-            </div>
-            <div class="mb-3">
-                <label asp-for="MatKhau" class="form-label fw-bold">Mật khẩu</label>
-                <input asp-for="MatKhau" type="password" class="form-control" required />
-            </div>
-            <div class="mb-4">
-                <label asp-for="TrangThai" class="form-label fw-bold">Trạng thái kích hoạt</label>
-                <select asp-for="TrangThai" class="form-select">
-                    <option value="1">Kích hoạt ngay (Hoạt động)</option>
-                    <option value="0">Tạo nhưng đang Khóa</option>
-                </select>
-            </div>
-            <div class="d-flex justify-content-between">
-                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
-                <button type="submit" class="btn btn-primary fw-bold"><i class="fas fa-save"></i> Tạo Tài Khoản</button>
+
+            <hr class="mt-4" />
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4"><i class="fas fa-arrow-left me-1"></i> Quay lại</a>
+                <button type="submit" class="btn btn-primary fw-bold px-5"><i class="fas fa-save me-1"></i> XÁC NHẬN TẠO</button>
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Phép thuật JavaScript: Đổi giao diện dựa theo Loại Tài Khoản
+        document.getElementById('loaiTaiKhoan').addEventListener('change', function () {
+            if (this.value == '1') {
+                document.getElementById('khungDiaChi').style.display = 'block';
+                document.getElementById('khungChucVu').style.display = 'none';
+            } else {
+                document.getElementById('khungDiaChi').style.display = 'none';
+                document.getElementById('khungChucVu').style.display = 'block';
+            }
+        });
+    </script>
+}

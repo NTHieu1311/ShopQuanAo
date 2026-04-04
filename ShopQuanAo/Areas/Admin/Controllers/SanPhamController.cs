@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
+using ShopQuanAo.Helpers; // [ĐÃ THÊM]: Dòng này để gọi được thư viện Helper
 
 namespace ShopQuanAo.Areas.Admin.Controllers
 {
@@ -10,13 +11,14 @@ namespace ShopQuanAo.Areas.Admin.Controllers
     public class SanPhamController : Controller
     {
         private readonly ShopQuanAoContext _context;
-        private readonly IWebHostEnvironment _env;
+        // [ĐÃ SỬA]: Xóa IWebHostEnvironment vì ta không lưu ảnh vào máy tính nữa
+        // [ĐÃ THÊM]: Khai báo CloudinaryHelper
+        private readonly CloudinaryHelper _cloudinaryHelper;
 
-        // Bơm cả Context và Environment vào
-        public SanPhamController(ShopQuanAoContext context, IWebHostEnvironment env)
+        public SanPhamController(ShopQuanAoContext context, CloudinaryHelper cloudinaryHelper)
         {
             _context = context;
-            _env = env;
+            _cloudinaryHelper = cloudinaryHelper;
         }
 
         // ==========================================
@@ -33,36 +35,34 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         // ==========================================
         public IActionResult Create()
         {
-            ViewData["MaDM"] = new SelectList(_context.DanhMucs.Where(d => d.TrangThai == 1), "MaDM", "TenDM");
+            ViewBag.ListDanhMuc = new SelectList(_context.DanhMucs.Where(d => d.TrangThai == 1), "MaDM", "TenDM");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SanPham sanPham, IFormFile HinhAnh)
+        public async Task<IActionResult> Create(SanPham sanPham, IFormFile? HinhAnh)
         {
+            ModelState.Remove("DanhMuc");
+            ModelState.Remove("BienTheSanPhams");
+            ModelState.Remove("DanhGias");
+
             if (ModelState.IsValid)
             {
+                // [ĐÃ SỬA]: Gọi CloudinaryHelper để đẩy ảnh lên mây
                 if (HinhAnh != null && HinhAnh.Length > 0)
                 {
-                    string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", "sanpham");
+                    // Hàm UploadImageAsync sẽ tự động làm hết việc và trả về cái Link
+                    string linkAnhCloud = await _cloudinaryHelper.UploadImageAsync(HinhAnh, "FashionStore/SanPhams");
 
-                    // Tạo thư mục nếu chưa tồn tại
-                    if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
-
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + HinhAnh.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    if (!string.IsNullOrEmpty(linkAnhCloud))
                     {
-                        await HinhAnh.CopyToAsync(fileStream);
+                        sanPham.HinhAnhChinh = linkAnhCloud; // Lưu đường link bắt đầu bằng https://res.cloudinary.com/...
                     }
-
-                    sanPham.HinhAnhChinh = "/uploads/sanpham/" + uniqueFileName;
                 }
                 else
                 {
-                    sanPham.HinhAnhChinh = "";
+                    sanPham.HinhAnhChinh = ""; // Nếu không upload ảnh thì để rỗng hoặc link ảnh mặc định
                 }
 
                 sanPham.NgayTao = DateTime.Now;
@@ -73,7 +73,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["MaDM"] = new SelectList(_context.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
+            ViewBag.ListDanhMuc = new SelectList(_context.DanhMucs.Where(d => d.TrangThai == 1), "MaDM", "TenDM", sanPham.MaDM);
             return View(sanPham);
         }
 
@@ -87,7 +87,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             var sanPham = await _context.SanPhams.FindAsync(id);
             if (sanPham == null) return NotFound();
 
-            ViewData["MaDM"] = new SelectList(_context.DanhMucs.Where(d => d.TrangThai == 1), "MaDM", "TenDM", sanPham.MaDM);
+            ViewBag.ListDanhMuc = new SelectList(_context.DanhMucs.Where(d => d.TrangThai == 1), "MaDM", "TenDM", sanPham.MaDM);
             return View(sanPham);
         }
 
@@ -97,7 +97,6 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         {
             if (id != sanPham.MaSP) return NotFound();
 
-            // Bỏ qua kiểm tra các Navigation Properties
             ModelState.Remove("DanhMuc");
             ModelState.Remove("BienTheSanPhams");
             ModelState.Remove("DanhGias");
@@ -106,32 +105,19 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             {
                 try
                 {
+                    // [ĐÃ SỬA]: Cập nhật ảnh lên Cloudinary
                     if (HinhAnh != null && HinhAnh.Length > 0)
                     {
-                        string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", "sanpham");
+                        // Đẩy ảnh mới lên mây
+                        string linkAnhCloud = await _cloudinaryHelper.UploadImageAsync(HinhAnh, "FashionStore/SanPhams");
 
-                        // Đã bổ sung tạo thư mục tránh lỗi DirectoryNotFoundException
-                        if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
-
-                        string uniqueFileName = Guid.NewGuid().ToString() + "_" + HinhAnh.FileName;
-                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        if (!string.IsNullOrEmpty(linkAnhCloud))
                         {
-                            await HinhAnh.CopyToAsync(fileStream);
+                            // Lưu link ảnh mới vào DB (Chúng ta tạm thời bỏ qua việc xóa ảnh cũ trên Cloudinary để đơn giản hóa code)
+                            sanPham.HinhAnhChinh = linkAnhCloud;
                         }
-
-                        if (!string.IsNullOrEmpty(sanPham.HinhAnhChinh))
-                        {
-                            string oldFilePath = Path.Combine(_env.WebRootPath, sanPham.HinhAnhChinh.TrimStart('/'));
-                            if (System.IO.File.Exists(oldFilePath))
-                            {
-                                System.IO.File.Delete(oldFilePath);
-                            }
-                        }
-
-                        sanPham.HinhAnhChinh = "/uploads/sanpham/" + uniqueFileName;
                     }
+                    // Nếu HinhAnh == null (Người dùng không chọn ảnh mới), Entity Framework sẽ tự động giữ nguyên link ảnh cũ trong DB
 
                     _context.Update(sanPham);
                     await _context.SaveChangesAsync();
@@ -145,7 +131,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["MaDM"] = new SelectList(_context.DanhMucs, "MaDM", "TenDM", sanPham.MaDM);
+            ViewBag.ListDanhMuc = new SelectList(_context.DanhMucs.Where(d => d.TrangThai == 1), "MaDM", "TenDM", sanPham.MaDM);
             return View(sanPham);
         }
 
@@ -174,26 +160,17 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             {
                 try
                 {
-                    // 1. Thử xóa dữ liệu trong Database trước
                     _context.SanPhams.Remove(sanPham);
                     await _context.SaveChangesAsync();
 
-                    // 2. Nếu DB xóa thành công, thì mới xóa file ảnh vật lý trên server
-                    if (!string.IsNullOrEmpty(sanPham.HinhAnhChinh))
-                    {
-                        string filePath = Path.Combine(_env.WebRootPath, sanPham.HinhAnhChinh.TrimStart('/'));
-                        if (System.IO.File.Exists(filePath))
-                        {
-                            System.IO.File.Delete(filePath);
-                        }
-                    }
+                    // [ĐÃ SỬA]: Xóa đoạn code xóa ảnh trên ổ cứng vì ảnh giờ đã nằm trên mây
+                    // (Bạn có thể tìm hiểu thêm về cách dùng API của Cloudinary để xóa ảnh trên đó sau nếu muốn)
 
-                    TempData["SuccessMessage"] = "Đã xóa sản phẩm và hình ảnh thành công!";
+                    TempData["SuccessMessage"] = "Đã xóa sản phẩm thành công!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException)
                 {
-                    // Bắt lỗi khi Sản phẩm đang được liên kết với bảng khác
                     TempData["ErrorMessage"] = "Không thể xóa! Sản phẩm này đang có biến thể, đánh giá hoặc nằm trong đơn hàng. Vui lòng xóa các dữ liệu liên quan trước.";
                     return RedirectToAction(nameof(Delete), new { id = id });
                 }

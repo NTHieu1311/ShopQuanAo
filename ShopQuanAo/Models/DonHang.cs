@@ -16,12 +16,12 @@ namespace ShopQuanAo.Models
         public int MaTK { get; set; }
 
         public DateTime NgayDat { get; set; }
-        public string TenNguoiNhan { get; set; } = null!;
-        public string SDTNguoiNhan { get; set; } = null!;
-        public string DiaChiGiao { get; set; } = null!;
+        public string? TenNguoiNhan { get; set; } = null!;
+        public string? SDTNguoiNhan { get; set; } = null!;
+        public string? DiaChiGiao { get; set; } = null!;
         public decimal TongTien { get; set; }
         public int TrangThaiDH { get; set; }
-        public string GhiChu { get; set; } = null!;
+        public string? GhiChu { get; set; } = null!;
 
         public virtual TaiKhoan TaiKhoan { get; set; } = null!;
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();

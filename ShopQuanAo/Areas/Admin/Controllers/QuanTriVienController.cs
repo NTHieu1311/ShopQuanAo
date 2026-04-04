@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
+using ShopQuanAo.Helpers;
 
 namespace ShopQuanAo.Areas.Admin.Controllers
 {
@@ -33,21 +34,44 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         public async Task<IActionResult> Create(QuanTriVien quanTriVien, string TenDangNhap, string MatKhau, string Email)
         {
             ModelState.Remove("TaiKhoan");
+
+            // ==========================================
+            // KIỂM TRA TRÙNG LẶP TRƯỚC KHI LƯU
+            // ==========================================
+            bool trungTenDangNhap = _context.TaiKhoans.Any(t => t.TenDangNhap == TenDangNhap);
+            if (trungTenDangNhap)
+            {
+                ModelState.AddModelError("", "Tên đăng nhập này đã tồn tại, vui lòng chọn tên khác!");
+                return View(quanTriVien);
+            }
+
+            bool trungEmail = _context.TaiKhoans.Any(t => t.Email == Email);
+            if (trungEmail)
+            {
+                ModelState.AddModelError("", "Email này đã được sử dụng cho tài khoản khác!");
+                return View(quanTriVien);
+            }
+            // ==========================================
+
             if (ModelState.IsValid)
             {
-                // 1. Tạo tài khoản trước để lấy ID
+                // 1. MÃ HÓA MẬT KHẨU TẠI ĐÂY TRƯỚC KHI LƯU VÀO DATABASE
+                string matKhauDaMaHoa = MaHoaHelper.ToSHA256(MatKhau);
+
+                // 2. Tạo tài khoản trước để lấy ID
                 var taiKhoan = new TaiKhoan
                 {
                     TenDangNhap = TenDangNhap,
-                    MatKhau = MatKhau,
+                    MatKhau = matKhauDaMaHoa, // Gán mật khẩu đã mã hóa vào đây
                     Email = Email,
                     NgayTao = DateTime.Now,
-                    TrangThai = 1
+                    TrangThai = 1,
+                    QuyenTruyCap = 2 // BẮT BUỘC CÓ DÒNG NÀY: Ép quyền Admin cho tài khoản này
                 };
                 _context.TaiKhoans.Add(taiKhoan);
                 await _context.SaveChangesAsync(); // Lưu để sinh ra MaTK
 
-                // 2. Gán MaTK vừa sinh ra cho Quản trị viên
+                // 3. Gán MaTK vừa sinh ra cho Quản trị viên
                 quanTriVien.MaTK = taiKhoan.MaTK;
 
                 // Nếu người dùng không chọn ngày vào làm, mặc định là hôm nay

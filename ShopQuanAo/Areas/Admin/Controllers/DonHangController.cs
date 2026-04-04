@@ -141,5 +141,25 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        // ==========================================
+        // 6.CHỨC NĂNG IN HÓA ĐƠN
+        // ==========================================
+        public async Task<IActionResult> InHoaDon(int? id)
+        {
+            if (id == null) return NotFound();
+
+            // [ĐÃ SỬA LỖI]: Đi qua cầu nối Tài Khoản để lấy Hồ sơ Khách Hàng
+            var donHang = await _context.DonHangs
+                .Include(d => d.TaiKhoan)                 // 1. Lấy thông tin Tài khoản đặt hàng
+                    .ThenInclude(t => t.KhachHang)        // 2. Từ Tài khoản móc ra Hồ sơ Khách Hàng
+                .Include(d => d.ChiTietDonHangs)
+                    .ThenInclude(ct => ct.BienTheSanPham)
+                        .ThenInclude(bt => bt.SanPham)
+                .FirstOrDefaultAsync(m => m.MaDH == id);
+
+            if (donHang == null) return NotFound();
+
+            return View(donHang);
+        }
     }
 }

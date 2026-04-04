@@ -11,9 +11,9 @@ namespace ShopQuanAo.Models
         [ForeignKey("TaiKhoan")]
         public int MaTK { get; set; }
 
-        public string HoTen { get; set; } = null!;
-        public string SoDienThoai { get; set; } = null!;
-        public string DiaChi { get; set; } = null!;
+        public string? HoTen { get; set; } = null!;
+        public string? SoDienThoai { get; set; } = null!;
+        public string? DiaChi { get; set; } = null!;
         public DateTime? NgaySinh { get; set; }
         public int DiemTichLuy { get; set; }
 
