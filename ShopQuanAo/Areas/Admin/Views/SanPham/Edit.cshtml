@@ -25,7 +25,10 @@
 
                     <div class="mb-3">
                         <label asp-for="MaDM" class="form-label fw-bold">Thuộc Danh mục</label>
-                        <select asp-for="MaDM" class="form-select" asp-items="ViewBag.MaDM"></select>
+                        <select asp-for="MaDM" class="form-select" asp-items="ViewBag.ListDanhMuc">
+                            <option value="">-- Chọn danh mục --</option>
+                        </select>
+                        <span asp-validation-for="MaDM" class="text-danger"></span>
                     </div>
 
                     <div class="row">

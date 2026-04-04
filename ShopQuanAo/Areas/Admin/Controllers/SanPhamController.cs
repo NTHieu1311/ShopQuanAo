@@ -11,8 +11,6 @@ namespace ShopQuanAo.Areas.Admin.Controllers
     public class SanPhamController : Controller
     {
         private readonly ShopQuanAoContext _context;
-        // [ĐÃ SỬA]: Xóa IWebHostEnvironment vì ta không lưu ảnh vào máy tính nữa
-        // [ĐÃ THÊM]: Khai báo CloudinaryHelper
         private readonly CloudinaryHelper _cloudinaryHelper;
 
         public SanPhamController(ShopQuanAoContext context, CloudinaryHelper cloudinaryHelper)

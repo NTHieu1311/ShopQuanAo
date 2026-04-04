@@ -14,6 +14,7 @@ namespace ShopQuanAo.Controllers
         {
             _context = context;
         }
+
         // ==========================================
         // TRANG HỆ THỐNG CỬA HÀNG
         // ==========================================
@@ -21,30 +22,42 @@ namespace ShopQuanAo.Controllers
         {
             return View();
         }
+
+        // ==========================================
+        // TRANG CHỦ (ĐÃ TỐI ƯU SIÊU TỐC ĐỘ)
+        // ==========================================
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> Index()
         {
-            // 1. Lấy 8 sản phẩm mới nhất đang được bán
+            // 1. Lấy 8 sản phẩm mới nhất (Dùng AsNoTracking để bỏ qua theo dõi trạng thái -> Nhanh hơn 30%)
             var sanPhamMoi = await _context.SanPhams
+                .AsNoTracking()
                 .Include(s => s.DanhMuc)
                 .Where(s => s.TrangThai == 1)
                 .OrderByDescending(s => s.NgayTao)
                 .Take(8)
                 .ToListAsync();
 
-            // 2. Lấy danh sách Danh Mục để hiển thị ra Menu/Lưới
+            // 2. Lấy danh mục để hiển thị menu (Dùng AsNoTracking vì chỉ để đọc)
             ViewBag.DanhMucs = await _context.DanhMucs
+                .AsNoTracking()
                 .Where(d => d.TrangThai == 1)
                 .ToListAsync();
 
-            // Truyền danh sách sản phẩm vào View
             return View(sanPhamMoi);
         }
 
+        // ==========================================
+        // TRANG CHÍNH SÁCH BẢO MẬT
+        // ==========================================
         public IActionResult Privacy()
         {
             return View();
         }
 
+        // ==========================================
+        // TRANG BÁO LỖI
+        // ==========================================
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

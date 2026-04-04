@@ -167,6 +167,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                 }
 
                 // Dòng tổng cộng (Footer)
+                // Dòng tổng cộng (Footer)
                 if (data.Count > 0)
                 {
                     ws.Cells[row, 4].Value = "TỔNG CỘNG:";
@@ -177,7 +178,15 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                     ws.Cells[row, 5].Style.Numberformat.Format = "#,##0 \"đ\"";
                 }
 
+                // [BỔ SUNG 1]: Bắt buộc thư viện EPPlus phải tính toán công thức SUM ngay lập tức
+                ws.Calculate();
+
+                // Chạy lệnh giãn cột tự động dựa trên kết quả đã tính
                 ws.Cells.AutoFitColumns();
+
+                // [BỔ SUNG 2]: Nới rộng riêng cột E (Cột Tổng Tiền) thêm một chút cho dư dả không gian
+                // Tránh trường hợp font chữ to hoặc số lên tới hàng Tỷ gây chật cột
+                ws.Column(5).Width = 20;
 
                 var fileName = $"BaoCao_{DateTime.Now:ddMMyyyy_HHmm}.xlsx";
                 return File(package.GetAsByteArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
