@@ -12,32 +12,28 @@
         <div class="card shadow border-0 h-100 rounded-4">
             <div class="card-body text-center p-5 d-flex flex-column justify-content-center align-items-center">
                 <img class="img-profile rounded-circle mb-3 shadow" src="https://ui-avatars.com/api/?name=@Model.TenDangNhap&background=4e73df&color=fff&size=150" alt="Admin Avatar" style="border: 5px solid #eaecf4;">
-                
                 <h4 class="fw-bold text-primary mb-1">@Model.TenDangNhap</h4>
                 <span class="badge bg-danger px-3 py-2 rounded-pill mt-2 shadow-sm"><i class="fas fa-shield-alt me-1"></i> Quản Trị Viên Hệ Thống</span>
-                
                 <p class="text-muted mt-4 small px-2">
-                    <i class="fas fa-info-circle text-primary me-1"></i> Tài khoản của bạn có đặc quyền truy cập vào toàn bộ hệ thống. Vui lòng bảo mật thông tin và thay đổi mật khẩu định kỳ.
+                    <i class="fas fa-info-circle text-primary me-1"></i> Tài khoản của bạn có đặc quyền truy cập toàn bộ hệ thống.
                 </p>
             </div>
         </div>
     </div>
 
     <div class="col-xl-8 col-lg-7">
-        
         <div class="card shadow border-0 mb-4 rounded-4">
             <div class="card-header bg-white py-3 border-bottom-0 pt-4 px-4">
                 <h6 class="m-0 fw-bold text-primary fs-5"><i class="fas fa-id-card me-2"></i>Thông tin cơ bản</h6>
             </div>
             <div class="card-body p-4">
-                <form action="/Admin/TaiKhoan/CapNhatHoSo" method="post">
+                <form asp-area="Admin" asp-controller="TaiKhoan" asp-action="CapNhatHoSo" method="post">
+                    @Html.AntiForgeryToken()
                     <input type="hidden" name="MaTK" value="@Model.MaTK" />
-                    
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="fw-bold mb-2 text-dark">Tên đăng nhập (Username)</label>
+                            <label class="fw-bold mb-2 text-dark">Tên đăng nhập</label>
                             <input type="text" class="form-control bg-light text-muted" value="@Model.TenDangNhap" readonly>
-                            <small class="text-muted mt-1 d-block">Tên đăng nhập không thể thay đổi.</small>
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="fw-bold mb-2 text-dark">Email liên hệ <span class="text-danger">*</span></label>
@@ -47,7 +43,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <button type="submit" class="btn btn-primary fw-bold px-4 rounded-pill shadow-sm"><i class="fas fa-save me-2"></i>Lưu Thay Đổi</button>
                 </form>
             </div>
@@ -55,35 +50,32 @@
 
         <div class="card shadow border-0 rounded-4">
             <div class="card-header bg-white py-3 border-bottom-0 pt-4 px-4">
-                <h6 class="m-0 fw-bold text-danger fs-5"><i class="fas fa-lock me-2"></i>Đổi Mật Khẩu Khóa Bảo Mật</h6>
+                <h6 class="m-0 fw-bold text-danger fs-5"><i class="fas fa-lock me-2"></i>Đổi Mật Khẩu Bảo Mật</h6>
             </div>
             <div class="card-body p-4 border-top border-danger border-3">
-                <form action="/Admin/TaiKhoan/DoiMatKhau" method="post">
+                <form asp-area="Admin" asp-controller="TaiKhoan" asp-action="DoiMatKhau" method="post">
+                    @Html.AntiForgeryToken()
                     <input type="hidden" name="MaTK" value="@Model.MaTK" />
-                    
                     <div class="mb-4">
                         <label class="fw-bold mb-2 text-dark">Mật khẩu hiện tại <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fas fa-key"></i></span>
-                            <input type="password" name="MatKhauHienTai" class="form-control" required placeholder="Nhập mật khẩu cũ để xác thực...">
+                            <input type="password" name="MatKhauHienTai" class="form-control" required placeholder="Nhập mật khẩu cũ...">
                         </div>
                     </div>
-                    
                     <div class="row mb-4">
-                        <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="col-md-6 mb-3">
                             <label class="fw-bold mb-2 text-dark">Mật khẩu mới <span class="text-danger">*</span></label>
-                            <input type="password" name="MatKhauMoi" class="form-control" required minlength="6" placeholder="Mật khẩu mới (tối thiểu 6 ký tự)...">
+                            <input type="password" name="MatKhauMoi" class="form-control" required minlength="6">
                         </div>
                         <div class="col-md-6">
                             <label class="fw-bold mb-2 text-dark">Xác nhận mật khẩu <span class="text-danger">*</span></label>
-                            <input type="password" name="XacNhanMatKhau" class="form-control" required minlength="6" placeholder="Nhập lại mật khẩu mới...">
+                            <input type="password" name="XacNhanMatKhau" class="form-control" required minlength="6">
                         </div>
                     </div>
-                    
                     <button type="submit" class="btn btn-danger fw-bold px-4 rounded-pill shadow-sm"><i class="fas fa-shield-alt me-2"></i>Cập Nhật Mật Khẩu</button>
                 </form>
             </div>
         </div>
-        
     </div>
 </div>

@@ -330,7 +330,6 @@ C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\staticwebass
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\ShopQuanAo.csproj.Up2Date
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\ShopQuanAo.dll
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\refint\ShopQuanAo.dll
@@ -347,3 +346,5 @@ C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\bin\Debug\net10.0\Microsoft.Wi
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\bin\Debug\net10.0\System.Drawing.Common.dll
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\bin\Debug\net10.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\bin\Debug\net10.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
+C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\bin\Debug\net10.0\dotnet-tools.json
+C:\Users\nthan\Desktop\TTCK\ShopQuanAo\ShopQuanAo\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

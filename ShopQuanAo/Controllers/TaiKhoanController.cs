@@ -189,6 +189,41 @@ namespace ShopQuanAo.Controllers
 
             return View(khachHang);
         }
+        // ==========================================
+        // 5.2 CẬP NHẬT HỒ SƠ (Xử lý khi nhấn nút Lưu)
+        // ==========================================
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> CapNhatHoSo(string HoTen, string SoDienThoai, string DiaChi, DateTime NgaySinh)
+        {
+            var maTKStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(maTKStr)) return RedirectToAction("Login");
+
+            var maTK = int.Parse(maTKStr);
+
+            // Tìm hồ sơ khách hàng trong DB
+            var khachHang = await _context.KhachHangs.FirstOrDefaultAsync(k => k.MaTK == maTK);
+
+            if (khachHang != null)
+            {
+                // Cập nhật các thông tin mới từ Form
+                khachHang.HoTen = HoTen;
+                khachHang.SoDienThoai = SoDienThoai;
+                khachHang.DiaChi = DiaChi;
+                khachHang.NgaySinh = NgaySinh;
+
+                _context.Update(khachHang);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Cập nhật hồ sơ thành công!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy thông tin tài khoản!";
+            }
+
+            return RedirectToAction("HoSo");
+        }
 
         // ==========================================
         // 6. HỦY ĐƠN HÀNG (Khách hàng tự hủy)
