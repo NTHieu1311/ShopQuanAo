@@ -195,10 +195,7 @@
                 </li>
                 
                 <li class="nav-item mt-auto mb-3 border-0 text-center px-3 pt-4">
-                    <a href="/" class="btn btn-success btn-sm w-100 rounded-pill fw-bold shadow-sm" target="_blank">
-                        <i class="fas fa-store me-1"></i> Xem Website
-                    </a>
-                </li>
+                    </li>
             </ul>
         </nav>
 
@@ -208,17 +205,51 @@
                     <button id="sidebarToggleTop">
                         <i class="fa fa-bars"></i>
                     </button>
-                   <form action="/Admin/DonHang/Index" method="get" class="d-none d-sm-inline-block form-inline ms-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" name="searchKeyword" class="form-control bg-light border-0 small" placeholder="Tìm mã đơn (VD: 1537) hoặc SĐT..." aria-label="Search" value="@Context.Request.Query["searchKeyword"]" style="border-radius: 5px 0 0 5px;">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" style="border-radius: 0 5px 5px 0;">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                    
+                    @{
+                        // Tự động nhận diện xem Admin đang đứng ở Controller nào
+                        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                        
+                        // Mặc định biến hiển thị là false (ẩn)
+                        bool showSearchBar = false;
+                        var searchAction = ""; 
+                        var searchPlaceholder = "";
+
+                        // Chỉ bật thanh tìm kiếm khi ở đúng các trang cần thiết
+                        if (currentController == "DonHang")
+                        {
+                            showSearchBar = true;
+                            searchAction = "/Admin/DonHang/Index";
+                            searchPlaceholder = "Tìm mã đơn (VD: 1537) hoặc SĐT...";
+                        }
+                        else if (currentController == "KhachHang")
+                        {
+                            showSearchBar = true;
+                            searchAction = "/Admin/KhachHang/Index";
+                            searchPlaceholder = "Tìm tên, SĐT hoặc Email khách...";
+                        }
+                        else if (currentController == "SanPham")
+                        {
+                            showSearchBar = true;
+                            searchAction = "/Admin/SanPham/Index";
+                            searchPlaceholder = "Tìm tên sản phẩm...";
+                        }
+                    }
+
+                    @if (showSearchBar)
+                    {
+                        <form action="@searchAction" method="get" class="d-none d-sm-inline-block form-inline ms-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" name="searchKeyword" class="form-control bg-light border-0 small" placeholder="@searchPlaceholder" aria-label="Search" value="@ViewBag.SearchKeyword" style="border-radius: 5px 0 0 5px;">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit" style="border-radius: 0 5px 5px 0;">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    }
+                    </div>
 
                 <ul class="navbar-nav d-flex flex-row align-items-center mb-0 list-unstyled">
                     <li class="nav-item mx-1 position-relative me-3">
@@ -239,8 +270,15 @@
                             <li><a class="dropdown-item py-2" href="/Admin/TaiKhoan/HoSo"><i class="fas fa-user fa-sm fa-fw me-2 text-muted"></i> Thông tin tài khoản</a></li>
                             <li><a class="dropdown-item py-2" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-muted"></i> Cài đặt hệ thống</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item py-2 text-danger fw-bold" href="/TaiKhoan/Logout"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i> Đăng xuất</a></li>
-                        </ul>
+                            
+                            <li>
+                                <form asp-controller="TaiKhoan" asp-action="Logout" asp-area="" method="post" class="m-0 p-0">
+                                    <button type="submit" class="dropdown-item py-2 text-danger fw-bold border-0 bg-transparent w-100 text-start" style="cursor: pointer;">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i> Đăng xuất
+                                    </button>
+                                </form>
+                            </li>
+                            </ul>
                     </li>
                 </ul>
             </nav>

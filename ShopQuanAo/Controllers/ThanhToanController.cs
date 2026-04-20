@@ -25,9 +25,9 @@ namespace ShopQuanAo.Controllers
             _config = config;
         }
 
-        // ==========================================
+        
         // 1. HÀM LẤY GIỎ HÀNG TỪ SESSION
-        // ==========================================
+        
         public List<CartItem> LayGioHang()
         {
             var data = HttpContext.Session.GetString(CART_KEY);
@@ -35,9 +35,9 @@ namespace ShopQuanAo.Controllers
             return JsonSerializer.Deserialize<List<CartItem>>(data);
         }
 
-        // ==========================================
+        
         // 2. HIỂN THỊ FORM THANH TOÁN
-        // ==========================================
+        
         public async Task<IActionResult> Index()
         {
             var gioHang = LayGioHang();
@@ -53,9 +53,9 @@ namespace ShopQuanAo.Controllers
             return View(khachHang);
         }
 
-        // ==========================================
+        
         // 3. XỬ LÝ LƯU ĐƠN HÀNG VÀ CHUYỂN HƯỚNG VNPAY
-        // ==========================================
+        
         [HttpPost]
         public async Task<IActionResult> DatHang(string TenNguoiNhan, string SDTNguoiNhan, string DiaChiGiao, string GhiChu, int MaPT)
         {
@@ -130,9 +130,9 @@ namespace ShopQuanAo.Controllers
             }
         }
 
-        // ==========================================
+        
         // 4. HỨNG KẾT QUẢ TỪ VNPAY TRẢ VỀ (CALLBACK)
-        // ==========================================
+        
         [HttpGet]
         public async Task<IActionResult> PaymentCallback()
         {
@@ -178,9 +178,9 @@ namespace ShopQuanAo.Controllers
             return Content("Lỗi: Chữ ký bảo mật không hợp lệ!");
         }
 
-        // ==========================================
+        
         // 5. TRANG THÔNG BÁO THÀNH CÔNG
-        // ==========================================
+        
         public IActionResult ThanhCong(int id)
         {
             ViewBag.MaDH = id;

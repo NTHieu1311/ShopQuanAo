@@ -28,9 +28,9 @@ namespace ShopQuanAo.Controllers
             return JsonSerializer.Deserialize<List<CartItem>>(data);
         }
 
-        // ==========================================
+        
         // 1. THÊM SẢN PHẨM VÀO GIỎ
-        // ==========================================
+        
         [HttpPost]
         public async Task<IActionResult> Them(int MaBienThe, int SoLuong)
         {
@@ -74,18 +74,18 @@ namespace ShopQuanAo.Controllers
             return RedirectToAction("Index"); // Chuyển sang trang xem Giỏ hàng
         }
 
-        // ==========================================
+        
         // 2. HIỂN THỊ TRANG GIỎ HÀNG
-        // ==========================================
+        
         public IActionResult Index()
         {
             var gioHang = LayGioHang();
             return View(gioHang);
         }
 
-        // ==========================================
+        
         // 3. XÓA SẢN PHẨM KHỎI GIỎ
-        // ==========================================
+        
         public IActionResult Xoa(int id) // id ở đây là MaBienThe
         {
             var gioHang = LayGioHang();
@@ -98,9 +98,9 @@ namespace ShopQuanAo.Controllers
             }
             return RedirectToAction("Index");
         }
-        // ==========================================
+        
         // TÍNH NĂNG MUA NGAY (Lưu giỏ hàng và nhảy sang Thanh Toán luôn)
-        // ==========================================
+        
         [HttpPost]
         public async Task<IActionResult> MuaNgay(int MaBienThe, int SoLuong)
         {

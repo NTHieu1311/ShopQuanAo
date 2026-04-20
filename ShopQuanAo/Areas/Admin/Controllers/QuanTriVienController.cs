@@ -35,9 +35,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         {
             ModelState.Remove("TaiKhoan");
 
-            // ==========================================
+            
             // KIỂM TRA TRÙNG LẶP TRƯỚC KHI LƯU
-            // ==========================================
+            
             bool trungTenDangNhap = _context.TaiKhoans.Any(t => t.TenDangNhap == TenDangNhap);
             if (trungTenDangNhap)
             {
@@ -51,7 +51,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Email này đã được sử dụng cho tài khoản khác!");
                 return View(quanTriVien);
             }
-            // ==========================================
+            
 
             if (ModelState.IsValid)
             {

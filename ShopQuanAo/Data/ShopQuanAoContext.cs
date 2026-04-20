@@ -45,9 +45,9 @@ namespace ShopQuanAo.Data
                 .WithOne(tk => tk.QuanTriVien)
                 .HasForeignKey<QuanTriVien>(qtv => qtv.MaTK);
 
-            // ==========================================
+            
             // 💡 THÊM ĐOẠN NÀY ĐỂ FIX CẢNH BÁO DECIMAL
-            // ==========================================
+            
             modelBuilder.Entity<ChiTietDonHang>()
                 .Property(c => c.DonGiaXuat)
                 .HasColumnType("decimal(18, 0)");

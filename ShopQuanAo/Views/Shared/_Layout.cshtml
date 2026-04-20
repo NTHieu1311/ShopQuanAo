@@ -269,7 +269,13 @@
                                     }
                                     
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-danger" href="/TaiKhoan/Logout"><i class="fas fa-sign-out-alt me-2"></i> Đăng xuất</a></li>
+                                    <li>
+                                        <form asp-controller="TaiKhoan" asp-action="Logout" method="post" class="m-0 p-0">
+                                            <button type="submit" class="dropdown-item text-danger border-0 bg-transparent w-100 text-start" style="cursor: pointer;">
+                                                <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                                            </button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         }

@@ -17,18 +17,18 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             _context = context;
         }
 
-        // ==========================================
+        
         // 1. HIỂN THỊ DANH SÁCH TÀI KHOẢN
-        // ==========================================
+        
         public async Task<IActionResult> Index()
         {
             var taiKhoans = await _context.TaiKhoans.OrderByDescending(t => t.NgayTao).ToListAsync();
             return View(taiKhoans);
         }
 
-        // ==========================================
+        
         // 2. TẠO TÀI KHOẢN MỚI
-        // ==========================================
+        
         public IActionResult Create()
         {
             return View();
@@ -92,9 +92,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return View(taiKhoan);
         }
 
-        // ==========================================
+        
         // 3. SỬA / KHÓA TÀI KHOẢN
-        // ==========================================
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -152,9 +152,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return View(taiKhoan);
         }
 
-        // ==========================================
+        
         // 4. XÓA TÀI KHOẢN
-        // ==========================================
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -192,9 +192,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return _context.TaiKhoans.Any(e => e.MaTK == id);
         }
 
-        // ==========================================
+        
         // 5. HIỂN THỊ TRANG HỒ SƠ ADMIN
-        // ==========================================
+        
         [HttpGet]
         public async Task<IActionResult> HoSo()
         {
@@ -209,9 +209,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return View(taiKhoan);
         }
 
-        // ==========================================
+        
         // 6. CẬP NHẬT EMAIL/THÔNG TIN
-        // ==========================================
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CapNhatHoSo(int MaTK, string Email)
@@ -234,9 +234,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return RedirectToAction(nameof(HoSo));
         }
 
-        // ==========================================
+        
         // 7. ĐỔI MẬT KHẨU ADMIN
-        // ==========================================
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoiMatKhau(int MaTK, string MatKhauHienTai, string MatKhauMoi, string XacNhanMatKhau)

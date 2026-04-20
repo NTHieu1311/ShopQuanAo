@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
 using System.Security.Claims;
-using ShopQuanAo.Helpers; // [ĐÃ THÊM]: Khai báo thư viện chứa CloudinaryHelper
+using ShopQuanAo.Helpers; 
 
 namespace ShopQuanAo.Controllers
 {
@@ -20,9 +20,9 @@ namespace ShopQuanAo.Controllers
             _cloudinaryHelper = cloudinaryHelper;
         }
 
-        // ==========================================
+        
         // 1. HIỂN THỊ DANH SÁCH SẢN PHẨM (CÓ LỌC & PHÂN TRANG)
-        // ==========================================
+        
         public async Task<IActionResult> Index(string category, string keyword, decimal? minPrice, decimal? maxPrice, string color, string size, int page = 1)
         {
             var query = _context.SanPhams
@@ -83,9 +83,9 @@ namespace ShopQuanAo.Controllers
             return View(sanPhams);
         }
 
-        // ==========================================
+        
         // 2. TRANG CHI TIẾT SẢN PHẨM
-        // ==========================================
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -119,9 +119,9 @@ namespace ShopQuanAo.Controllers
             return View(sanPham);
         }
 
-        // ==========================================
+        
         // 3. THÊM ĐÁNH GIÁ SẢN PHẨM CÓ UPLOAD ẢNH (CLOUD)
-        // ==========================================
+        
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> ThemDanhGia(int MaSP, int DiemSao, string NoiDung, IFormFile HinhAnhUpload)

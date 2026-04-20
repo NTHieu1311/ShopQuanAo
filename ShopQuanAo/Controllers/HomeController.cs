@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
+using ShopQuanAo.Filters;
 using ShopQuanAo.Models;
 using System.Diagnostics;
 
 namespace ShopQuanAo.Controllers
 {
+    [BlockAdmin]
     public class HomeController : Controller
     {
         private readonly ShopQuanAoContext _context;
@@ -15,21 +17,21 @@ namespace ShopQuanAo.Controllers
             _context = context;
         }
 
-        // ==========================================
+        
         // TRANG HỆ THỐNG CỬA HÀNG
-        // ==========================================
+        
         public IActionResult HeThongCuaHang()
         {
             return View();
         }
 
-        // ==========================================
+        
         // TRANG CHỦ (ĐÃ TỐI ƯU SIÊU TỐC ĐỘ)
-        // ==========================================
+        
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> Index()
         {
-            // 1. Lấy 8 sản phẩm mới nhất (Dùng AsNoTracking để bỏ qua theo dõi trạng thái -> Nhanh hơn 30%)
+           
             var sanPhamMoi = await _context.SanPhams
                 .AsNoTracking()
                 .Include(s => s.DanhMuc)
@@ -38,7 +40,7 @@ namespace ShopQuanAo.Controllers
                 .Take(8)
                 .ToListAsync();
 
-            // 2. Lấy danh mục để hiển thị menu (Dùng AsNoTracking vì chỉ để đọc)
+
             ViewBag.DanhMucs = await _context.DanhMucs
                 .AsNoTracking()
                 .Where(d => d.TrangThai == 1)
@@ -47,17 +49,17 @@ namespace ShopQuanAo.Controllers
             return View(sanPhamMoi);
         }
 
-        // ==========================================
+        
         // TRANG CHÍNH SÁCH BẢO MẬT
-        // ==========================================
+        
         public IActionResult Privacy()
         {
             return View();
         }
 
-        // ==========================================
+        
         // TRANG BÁO LỖI
-        // ==========================================
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

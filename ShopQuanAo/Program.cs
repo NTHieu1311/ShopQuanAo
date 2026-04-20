@@ -6,14 +6,16 @@ using ShopQuanAo.Helpers;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<ShopQuanAoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddScoped<ShopQuanAo.Services.IVnPayService, ShopQuanAo.Services.VnPayService>();
+
 // Đăng ký CloudinaryHelper để dùng ở mọi nơi
 builder.Services.AddScoped<CloudinaryHelper>();
-// ==========================================
-// 💡 BỔ SUNG: CẤU HÌNH SESSION CHO GIỎ HÀNG
-// ==========================================
+
+// CẤU HÌNH SESSION CHO GIỎ HÀNG
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(60); // Giỏ hàng tồn tại trong 60 phút nếu không thao tác
@@ -21,15 +23,19 @@ builder.Services.AddSession(options => {
     options.Cookie.IsEssential = true;
 });
 
-// ==========================================
-// CẤU HÌNH COOKIE AUTHENTICATION (Đã có)
-// ==========================================
+// [ĐÃ SỬA] CẤU HÌNH COOKIE AUTHENTICATION
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
+        options.Cookie.Name = "FashionStore_Security_Cookie";
         options.LoginPath = "/TaiKhoan/Login";
         options.AccessDeniedPath = "/TaiKhoan/AccessDenied";
-        options.ExpireTimeSpan = TimeSpan.FromDays(30);
+
+        // Tự động đăng xuất nếu để máy đó không thao tác gì sau 30 phút
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+
+        // Tự động gia hạn thêm 30 phút nếu khách vẫn đang click xem web
+        options.SlidingExpiration = true;
     });
 
 var app = builder.Build();
@@ -43,14 +49,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-// ==========================================
-// 💡 BỔ SUNG: GỌI USE SESSION (BẮT BUỘC ĐẶT TRƯỚC UseAuthentication)
-// ==========================================
+// BẮT BUỘC ĐẶT TRƯỚC UseAuthentication
 app.UseSession();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapStaticAssets();
 
 app.MapControllerRoute(

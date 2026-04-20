@@ -22,9 +22,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return View(danhMucs);
         }
 
-        // ==========================================
+        
         // 2. THÊM MỚI (CREATE)
-        // ==========================================
+        
         // GET: Hiển thị form thêm mới
         public IActionResult Create()
         {
@@ -46,9 +46,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return View(danhMuc);
         }
 
-        // ==========================================
+        
         // 3. CẬP NHẬT (EDIT)
-        // ==========================================
+        
         // GET: Lấy dữ liệu cũ hiển thị lên form
         public async Task<IActionResult> Edit(int? id)
         {
@@ -85,9 +85,9 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             return View(danhMuc);
         }
 
-        // ==========================================
+        
         // 4. XÓA (DELETE)
-        // ==========================================
+        
         // GET: Hiển thị trang xác nhận xóa
         public async Task<IActionResult> Delete(int? id)
         {
