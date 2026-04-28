@@ -1,65 +1,103 @@
-﻿@model IEnumerable<ShopQuanAo.Models.KhachHang>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<ShopQuanAo.Models.KhachHang>
+
 @{
     ViewData["Title"] = "Quản lý Khách Hàng";
 }
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-users me-2"></i>Tệp Khách Hàng</h4>
+        <div class="text-muted small mt-1">Quản lý hồ sơ và trạng thái tài khoản.</div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-body p-3">
+        <form asp-action="Index" method="get" class="row g-2">
+            <div class="col-md-10">
+                <input type="text" name="searchKeyword" value="@ViewBag.SearchKeyword" 
+                       class="form-control bg-light border-0" placeholder="Tìm theo tên, email, số điện thoại...">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100 fw-bold">Tìm kiếm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show">
+    <div class="alert alert-success border-0 shadow-sm mb-4">
         <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 }
 
-<div class="card shadow border-0 mb-4">
-    <div class="card-header bg-white py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách Khách Hàng</h6>
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-hover align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>Họ Tên</th>
-                    <th>Thông tin liên hệ</th>
-                    <th class="text-center">Tài khoản (Đăng nhập)</th>
-                    <th class="text-center">Điểm Tích Lũy</th>
-                    <th class="text-center">Trạng Thái</th>
-                    <th class="text-center">Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+<div class="main-card card border-0 mb-5 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
                     <tr>
-                        <td class="fw-bold text-dark">@item.HoTen</td>
-                        <td>
-                            <i class="fas fa-phone text-muted"></i> @item.SoDienThoai <br />
-                            <i class="fas fa-envelope text-muted"></i> @item.TaiKhoan.Email
-                        </td>
-                        <td class="text-center fw-bold text-primary">@item.TaiKhoan.TenDangNhap</td>
-                        <td class="text-center text-warning fw-bold">@item.DiemTichLuy</td>
-                        <td class="text-center">
-                            @if (item.TaiKhoan.TrangThai == 1)
-                            {
-                                <span class="badge bg-success"><i class="fas fa-unlock"></i> Đang hoạt động</span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-danger"><i class="fas fa-lock"></i> Đã bị khóa</span>
-                            }
-                        </td>
-                        <td class="text-center">
-                            <a asp-action="Edit" asp-route-id="@item.MaTK" class="btn btn-sm btn-info text-white" title="Xem & Chỉnh sửa">
-                                <i class="fas fa-user-edit"></i> Quản lý
-                            </a>
-                        </td>
+                        <th class="border-0 ps-4">Khách Hàng</th>
+                        <th class="border-0">Thông tin liên hệ</th>
+                        <th class="border-0 text-center">Điểm Thưởng</th>
+                        <th class="border-0 text-center">Trạng Thái</th>
+                        <th class="border-0 text-end pe-4">Hành động</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-        @if (!Model.Any())
-        {
-            <div class="text-center text-muted mt-3">Chưa có khách hàng nào đăng ký.</div>
-        }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 py-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://ui-avatars.com/api/?name=@Uri.EscapeDataString(item.HoTen ?? "K")&background=random&color=fff&rounded=true"
+                                         class="rounded-circle shadow-sm me-3" style="width: 45px; height: 45px;" />
+                                    <div>
+                                        <div class="fw-bold text-dark">@item.HoTen</div>
+                                        <div class="text-muted small">@item.TaiKhoan.TenDangNhap</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@item.SoDienThoai<br><small>@item.TaiKhoan.Email</small></td>
+                            <td class="text-center">@item.DiemTichLuy</td>
+                            <td class="text-center">
+                                @if (item.TaiKhoan.TrangThai == 1) {
+                                    <span class="badge rounded-pill bg-success bg-opacity-10 text-success border px-3">Hoạt động</span>
+                                } else {
+                                    <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger border px-3">Đã khóa</span>
+                                }
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-action="Edit" asp-route-id="@item.MaTK" class="btn btn-sm btn-light border rounded-pill px-3">Quản lý</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    @if (Model.PageCount > 1)
+    {
+        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center py-3 px-4">
+            <div class="text-muted small">
+                Trang <strong>@Model.PageNumber</strong> / @Model.PageCount (Tổng @Model.TotalItemCount khách)
+            </div>
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchKeyword = ViewBag.SearchKeyword }), 
+                    new X.PagedList.Mvc.Core.PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link", "rounded-circle", "mx-1", "border-0", "shadow-sm" }
+                    })
+            </div>
+        </div>
+    }
 </div>
+
+<style>
+    .pagination { margin-bottom: 0; }
+    .page-item.active .page-link { background-color: #3f6ad8 !important; color: white !important; }
+</style>

@@ -4,65 +4,116 @@
     ViewData["Title"] = "Quản lý Sản Phẩm";
 }
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-boxes me-2"></i>Danh sách Sản Phẩm</h4>
+        <div class="text-muted small mt-1">Quản lý kho hàng, giá bán và trạng thái hiển thị.</div>
+    </div>
+    <a asp-action="Create" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm fw-medium">
+        <i class="fas fa-plus me-2"></i>Thêm sản phẩm mới
+    </a>
+</div>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
+        <i class="fas fa-check-circle me-2"></i> <strong>Thành công!</strong> @TempData["SuccessMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
 
-<div class="card shadow mb-4 border-0">
-    <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách Sản Phẩm</h6>
-        <a asp-action="Create" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Thêm mới
-        </a>
-    </div>
-    <div class="card-body">
+<div class="main-card card border-0 mb-5">
+    <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
                     <tr>
-                        <th>Hình Ảnh</th>
-                        <th>Tên Sản Phẩm</th>
-                        <th>Danh Mục</th>
-                        <th>Giá Bán</th>
-                        <th>Trạng Thái</th>
-                        <th class="text-center">Hành động</th>
+                        <th class="border-0 ps-4">Sản Phẩm</th>
+                        <th class="border-0">Phân Loại</th>
+                        <th class="border-0">Giá Bán</th>
+                        <th class="border-0 text-center">Trạng Thái</th>
+                        <th class="border-0 text-end pe-4">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr style="transition: all 0.2s;">
+                                <td class="ps-4 py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0 me-3">
+                                            @if (!string.IsNullOrEmpty(item.HinhAnhChinh))
+                                            {
+                                                <img src="@item.HinhAnhChinh" alt="@item.TenSP" class="rounded-3 shadow-sm border" style="width: 55px; height: 55px; object-fit: cover; background-color: #fff;" />
+                                            }
+                                            else
+                                            {
+                                                <div class="bg-light text-muted rounded-3 d-flex align-items-center justify-content-center shadow-sm border" style="width: 55px; height: 55px;">
+                                                    <i class="fas fa-image"></i>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark text-wrap" style="max-width: 250px;">@item.TenSP</div>
+                                            <div class="text-muted small">Mã SP: #@item.MaSP</div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-light text-dark border text-wrap">@(item.DanhMuc?.TenDM ?? "Chưa phân loại")</span>
+                                </td>
+
+                                <td>
+                                    <div class="fw-bold text-danger">@item.GiaBan.ToString("#,##0") ₫</div>
+                                    @if (item.GiaGoc > item.GiaBan)
+                                    {
+                                        <div class="text-muted text-decoration-line-through small">@item.GiaGoc.ToString("#,##0") ₫</div>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    @if (item.TrangThai == 1)
+                                    {
+                                        <span class="badge rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2">
+                                            <i class="fas fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Đang bán
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 px-3 py-2">
+                                            <i class="fas fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Ngừng bán
+                                        </span>
+                                    }
+                                </td>
+
+                                <td class="text-end pe-4">
+                                    <div class="btn-group shadow-sm" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.MaSP" class="btn btn-sm btn-light text-primary border" data-bs-toggle="tooltip" title="Chỉnh sửa">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.MaSP" class="btn btn-sm btn-light text-danger border" data-bs-toggle="tooltip" title="Xóa">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td class="text-center">
-                                @if (!string.IsNullOrEmpty(item.HinhAnhChinh))
-                                {
-                                    <img src="@item.HinhAnhChinh" alt="@item.TenSP" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;" />
-                                }
-                                else
-                                {
-                                    <span class="text-muted small">Chưa có ảnh</span>
-                                }
-                            </td>
-                            <td class="fw-bold text-primary">@item.TenSP</td>
-                            <td>@item.DanhMuc.TenDM</td>
-                            <td class="text-danger fw-bold">@item.GiaBan.ToString("#,##0") đ</td>
-                            <td>
-                                @if (item.TrangThai == 1)
-                                {
-                                    <span class="badge bg-success">Đang bán</span>
-                                }
-                                else
-                                {
-
-                                    <span class="badge bg-secondary">Ngừng bán</span>
-                                }
-                            </td>
-                            <td class="text-center">
-                                <a asp-action="Edit" asp-route-id="@item.MaSP" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.MaSP" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            <td colspan="5" class="text-center py-5">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-box-open fa-2x text-muted opacity-50"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark">Chưa có sản phẩm nào</h6>
+                                <p class="text-muted small mb-4">Cửa hàng của bạn hiện chưa có sản phẩm. Hãy thêm sản phẩm đầu tiên nhé!</p>
+                                <a asp-action="Create" class="btn btn-outline-primary rounded-pill px-4">
+                                    <i class="fas fa-plus me-2"></i>Thêm Sản Phẩm
+                                </a>
                             </td>
                         </tr>
                     }
@@ -71,3 +122,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}

@@ -2,93 +2,88 @@
 using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
+using X.PagedList; 
 
 namespace ShopQuanAo.Areas.Admin.Controllers
 {
-	[Area("Admin")]
-	public class KhachHangController : Controller
-	{
-		private readonly ShopQuanAoContext _context;
+    [Area("Admin")]
+    public class KhachHangController : Controller
+    {
+        private readonly ShopQuanAoContext _context;
 
-		public KhachHangController(ShopQuanAoContext context)
-		{
-			_context = context;
-		}
+        public KhachHangController(ShopQuanAoContext context)
+        {
+            _context = context;
+        }
 
-		
-		// 1. HIỂN THỊ DANH SÁCH & TÌM KIẾM KHÁCH HÀNG
-		
-		public async Task<IActionResult> Index(string searchKeyword)
-		{
-			// Kéo theo bảng TaiKhoan để lấy được Email và Trạng Thái đăng nhập
-			var query = _context.KhachHangs
-				.Include(k => k.TaiKhoan)
-				.AsQueryable();
+        public async Task<IActionResult> Index(string searchKeyword, int? page)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 50;
 
-			// Chức năng tìm kiếm: Lọc theo Tên, SĐT hoặc Email
-			if (!string.IsNullOrEmpty(searchKeyword))
-			{
-				searchKeyword = searchKeyword.Trim();
+            var query = _context.KhachHangs
+                .Include(k => k.TaiKhoan)
+                .AsNoTracking();
 
-				query = query.Where(k =>
-					k.HoTen.Contains(searchKeyword) ||
-					k.SoDienThoai.Contains(searchKeyword) ||
-					k.TaiKhoan.Email.Contains(searchKeyword)
-				);
-			}
+            if (!string.IsNullOrEmpty(searchKeyword))
+            {
+                string key = searchKeyword.Trim().ToLower();
+                query = query.Where(k =>
+                    k.HoTen.ToLower().Contains(key) ||
+                    k.SoDienThoai.Contains(key) ||
+                    k.TaiKhoan.Email.ToLower().Contains(key)
+                );
+            }
 
-			var khachHangs = await query.OrderByDescending(k => k.MaTK).ToListAsync();
+            query = query.OrderByDescending(k => k.MaTK);
 
-			ViewBag.SearchKeyword = searchKeyword;
+            int totalItemCount = await query.CountAsync();
+            var items = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 
-			return View(khachHangs);
-		}
+            var pagedData = new StaticPagedList<KhachHang>(items, pageNumber, pageSize, totalItemCount);
 
-		
-		// 2. XEM CHI TIẾT VÀ KHÓA/MỞ KHÓA TÀI KHOẢN (EDIT)
-		
-		public async Task<IActionResult> Edit(int? id)
-		{
-			if (id == null) return NotFound();
+            ViewBag.SearchKeyword = searchKeyword;
 
-			// ID ở đây chính là MaTK
-			var khachHang = await _context.KhachHangs
-				.Include(k => k.TaiKhoan)
-				.FirstOrDefaultAsync(k => k.MaTK == id);
+            return View(pagedData);
+        }
 
-			if (khachHang == null) return NotFound();
-			return View(khachHang);
-		}
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		// Tham số truyền vào: MaTK, DiemTichLuy và TrangThai (của bảng TaiKhoan)
-		public async Task<IActionResult> Edit(int id, int DiemTichLuy, int TrangThai)
-		{
-			var khachHang = await _context.KhachHangs
-				.Include(k => k.TaiKhoan)
-				.FirstOrDefaultAsync(k => k.MaTK == id);
+            var khachHang = await _context.KhachHangs
+                .Include(k => k.TaiKhoan)
+                .FirstOrDefaultAsync(k => k.MaTK == id);
 
-			if (khachHang == null) return NotFound();
+            if (khachHang == null) return NotFound();
+            return View(khachHang);
+        }
 
-			try
-			{
-				// Cập nhật điểm tích lũy của Khách
-				khachHang.DiemTichLuy = DiemTichLuy;
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, int DiemTichLuy, int TrangThai)
+        {
+            var khachHang = await _context.KhachHangs
+                .Include(k => k.TaiKhoan)
+                .FirstOrDefaultAsync(k => k.MaTK == id);
 
-				// Cập nhật trạng thái (Khóa/Mở) của Tài Khoản
-				khachHang.TaiKhoan.TrangThai = TrangThai;
+            if (khachHang == null) return NotFound();
 
-				_context.Update(khachHang);
-				await _context.SaveChangesAsync();
-				TempData["SuccessMessage"] = "Cập nhật thông tin khách hàng thành công!";
-			}
-			catch (DbUpdateException)
-			{
-				TempData["ErrorMessage"] = "Có lỗi xảy ra khi lưu dữ liệu!";
-			}
+            try
+            {
+                khachHang.DiemTichLuy = DiemTichLuy;
+                khachHang.TaiKhoan.TrangThai = TrangThai;
 
-			return RedirectToAction(nameof(Index));
-		}
-	}
+                _context.Update(khachHang);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Cập nhật thông tin khách hàng thành công!";
+            }
+            catch (DbUpdateException)
+            {
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi lưu dữ liệu!";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+    }
 }

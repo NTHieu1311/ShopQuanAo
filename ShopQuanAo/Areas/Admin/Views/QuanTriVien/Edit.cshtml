@@ -3,41 +3,65 @@
     ViewData["Title"] = "Chỉnh sửa Quản trị viên";
 }
 
-<div class="card shadow border-0 col-md-8 mx-auto mt-4">
-    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-warning">Cập nhật thông tin nhân sự</h6></div>
-    <div class="card-body">
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-user-edit me-2"></i>Cập Nhật Nhân Sự</h4>
+        <div class="text-muted small mt-1">Chỉnh sửa hồ sơ của <strong class="text-dark">@Model.HoTen</strong>.</div>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm fw-medium">
+        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
         <form asp-action="Edit">
             <input type="hidden" asp-for="MaTK" />
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
             
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label asp-for="HoTen" class="form-label fw-bold">Họ và tên</label>
-                    <input asp-for="HoTen" class="form-control" required />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label asp-for="ChucVu" class="form-label fw-bold">Chức vụ</label>
-                    <input asp-for="ChucVu" class="form-control" required />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label asp-for="SoDienThoai" class="form-label fw-bold">Số điện thoại</label>
-                    <input asp-for="SoDienThoai" class="form-control" required />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label asp-for="NgayVaoLam" class="form-label fw-bold">Ngày vào làm</label>
-                    <input asp-for="NgayVaoLam" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" required />
-                </div>
-            </div>
-            
-            <div class="alert alert-info mt-3">
-                <i class="fas fa-info-circle"></i> Tài khoản đăng nhập của nhân sự này là: <strong>@Model.TaiKhoan?.TenDangNhap</strong>.
-                Để đổi mật khẩu hoặc khóa tài khoản, vui lòng vào mục <strong>Tất cả Tài Khoản</strong>.
-            </div>
+            <div class="main-card card border-0 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <h6 class="fw-bold mb-4 border-bottom pb-2 text-warning"><i class="fas fa-id-badge text-muted me-2"></i>Hồ sơ thông tin</h6>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="HoTen" class="form-label fw-bold text-muted small text-uppercase">Họ và tên <span class="text-danger">*</span></label>
+                            <input asp-for="HoTen" class="form-control form-control-lg bg-light border-0" required />
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="ChucVu" class="form-label fw-bold text-muted small text-uppercase">Chức vụ <span class="text-danger">*</span></label>
+                            <input asp-for="ChucVu" class="form-control form-control-lg bg-light border-0" required />
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-2">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <label asp-for="SoDienThoai" class="form-label fw-bold text-muted small text-uppercase">Số điện thoại <span class="text-danger">*</span></label>
+                            <input asp-for="SoDienThoai" class="form-control form-control-lg bg-light border-0" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="NgayVaoLam" class="form-label fw-bold text-muted small text-uppercase">Ngày vào làm <span class="text-danger">*</span></label>
+                            <input asp-for="NgayVaoLam" type="date" class="form-control form-control-lg bg-light border-0" asp-format="{0:yyyy-MM-dd}" required />
+                        </div>
+                    </div>
 
-            <div class="d-flex justify-content-between mt-4">
-                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
-                <button type="submit" class="btn btn-warning fw-bold text-dark"><i class="fas fa-save"></i> Cập nhật</button>
+                    <div class="alert alert-info border-0 bg-info bg-opacity-10 d-flex mt-4 p-3 rounded-3 shadow-sm">
+                        <i class="fas fa-info-circle text-info fa-lg mt-1 me-3"></i>
+                        <div>
+                            Tài khoản đăng nhập của nhân sự này là: <strong class="text-primary">@Model.TaiKhoan?.TenDangNhap</strong>.<br>
+                            <span class="small text-muted">Lưu ý: Để đổi mật khẩu hoặc khóa tài khoản, vui lòng truy cập menu <strong>Hệ Thống &gt; Tất cả Tài Khoản</strong>.</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center pt-4 mt-2 border-top">
+                        <a asp-action="Index" class="btn btn-light fw-bold px-4 me-3">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-warning text-dark px-5 py-2 fw-bold shadow-sm" style="border-radius: 8px;">
+                            <i class="fas fa-save me-2"></i> Cập Nhật Hồ Sơ
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </form>
     </div>

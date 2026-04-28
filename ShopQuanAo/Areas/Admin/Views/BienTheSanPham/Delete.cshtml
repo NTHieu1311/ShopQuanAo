@@ -3,20 +3,55 @@
     ViewData["Title"] = "Xóa Biến Thể";
 }
 
-<div class="card shadow border-0 col-md-6 mx-auto mt-5 border-danger border-top border-4 text-center p-4">
-    <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
-    <h4 class="fw-bold">Xác nhận xóa biến thể?</h4>
-    <p class="fs-5 mt-3">Sản phẩm: <strong class="text-primary">@Model.SanPham.TenSP</strong></p>
-    <p>Màu: <strong>@Model.MauSac</strong> | Size: <strong>@Model.KichThuoc</strong></p>
-    
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-    }
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="col-md-8 col-lg-6">
+        
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 12px; background-color: #fff2f4; color: #d0184d;" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
 
-    <form asp-action="Delete" class="mt-4">
-        <input type="hidden" asp-for="MaBienThe" />
-        <a asp-action="Index" class="btn btn-secondary px-4 me-2">Hủy</a>
-        <button type="submit" class="btn btn-danger px-4">Xác nhận Xóa</button>
-    </form>
+        <div class="main-card card border-0">
+            <div class="card-body p-4 p-md-5">
+                
+                <div class="text-center mb-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-trash-alt fa-2x text-danger"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark">Xác nhận xóa biến thể?</h4>
+                    <p class="text-muted">Bạn đang chuẩn bị xóa một phân loại của sản phẩm.</p>
+                </div>
+                
+                <div class="bg-light p-4 rounded-4 mb-4 text-center">
+                    <p class="text-muted small fw-bold mb-1 text-uppercase">Sản phẩm gốc</p>
+                    <h5 class="fw-bold text-primary mb-3">@Model.SanPham.TenSP</h5>
+                    
+                    <div class="d-flex justify-content-center gap-2">
+                        <span class="badge bg-white text-dark border px-3 py-2 shadow-sm"><i class="fas fa-palette text-muted me-1"></i> Màu: @Model.MauSac</span>
+                        <span class="badge bg-dark text-white px-3 py-2 shadow-sm"><i class="fas fa-ruler text-muted me-1"></i> Size: @Model.KichThuoc</span>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-dark p-3 rounded-3 mb-4 d-flex">
+                    <i class="fas fa-info-circle text-warning mt-1 me-3 fa-lg"></i>
+                    <div class="small">
+                        <strong>Lưu ý:</strong> Xóa biến thể này sẽ làm mất lịch sử tồn kho của đúng màu sắc/size này. Nếu nó nằm trong đơn hàng cũ, hãy cân nhắc sửa tồn kho về 0 thay vì xóa.<br />
+                    </div>
+                </div>
+
+                <form asp-action="Delete" class="d-flex justify-content-center align-items-center mt-4 border-top pt-4">
+                    <input type="hidden" asp-for="MaBienThe" />
+                    
+                    <a asp-action="Index" class="btn btn-light fw-bold px-4 me-3">Hủy bỏ</a>
+                    <button type="submit" class="btn btn-danger px-5 py-2 fw-bold shadow-sm" style="border-radius: 8px;">
+                        <i class="fas fa-trash-alt me-2"></i> Xác nhận Xóa
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>

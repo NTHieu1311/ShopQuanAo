@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Báo cáo thống kê";
-    var chartDonHang = ViewBag.ThongKeDonHang as List<int> ?? new List<int>();
-    var chartDoanhThu = ViewBag.DoanhThuData as List<decimal> ?? new List<decimal>();
+    var chartDonHang = ViewBag.ThongKeDonHang as List<int> ?? new List<int> { 0, 0, 0, 0 }; // Dự phòng mảng rỗng
+    var chartDoanhThu = ViewBag.DoanhThuData as List<decimal> ?? new List<decimal> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     decimal doanhThu = (decimal)(ViewBag.DoanhThu ?? 0m);
     int donMoi = (int)(ViewBag.DonMoi ?? 0);
@@ -9,143 +9,163 @@
     int sapHetHang = (int)(ViewBag.SapHetHang ?? 0);
 }
 
-<div class="container-fluid mt-4">
-    <div class="card shadow-sm border-0 mb-4">
-        <div class="card-body">
-            <div class="row align-items-center">
-                <div class="col-lg-4">
-                    <h1 class="h4 mb-0 text-gray-800 fw-bold">
-                        <i class="fas fa-chart-line me-2 text-primary"></i> TỔNG QUAN HỆ THỐNG
-                    </h1>
-                </div>
-                <div class="col-lg-8">
-                    <form asp-action="ExportToExcel" method="get" class="row g-2 justify-content-end align-items-center">
-                        <div class="col-auto">
-                            <select name="type" id="filterType" class="form-select form-select-sm fw-bold border-primary" onchange="toggleFilterInputs()">
-                                <option value="all">Tất cả thời gian</option>
-                                <option value="date">Lọc theo ngày</option>
-                                <option value="month">Lọc theo tháng</option>
-                                <option value="quarter">Lọc theo quý</option>
-                            </select>
-                        </div>
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-chart-pie me-2"></i>Báo Cáo Thống Kê</h4>
+        <div class="text-muted small mt-1">Phân tích doanh thu và tình hình kinh doanh của hệ thống.</div>
+    </div>
+    
+    <div class="bg-white p-2 rounded-pill shadow-sm border d-inline-flex align-items-center">
+        <form asp-action="ExportToExcel" method="get" class="d-flex align-items-center mb-0 m-0 px-2 gap-2">
+            <i class="fas fa-filter text-muted ps-1"></i>
+            <select name="type" id="filterType" class="form-select form-select-sm border-0 bg-transparent fw-bold text-dark shadow-none" onchange="toggleFilterInputs()" style="width: auto; cursor: pointer;">
+                <option value="all">Tất cả thời gian</option>
+                <option value="date">Lọc theo ngày</option>
+                <option value="month">Lọc theo tháng</option>
+                <option value="quarter">Lọc theo quý</option>
+            </select>
 
-                        <div id="dateInputs" class="col-auto d-none">
-                            <div class="d-flex gap-1 align-items-center">
-                                <input type="date" name="fromDate" class="form-control form-control-sm">
-                                <span>-</span>
-                                <input type="date" name="toDate" class="form-control form-control-sm">
-                            </div>
-                        </div>
+            <div id="dateInputs" class="d-none d-flex align-items-center gap-1 border-start ps-2">
+                <input type="date" name="fromDate" class="form-control form-control-sm border-0 bg-light rounded-pill px-3">
+                <span class="text-muted"><i class="fas fa-arrow-right fa-xs"></i></span>
+                <input type="date" name="toDate" class="form-control form-control-sm border-0 bg-light rounded-pill px-3">
+            </div>
 
-                        <div id="monthInputs" class="col-auto d-none">
-                            <div class="d-flex gap-1">
-                                <select name="month" class="form-select form-select-sm">
-                                    @for (int i = 1; i <= 12; i++)
-                                    {
-                                        <option value="@i">Tháng @i</option>
-                                    }
-                                </select>
-                                <select name="year" class="form-select form-select-sm">
-                                    <option value="2026">2026</option>
-                                    <option value="2025">2025</option>
-                                </select>
-                            </div>
-                        </div>
+            <div id="monthInputs" class="d-none d-flex align-items-center gap-1 border-start ps-2">
+                <select name="month" class="form-select form-select-sm border-0 bg-light rounded-pill px-3 w-auto">
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">Tháng @i</option>
+                    }
+                </select>
+                <select name="year" class="form-select form-select-sm border-0 bg-light rounded-pill px-3 w-auto">
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
 
-                        <div id="quarterInputs" class="col-auto d-none">
-                            <div class="d-flex gap-1">
-                                <select name="quarter" class="form-select form-select-sm">
-                                    <option value="1">Quý 1</option>
-                                    <option value="2">Quý 2</option>
-                                    <option value="3">Quý 3</option>
-                                    <option value="4">Quý 4</option>
-                                </select>
-                                <select name="year" class="form-select form-select-sm">
-                                    <option value="2026">2026</option>
-                                </select>
-                            </div>
-                        </div>
+            <div id="quarterInputs" class="d-none d-flex align-items-center gap-1 border-start ps-2">
+                <select name="quarter" class="form-select form-select-sm border-0 bg-light rounded-pill px-3 w-auto">
+                    <option value="1">Quý 1</option>
+                    <option value="2">Quý 2</option>
+                    <option value="3">Quý 3</option>
+                    <option value="4">Quý 4</option>
+                </select>
+                <select name="year" class="form-select form-select-sm border-0 bg-light rounded-pill px-3 w-auto">
+                    <option value="2026">2026</option>
+                </select>
+            </div>
 
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-sm btn-success shadow-sm fw-bold px-3">
-                                <i class="fas fa-file-excel me-1"></i> Xuất Excel
-                            </button>
-                        </div>
-                    </form>
+            <button type="submit" class="btn btn-success btn-sm rounded-pill px-3 fw-bold ms-1" data-bs-toggle="tooltip" title="Tải báo cáo định dạng Excel">
+                <i class="fas fa-file-excel me-1"></i> Xuất Excel
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="main-card card border-0 h-100 p-2 overflow-hidden position-relative">
+            <div class="position-absolute top-0 end-0 bg-success opacity-10" style="width: 100px; height: 100px; border-radius: 0 0 0 100%; z-index: 1;"></div>
+            <div class="card-body position-relative" style="z-index: 2;">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="text-muted small fw-bold text-uppercase mb-2">Tổng Doanh Thu</div>
+                        <h4 class="fw-bold text-dark mb-0">@doanhThu.ToString("N0") <span class="fs-6 text-muted">đ</span></h4>
+                    </div>
+                    <div class="bg-success text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="fas fa-coins fa-lg"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row mb-4">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-start border-success border-4 shadow-sm h-100 py-2">
-                <div class="card-body d-flex justify-content-between align-items-center">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="main-card card border-0 h-100 p-2 overflow-hidden position-relative">
+            <div class="position-absolute top-0 end-0 bg-warning opacity-10" style="width: 100px; height: 100px; border-radius: 0 0 0 100%; z-index: 1;"></div>
+            <div class="card-body position-relative" style="z-index: 2;">
+                <div class="d-flex justify-content-between">
                     <div>
-                        <div class="text-xs fw-bold text-success text-uppercase mb-1">TỔNG DOANH THU</div>
-                        <div class="h5 mb-0 fw-bold">@doanhThu.ToString("N0") đ</div>
+                        <div class="text-muted small fw-bold text-uppercase mb-2">Đơn Hàng Mới</div>
+                        <h4 class="fw-bold text-dark mb-0">@donMoi <span class="fs-6 text-muted">Đơn</span></h4>
                     </div>
-                    <i class="fas fa-coins fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-start border-warning border-4 shadow-sm h-100 py-2">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <div class="text-xs fw-bold text-warning text-uppercase mb-1">ĐƠN HÀNG MỚI</div>
-                        <div class="h5 mb-0 fw-bold">@donMoi</div>
+                    <div class="bg-warning text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
                     </div>
-                    <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-start border-primary border-4 shadow-sm h-100 py-2">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">KHÁCH HÀNG</div>
-                        <div class="h5 mb-0 fw-bold">@khachHang</div>
-                    </div>
-                    <i class="fas fa-user fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-start border-danger border-4 shadow-sm h-100 py-2">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <div class="text-xs fw-bold text-danger text-uppercase mb-1">SẮP HẾT HÀNG</div>
-                        <div class="h5 mb-0 fw-bold">@sapHetHang</div>
-                    </div>
-                    <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xl-8 col-lg-7 mb-4">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-header bg-white py-3">
-                    <h6 class="m-0 fw-bold text-primary">Doanh thu 12 tháng (@DateTime.Now.Year)</h6>
-                </div>
-                <div class="card-body">
-                    <canvas id="lineChart" style="min-height:320px"></canvas>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="main-card card border-0 h-100 p-2 overflow-hidden position-relative">
+            <div class="position-absolute top-0 end-0 bg-primary opacity-10" style="width: 100px; height: 100px; border-radius: 0 0 0 100%; z-index: 1;"></div>
+            <div class="card-body position-relative" style="z-index: 2;">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="text-muted small fw-bold text-uppercase mb-2">Khách Hàng</div>
+                        <h4 class="fw-bold text-dark mb-0">@khachHang <span class="fs-6 text-muted">Người</span></h4>
+                    </div>
+                    <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="fas fa-user-friends fa-lg"></i>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-xl-4 col-lg-5 mb-4">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-header bg-white py-3 text-center">
-                    <h6 class="m-0 fw-bold text-primary">Trạng thái đơn hàng</h6>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="main-card card border-0 h-100 p-2 overflow-hidden position-relative">
+            <div class="position-absolute top-0 end-0 bg-danger opacity-10" style="width: 100px; height: 100px; border-radius: 0 0 0 100%; z-index: 1;"></div>
+            <div class="card-body position-relative" style="z-index: 2;">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="text-muted small fw-bold text-uppercase mb-2">Sắp Hết Hàng</div>
+                        <h4 class="fw-bold text-danger mb-0">@sapHetHang <span class="fs-6 text-muted">Sản phẩm</span></h4>
+                    </div>
+                    <div class="bg-danger text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
+                        <i class="fas fa-exclamation-triangle fa-lg"></i>
+                    </div>
                 </div>
-                <div class="card-body d-flex align-items-center">
-                    <canvas id="donutChart" style="min-height:320px"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-8 col-lg-7 mb-4">
+        <div class="main-card card border-0 h-100">
+            <div class="card-header bg-white pt-4 pb-3 px-4 border-bottom-0 d-flex justify-content-between align-items-center">
+                <h6 class="m-0 fw-bold text-primary">Biểu Đồ Doanh Thu 12 Tháng (@DateTime.Now.Year)</h6>
+                <div class="dropdown no-arrow">
+                    <a class="text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body px-4 pb-4">
+                <div style="height: 320px; width: 100%;">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-5 mb-4">
+        <div class="main-card card border-0 h-100">
+            <div class="card-header bg-white pt-4 pb-3 px-4 border-bottom-0 text-center">
+                <h6 class="m-0 fw-bold text-primary">Tỉ Trọng Trạng Thái Đơn Hàng</h6>
+            </div>
+            <div class="card-body px-4 pb-4 d-flex flex-column justify-content-center">
+                <div style="height: 250px; width: 100%; position: relative;">
+                    <canvas id="donutChart"></canvas>
+                </div>
+                <div class="mt-4 text-center small">
+                    <span class="me-3"><i class="fas fa-circle text-warning me-1"></i> Chờ duyệt</span>
+                    <span class="me-3"><i class="fas fa-circle text-info me-1"></i> Đang giao</span><br class="d-sm-none" />
+                    <span class="me-3"><i class="fas fa-circle text-success me-1"></i> Thành công</span>
+                    <span><i class="fas fa-circle text-secondary me-1"></i> Đã hủy</span>
                 </div>
             </div>
         </div>
@@ -155,56 +175,125 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Hàm ẩn hiện các ô chọn dựa theo kiểu lọc
+        // Logic ẩn/hiện thanh lọc (giữ nguyên logic gốc của bạn)
         function toggleFilterInputs() {
         const type = document.getElementById('filterType').value;
-        document.getElementById('dateInputs').classList.add('d-none');
-        document.getElementById('monthInputs').classList.add('d-none');
-        document.getElementById('quarterInputs').classList.add('d-none');
+        const elements = ['dateInputs', 'monthInputs', 'quarterInputs'];
+        elements.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) {
+        el.classList.add('d-none');
+        el.classList.remove('d-flex'); // Bỏ flex để ẩn hẳn
+        }
+        });
 
-        if (type === 'date') document.getElementById('dateInputs').classList.remove('d-none');
-        else if (type === 'month') document.getElementById('monthInputs').classList.remove('d-none');
-        else if (type === 'quarter') document.getElementById('quarterInputs').classList.remove('d-none');
+        const target = document.getElementById(type + 'Inputs');
+        if (target) {
+        target.classList.remove('d-none');
+        target.classList.add('d-flex'); // Hiện lên dạng flex để input nằm ngang
+        }
         }
 
+        // Khởi tạo tooltip Bootstrap
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        // -- CẤU HÌNH BIỂU ĐỒ CHART.JS (Nâng cấp đồ họa) --
         document.addEventListener("DOMContentLoaded", function () {
-        // Biểu đồ Doanh thu
+        // Thiết lập font chữ mặc định cho Chart.js giống với hệ thống (Poppins)
+        Chart.defaults.font.family = "'Poppins', 'Nunito', sans-serif";
+        Chart.defaults.color = '#858796';
+
+        // 1. Biểu đồ Đường (Doanh Thu) - Nâng cấp gradient background và mượt mà hơn
         const doanhThuData = @Html.Raw(Json.Serialize(chartDoanhThu));
-        new Chart(document.getElementById('lineChart'), {
+            
+        // Tạo hiệu ứng màu Gradient cho biểu đồ mượt hơn
+        let ctxLine = document.getElementById('lineChart').getContext('2d');
+        let gradientFill = ctxLine.createLinearGradient(0, 0, 0, 300);
+        gradientFill.addColorStop(0, "rgba(63, 106, 216, 0.3)"); // Màu xanh nhạt trên đỉnh
+        gradientFill.addColorStop(1, "rgba(255, 255, 255, 0)");  // Mờ dần xuống đáy
+
+        new Chart(ctxLine, {
         type: 'line',
         data: {
-        labels: ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12"],
+        labels: ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"],
         datasets: [{
         label: "Doanh thu",
         data: doanhThuData,
-        borderColor: '#4e73df',
-        backgroundColor: 'rgba(78, 115, 223, 0.1)',
+        borderColor: '#3f6ad8', // Màu xanh dương đậm (Accent color)
+        backgroundColor: gradientFill,
+        borderWidth: 3,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#3f6ad8',
+        pointHoverBackgroundColor: '#3f6ad8',
+        pointHoverBorderColor: '#fff',
+        pointRadius: 4,
+        pointHoverRadius: 6,
         fill: true,
-        tension: 0.3
+        tension: 0.4 // Làm cong đường vẽ
         }]
         },
         options: {
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true, ticks: { callback: (val) => val.toLocaleString() + ' đ' } } }
+        plugins: {
+        legend: { display: false },
+        tooltip: {
+        backgroundColor: '#fff',
+        titleColor: '#343a40',
+        bodyColor: '#343a40',
+        borderColor: '#e3e6f0',
+        borderWidth: 1,
+        padding: 10,
+        displayColors: false,
+        callbacks: {
+        label: function(context) {
+        return 'Doanh thu: ' + context.parsed.y.toLocaleString('vi-VN') + ' ₫';
+        }
+        }
+        }
+        },
+        scales: {
+        y: {
+        beginAtZero: true,
+        grid: { borderDash: [2, 2], drawBorder: false }, // Lưới nét đứt
+        ticks: { callback: (val) => val.toLocaleString('vi-VN') + ' đ' }
+        },
+        x: {
+        grid: { display: false, drawBorder: false } // Ẩn đường kẻ dọc
+        }
+        }
         }
         });
 
-        // Biểu đồ Trạng thái
+        // 2. Biểu đồ Vành Khuyên (Trạng Thái) - Nâng cấp đổ bóng và tương tác
         const donHangData = @Html.Raw(Json.Serialize(chartDonHang));
         new Chart(document.getElementById('donutChart'), {
         type: 'doughnut',
         data: {
-        labels: ['Chờ xác nhận','Đang giao','Hoàn thành','Đã hủy'],
+        labels: ['Chờ duyệt','Đang giao','Thành công','Đã hủy'],
         datasets: [{
         data: donHangData,
-        backgroundColor: ['#f6c23e','#36b9cc','#1cc88a','#858796']
+        backgroundColor: ['#ffc107', '#0dcaf0', '#198754', '#adb5bd'], // Bộ màu chuẩn Bootstrap 5
+        hoverBackgroundColor: ['#e0a800', '#0bacbe', '#146c43', '#8a9096'],
+        borderWidth: 3,
+        borderColor: '#ffffff'
         }]
         },
         options: {
         maintainAspectRatio: false,
-        cutout: '70%',
-        plugins: { legend: { position: 'bottom' } }
+        cutout: '75%', // Lỗ tròn giữa to hơn
+        plugins: {
+        legend: { display: false }, // Tắt legend mặc định vì đã code HTML ở dưới
+        tooltip: {
+        callbacks: {
+        label: function(context) {
+        return ' ' + context.label + ': ' + context.parsed + ' đơn';
+        }
+        }
+        }
+        }
         }
         });
         });

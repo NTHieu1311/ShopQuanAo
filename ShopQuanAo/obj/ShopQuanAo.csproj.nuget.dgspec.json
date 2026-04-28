@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj": {}
+    "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj": {
+    "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj",
+        "projectUniqueName": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj",
         "projectName": "ShopQuanAo",
-        "projectPath": "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj",
+        "projectPath": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\ShopQuanAo.csproj",
         "packagesPath": "C:\\Users\\nthan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\obj\\",
+        "outputPath": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -77,6 +77,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[10.0.2, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[10.5.9, )"
             }
           },
           "imports": [

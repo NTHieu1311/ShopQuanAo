@@ -3,88 +3,163 @@
     ViewData["Title"] = "Chi tiết Đơn hàng #" + Model.MaDH;
 }
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-file-invoice me-2"></i>Chi tiết Đơn Hàng <span class="text-dark">#@Model.MaDH</span></h4>
+        <div class="text-muted small mt-1">Theo dõi chi tiết sản phẩm và lộ trình giao hàng.</div>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="InHoaDon" asp-route-id="@Model.MaDH" target="_blank" class="btn btn-outline-dark rounded-pill px-4 shadow-sm fw-medium">
+            <i class="fas fa-print me-2"></i>In Hóa Đơn
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm fw-medium">
+            <i class="fas fa-arrow-left me-2"></i>Quay lại
+        </a>
+    </div>
+</div>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
         <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="card shadow border-0 mb-4">
-            <div class="card-header bg-white py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Thông tin giao hàng</h6>
-            </div>
-            <div class="card-body">
-                <p><strong>Người nhận:</strong> @Model.TenNguoiNhan</p>
-                <p><strong>Số điện thoại:</strong> @Model.SDTNguoiNhan</p>
-                <p><strong>Địa chỉ:</strong> @Model.DiaChiGiao</p>
-                <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
-                <p><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.GhiChu) ? "Không có" : Model.GhiChu)</p>
+    <div class="col-lg-4 mb-4">
+        <div class="main-card card border-0 mb-4">
+            <div class="card-body p-4">
+                <h6 class="fw-bold mb-4 border-bottom pb-2"><i class="fas fa-address-card text-muted me-2"></i>Thông tin giao hàng</h6>
                 
-                <hr />
+                <div class="d-flex mb-3">
+                    <div class="text-muted me-3" style="width: 20px;"><i class="fas fa-user"></i></div>
+                    <div>
+                        <div class="small text-muted mb-1">Người nhận:</div>
+                        <div class="fw-bold text-dark">@Model.TenNguoiNhan</div>
+                    </div>
+                </div>
+                
+                <div class="d-flex mb-3">
+                    <div class="text-muted me-3" style="width: 20px;"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <div class="small text-muted mb-1">Số điện thoại:</div>
+                        <div class="fw-bold text-dark">@Model.SDTNguoiNhan</div>
+                    </div>
+                </div>
+                
+                <div class="d-flex mb-3">
+                    <div class="text-muted me-3" style="width: 20px;"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <div class="small text-muted mb-1">Địa chỉ:</div>
+                        <div class="fw-bold text-dark">@Model.DiaChiGiao</div>
+                    </div>
+                </div>
+                
+                <div class="d-flex mb-3">
+                    <div class="text-muted me-3" style="width: 20px;"><i class="far fa-calendar-alt"></i></div>
+                    <div>
+                        <div class="small text-muted mb-1">Ngày đặt:</div>
+                        <div class="fw-bold text-dark">@Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="text-muted me-3" style="width: 20px;"><i class="fas fa-sticky-note"></i></div>
+                    <div>
+                        <div class="small text-muted mb-1">Ghi chú của khách:</div>
+                        <div class="text-dark fst-italic">@(string.IsNullOrEmpty(Model.GhiChu) ? "Không có ghi chú" : Model.GhiChu)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-card card border-0 bg-light">
+            <div class="card-body p-4">
                 <form asp-action="Edit" method="post">
                     <input type="hidden" name="id" value="@Model.MaDH" />
                     <div class="mb-3">
-                        <label class="fw-bold text-dark">Cập nhật trạng thái:</label>
-                        <select name="TrangThaiDH" class="form-select mt-2" asp-for="TrangThaiDH">
-                            <option value="0">Chờ duyệt</option>
-                            <option value="1">Đang giao hàng</option>
-                            <option value="2">Hoàn thành</option>
-                            <option value="3">Đã hủy</option>
+                        <label class="fw-bold text-muted small text-uppercase mb-2">Trạng thái đơn hàng hiện tại</label>
+                        <select name="TrangThaiDH" class="form-select border-0 shadow-sm py-2 fw-bold" asp-for="TrangThaiDH">
+                            <option value="0">🟡 Chờ duyệt / Chờ xác nhận</option>
+                            <option value="1">🔵 Đang giao hàng</option>
+                            <option value="2">🟢 Đã giao thành công</option>
+                            <option value="3">🔴 Đã hủy / Bom hàng</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-warning w-100 fw-bold">Lưu Trạng Thái</button>
+                    <button type="submit" class="btn btn-warning w-100 fw-bold shadow-sm py-2">
+                        <i class="fas fa-sync-alt me-2"></i> Lưu Trạng Thái
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="col-md-8">
-        <div class="card shadow border-0">
-            <div class="card-header bg-white py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Sản phẩm đã đặt</h6>
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Sản phẩm</th>
-                            <th>Phân loại</th>
-                            <th class="text-center">Số lượng</th>
-                            <th class="text-end">Đơn giá</th>
-                            <th class="text-end">Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var c in Model.ChiTietDonHangs)
-                        {
-                            var thanhTien = c.SoLuong * c.DonGiaXuat;
+    <div class="col-lg-8 mb-4">
+        <div class="main-card card border-0">
+            <div class="card-body p-4">
+                <h6 class="fw-bold mb-4 border-bottom pb-2"><i class="fas fa-box-open text-muted me-2"></i>Sản phẩm đã đặt</h6>
+                
+                <div class="table-responsive">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead class="border-bottom text-muted small text-uppercase">
                             <tr>
-                                <td class="fw-bold text-primary">
-                                    @if (!string.IsNullOrEmpty(c.BienTheSanPham.SanPham.HinhAnhChinh))
-                                    {
-                                        <img src="@c.BienTheSanPham.SanPham.HinhAnhChinh" style="width: 40px; height: 40px; object-fit: cover" class="rounded me-2" />
-                                    }
-                                    @c.BienTheSanPham.SanPham.TenSP
-                                </td>
-                                <td>Màu: @c.BienTheSanPham.MauSac - Size: @c.BienTheSanPham.KichThuoc</td>
-                                <td class="text-center">@c.SoLuong</td>
-                                <td class="text-end">@c.DonGiaXuat.ToString("#,##0") đ</td>
-                                <td class="text-end text-danger fw-bold">@thanhTien.ToString("#,##0") đ</td>
+                                <th class="ps-0">Sản phẩm</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-end">Đơn giá</th>
+                                <th class="text-end pe-0">Thành tiền</th>
                             </tr>
-                        }
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4" class="text-end fw-bold fs-5">TỔNG CỘNG:</td>
-                            <td class="text-end fw-bold text-danger fs-5">@Model.TongTien.ToString("#,##0") đ</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <a asp-action="Index" class="btn btn-secondary mt-3"><i class="fas fa-arrow-left"></i> Quay lại danh sách</a>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in Model.ChiTietDonHangs)
+                            {
+                                var thanhTien = c.SoLuong * c.DonGiaXuat;
+                                <tr class="border-bottom">
+                                    <td class="ps-0 py-3">
+                                        <div class="d-flex align-items-center">
+                                            @if (!string.IsNullOrEmpty(c.BienTheSanPham.SanPham.HinhAnhChinh))
+                                            {
+                                                <img src="@c.BienTheSanPham.SanPham.HinhAnhChinh" style="width: 50px; height: 50px; object-fit: cover;" class="rounded-3 shadow-sm border me-3" />
+                                            }
+                                            else
+                                            {
+                                                <div class="bg-light rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;"><i class="fas fa-image text-muted"></i></div>
+                                            }
+                                            <div>
+                                                <div class="fw-bold text-dark">@c.BienTheSanPham.SanPham.TenSP</div>
+                                                <div class="text-muted small">Phân loại: <span class="badge bg-light text-dark border">@c.BienTheSanPham.MauSac - @c.BienTheSanPham.KichThuoc</span></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center fw-bold">x @c.SoLuong</td>
+                                    <td class="text-end">@c.DonGiaXuat.ToString("#,##0") đ</td>
+                                    <td class="text-end text-danger fw-bold pe-0">@thanhTien.ToString("#,##0") đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-sm-6 offset-sm-6">
+                        <div class="bg-light p-3 rounded-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Tổng tiền hàng:</span>
+                                <span class="fw-bold">@Model.TongTien.ToString("#,##0") đ</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Phí vận chuyển:</span>
+                                <span class="fw-bold">0 đ</span>
+                            </div>
+                            <hr class="my-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-uppercase">Thanh Toán:</span>
+                                <span class="fs-4 fw-bold text-danger">@Model.TongTien.ToString("#,##0") đ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

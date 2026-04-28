@@ -1,25 +1,39 @@
 ﻿@model ShopQuanAo.Models.DanhMuc
 
 @{
-    ViewData["Title"] = "Xác Nhận Xóa";
+    ViewData["Title"] = "Xác Nhận Xóa Danh Mục";
 }
 
-<div class="card shadow border-0 col-md-6 mx-auto mt-5 border-danger border-top border-4">
-    <div class="card-body text-center p-5">
-        <i class="fas fa-exclamation-triangle fa-4x text-danger mb-4"></i>
-        <h4 class="fw-bold">Bạn có chắc chắn muốn xóa?</h4>
-        <p class="text-muted">Danh mục: <strong class="text-dark fs-5">@Model.TenDM</strong></p>
-        
-        <div class="alert alert-warning text-start mt-4" role="alert">
-            <i class="fas fa-info-circle"></i> <strong>Cảnh báo:</strong> Việc xóa danh mục này có thể xóa luôn tất cả các sản phẩm thuộc danh mục này! Hành động này không thể hoàn tác.
-        </div>
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="col-md-8 col-lg-6">
+        <div class="main-card card border-0">
+            <div class="card-body p-4 p-md-5">
+                
+                <div class="text-center mb-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark">Bạn có chắc chắn muốn xóa?</h4>
+                    <p class="text-muted">Danh mục: <strong class="text-primary fs-5">@Model.TenDM</strong></p>
+                </div>
 
-        <form asp-action="Delete" class="mt-4">
-            <input type="hidden" asp-for="MaDM" />
-            <a asp-action="Index" class="btn btn-secondary px-4 me-2">Hủy bỏ</a>
-            <button type="submit" class="btn btn-danger px-4">
-                <i class="fas fa-trash"></i> Xác nhận Xóa
-            </button>
-        </form>
+                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-dark p-3 rounded-3 mb-4 d-flex">
+                    <i class="fas fa-info-circle text-warning mt-1 me-3 fa-lg"></i>
+                    <div class="small">
+                        <strong>Cảnh báo quan trọng:</strong> Nếu bạn xóa danh mục này, toàn bộ sản phẩm đang thuộc danh mục <strong>"@Model.TenDM"</strong> có thể bị mồ côi hoặc bị xóa theo (tùy thuộc vào thiết lập CSDL).<br />
+                        <span class="text-danger fw-bold mt-1 d-block">Hành động này tuyệt đối không thể hoàn tác!</span>
+                    </div>
+                </div>
+
+                <form asp-action="Delete" class="d-flex justify-content-center align-items-center mt-4 border-top pt-4">
+                    <input type="hidden" asp-for="MaDM" />
+                    <a asp-action="Index" class="btn btn-light fw-bold px-4 me-3">Hủy bỏ</a>
+                    <button type="submit" class="btn btn-danger px-5 py-2 fw-bold shadow-sm" style="border-radius: 8px;">
+                        <i class="fas fa-trash-alt me-2"></i> Xác nhận Xóa
+                    </button>
+                </form>
+
+            </div>
+        </div>
     </div>
 </div>

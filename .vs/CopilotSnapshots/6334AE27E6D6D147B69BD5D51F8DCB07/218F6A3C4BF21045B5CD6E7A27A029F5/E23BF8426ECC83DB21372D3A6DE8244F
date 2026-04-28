@@ -1,0 +1,163 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+
+@model IPagedList<ShopQuanAo.Models.KhachHang>
+
+@{
+    ViewData["Title"] = "Quản lý Khách Hàng";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-users me-2"></i>Tệp Khách Hàng</h4>
+        <div class="text-muted small mt-1">Quản lý hồ sơ, điểm tích lũy và trạng thái tài khoản.</div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
+        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="main-card card border-0 mb-5 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
+                    <tr>
+                        <th class="border-0 ps-4">Khách Hàng</th>
+                        <th class="border-0">Thông tin liên hệ</th>
+                        <th class="border-0 text-center">Điểm Thưởng</th>
+                        <th class="border-0 text-center">Trạng Thái</th>
+                        <th class="border-0 text-end pe-4">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4 py-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://ui-avatars.com/api/?name=@Uri.EscapeDataString(item.HoTen ?? "K")&background=random&color=fff&rounded=true"
+                                             class="rounded-circle shadow-sm me-3" style="width: 45px; height: 45px;" alt="Avatar" />
+                                        <div>
+                                            <div class="fw-bold text-dark fs-6">@item.HoTen</div>
+                                            <div class="text-muted small"><i class="fas fa-user-circle me-1"></i> @item.TaiKhoan.TenDangNhap</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="text-dark mb-1"><i class="fas fa-phone-alt text-muted me-2" style="width: 15px;"></i>@item.SoDienThoai</div>
+                                    <div class="text-muted small"><i class="fas fa-envelope text-muted me-2" style="width: 15px;"></i>@item.TaiKhoan.Email</div>
+                                </td>
+                                
+                                <td class="text-center">
+                                    <span class="badge rounded-pill bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-3 py-2 fw-bold fs-6 shadow-sm">
+                                        <i class="fas fa-star me-1"></i> @item.DiemTichLuy
+                                    </span>
+                                </td>
+                                
+                                <td class="text-center">
+                                    @if (item.TaiKhoan.TrangThai == 1)
+                                    {
+                                        <span class="badge rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2">
+                                            <i class="fas fa-unlock me-1"></i> Hoạt động
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-3 py-2">
+                                            <i class="fas fa-lock me-1"></i> Đã khóa
+                                        </span>
+                                    }
+                                </td>
+                                
+                                <td class="text-end pe-4">
+                                    <a asp-action="Edit" asp-route-id="@item.MaTK" class="btn btn-sm btn-light text-primary border shadow-sm px-3 rounded-pill" data-bs-toggle="tooltip" title="Xem hồ sơ & Quản lý">
+                                        <i class="fas fa-user-edit me-1"></i> Quản lý
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-5">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-users-slash fa-2x text-muted opacity-50"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark">Chưa có khách hàng nào</h6>
+                                <p class="text-muted small mb-0">Hệ thống chưa ghi nhận tài khoản khách hàng nào đăng ký.</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    @if (Model != null && Model.PageCount > 1)
+    {
+        <div class="card-footer bg-white border-top-0 d-flex flex-column flex-md-row justify-content-between align-items-center py-3 px-4 rounded-bottom-4">
+            <div class="text-muted small fw-medium mb-2 mb-md-0">
+                Hiển thị trang <strong class="text-dark">@Model.PageNumber</strong> / <strong>@Model.PageCount</strong> (Tổng @Model.TotalItemCount khách hàng)
+            </div>
+            
+            <nav aria-label="Page navigation">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchKeyword = ViewBag.SearchKeyword }), 
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link", "rounded-circle", "mx-1", "shadow-sm", "border-0", "fw-bold" },
+                        ActiveLiElementClass = "active",
+                        PreviousElementClass = "page-item me-2",
+                        NextElementClass = "page-item ms-2",
+                        LinkToPreviousPageFormat = "<i class='fas fa-chevron-left'></i>",
+                        LinkToNextPageFormat = "<i class='fas fa-chevron-right'></i>",
+                        MaximumPageNumbersToDisplay = 5,
+                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                    })
+            </nav>
+        </div>
+    }
+</div>
+
+<style>
+    .pagination {
+        margin-bottom: 0;
+    }
+    .pagination .active .page-link {
+        background-color: #3f6ad8 !important;
+        border-color: #3f6ad8 !important;
+        color: white !important;
+    }
+    .pagination .page-link {
+        color: #495057;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    .pagination .page-link:hover {
+        background-color: #e0f3ff;
+        color: #3f6ad8;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}}

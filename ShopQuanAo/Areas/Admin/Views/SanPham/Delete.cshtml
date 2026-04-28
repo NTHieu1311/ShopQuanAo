@@ -4,81 +4,81 @@
     ViewData["Title"] = "Xác Nhận Xóa Sản Phẩm";
 }
 
-<div class="container mt-4">
-    <div class="card shadow border-0 col-md-8 mx-auto border-danger border-top border-4">
-        <div class="card-body p-4">
-            
-            @* QUAN TRỌNG: Hiển thị thông báo lỗi nếu dính khóa ngoại (đang nằm trong đơn hàng) *@
-            @if (TempData["ErrorMessage"] != null)
-            {
-                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                    <i class="fas fa-exclamation-circle me-2"></i> <strong>Lỗi:</strong> @TempData["ErrorMessage"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="col-md-9 col-lg-7">
+        
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 12px; background-color: #fff2f4; color: #d0184d;" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle fa-2x me-3"></i>
+                    <div>
+                        <strong class="d-block" style="font-size: 1.1rem;">Không thể xóa sản phẩm!</strong>
+                        <span>@TempData["ErrorMessage"]</span>
+                    </div>
                 </div>
-            }
-
-            <div class="text-center mb-4">
-                <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
-                <h4 class="fw-bold text-dark">Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top: 50%; transform: translateY(-50%);"></button>
             </div>
-            
-            <div class="row bg-light p-3 rounded align-items-center">
-                <div class="col-md-4 text-center mb-3 mb-md-0">
-                    @if (!string.IsNullOrEmpty(Model.HinhAnhChinh))
-                    {
-                        <img src="@Model.HinhAnhChinh" class="img-fluid rounded shadow-sm" style="max-height: 180px; object-fit: contain;" alt="@Model.TenSP" />
-                    }
-                    else
-                    {
-                        <div class="p-4 bg-secondary text-white rounded d-flex flex-column align-items-center justify-content-center" style="height: 150px;">
-                            <i class="fas fa-image fa-2x mb-2"></i>
-                            <span>Không có ảnh</span>
-                        </div>
-                    }
-                </div>
-                <div class="col-md-8">
-                    <table class="table table-sm table-borderless mb-0">
-                        <tr>
-                            <th width="35%" class="text-muted align-middle">Mã sản phẩm:</th>
-                            <td class="fw-bold align-middle">#@Model.MaSP</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted align-middle">Tên sản phẩm:</th>
-                            <td class="fw-bold text-primary fs-5 align-middle">@Model.TenSP</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted align-middle">Danh mục:</th>
-                            <td class="align-middle">
-                                <span class="badge bg-info text-dark">@(Model.DanhMuc?.TenDM ?? "Không có")</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted align-middle">Giá gốc:</th>
-                            <td class="text-decoration-line-through text-muted align-middle">@Model.GiaGoc.ToString("#,##0") VNĐ</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted align-middle">Giá bán:</th>
-                            <td class="text-danger fw-bold fs-5 align-middle">@Model.GiaBan.ToString("#,##0") VNĐ</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+        }
 
-            <div class="alert alert-warning mt-4 text-center border-warning">
-                <i class="fas fa-exclamation-circle me-1"></i> Hành động này sẽ xóa dữ liệu khỏi cơ sở dữ liệu và <strong>xóa luôn cả file ảnh</strong> trên máy chủ. <br />
-                <span class="text-danger fw-bold">Tuyệt đối không thể hoàn tác!</span>
-            </div>
-
-            <form asp-action="Delete" class="mt-4 text-center">
-                <input type="hidden" asp-for="MaSP" />
+        <div class="main-card card border-0">
+            <div class="card-body p-5">
                 
-                <a asp-action="Index" class="btn btn-outline-secondary px-4 me-3">
-                    <i class="fas fa-arrow-left me-1"></i> Hủy bỏ
+                <div class="text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-trash-alt fa-2x text-danger"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark">Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
+                    <p class="text-muted">Hành động này sẽ xóa hoàn toàn dữ liệu và file ảnh khỏi hệ thống.</p>
+                </div>
+                
+                <div class="bg-light p-4 rounded-4 mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4 text-center mb-3 mb-sm-0 border-end border-white border-2">
+                            @if (!string.IsNullOrEmpty(Model.HinhAnhChinh))
+                            {
+                                <img src="@Model.HinhAnhChinh" class="img-fluid rounded-3 shadow-sm bg-white p-1" style="height: 140px; width: 140px; object-fit: cover;" alt="@Model.TenSP" />
+                            }
+                            else
+                            {
+                                <div class="bg-white text-muted rounded-3 d-flex flex-column align-items-center justify-content-center shadow-sm mx-auto" style="height: 140px; width: 140px;">
+                                    <i class="fas fa-image fa-2x mb-2 opacity-50"></i>
+                                    <span class="small">Không có ảnh</span>
+                                </div>
+                            }
+                        </div>
+                        
+                        <div class="col-sm-8 ps-sm-4">
+                            <div class="text-muted small fw-bold mb-1 text-uppercase">Mã SP: #@Model.MaSP</div>
+                            <h5 class="fw-bold text-primary mb-3">@Model.TenSP</h5>
+                            
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="badge bg-secondary bg-opacity-10 text-secondary border me-2">@(Model.DanhMuc?.TenDM ?? "Không có danh mục")</span>
+                                <span class="fw-bold text-danger fs-6">@Model.GiaBan.ToString("#,##0") ₫</span>
+                                <span class="text-muted text-decoration-line-through ms-2 small">@Model.GiaGoc.ToString("#,##0") ₫</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-dark p-3 rounded-3 mb-4 d-flex">
+                    <i class="fas fa-exclamation-triangle text-warning mt-1 me-3 fa-lg"></i>
+                    <div class="small">
+                        <strong>Lưu ý quan trọng:</strong> Nếu sản phẩm này đang có đơn hàng chờ xử lý, hệ thống sẽ chặn thao tác xóa để bảo vệ toàn vẹn dữ liệu kế toán. <span class="text-danger fw-bold">Thao tác xóa không thể hoàn tác!</span>
+                    </div>
+                </div>
+
+                <form asp-action="Delete" class="d-flex justify-content-end align-items-center">
+                    <input type="hidden" asp-for="MaSP" />
+                    <input type="hidden" asp-for="HinhAnhChinh" /> <a asp-action="Index" class="btn btn-light fw-bold px-4 me-3">
+                    Hủy bỏ
                 </a>
-                <button type="submit" class="btn btn-danger px-4 shadow-sm">
-                    <i class="fas fa-trash-alt me-1"></i> Xác nhận Xóa
+                <button type="submit" class="btn btn-danger px-5 py-2 fw-bold shadow-sm" style="border-radius: 8px;">
+                    <i class="fas fa-trash-alt me-2"></i> Xác nhận Xóa
                 </button>
             </form>
+
         </div>
     </div>
+</div>
 </div>

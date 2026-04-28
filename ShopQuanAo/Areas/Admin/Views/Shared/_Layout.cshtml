@@ -8,331 +8,325 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --sidebar-bg: #4e73df;
-            --sidebar-hover: #224abe;
-            --bg-light: #f8f9fc;
-        }
+            /* PHONG CÁCH ARCHITECT-UI HIỆN ĐẠI */
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: #f1f4f6; /* Nền xám nhạt */
+                color: #495057;
+                margin: 0;
+                padding-top: 60px; /* Chừa chỗ cho Header cố định */
+            }
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-light);
-            margin: 0;
-            overflow-x: hidden;
-            color: #5a5c69;
-        }
+            /* --- HEADER (THANH TRÊN CÙNG) --- */
+            .app-header {
+                background: #ffffff;
+                height: 60px;
+                box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 1.5rem;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1030;
+            }
 
-        /* --- BỐ CỤC CHÍNH --- */
-        #wrapper {
-            display: flex;
-            height: 100vh;
-        }
+            .header-logo {
+                width: 250px;
+                font-weight: 800;
+                font-size: 1.2rem;
+                color: #3f6ad8;
+                text-decoration: none;
+                letter-spacing: 1px;
+                display: flex;
+                align-items: center;
+            }
 
-        /* --- SIDEBAR (THANH BÊN TRÁI) --- */
-        #sidebar {
-            width: 250px;
-            background: linear-gradient(180deg, var(--sidebar-bg) 10%, var(--sidebar-hover) 100%);
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
-        }
-        #sidebar.toggled {
-            width: 0;
-            overflow: hidden;
-        }
-        .sidebar-brand {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .sidebar-brand i { font-size: 1.5rem; transform: rotate(-15deg); }
-        
-        .nav-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav-link {
-            color: rgba(255,255,255,0.8);
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        .nav-link i { font-size: 1.1rem; width: 25px; }
-        .nav-link:hover, .nav-link.active { color: #fff; }
+                .header-logo i {
+                    font-size: 1.5rem;
+                    margin-right: 10px;
+                }
 
-        /* --- VÙNG NỘI DUNG --- */
-        #content-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+            /* --- SIDEBAR (THANH BÊN TRÁI MÀU TRẮNG) --- */
+            .app-sidebar {
+                width: 250px;
+                background: #ffffff;
+                position: fixed;
+                top: 60px;
+                bottom: 0;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 7px 0 60px rgba(0,0,0,0.05);
+                overflow-y: auto;
+                transition: all 0.3s;
+            }
 
-        /* --- TOPBAR (THANH TRÊN CÙNG) --- */
-        .topbar {
-            height: 70px;
-            background: #fff;
-            box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-        #sidebarToggleTop {
-            background: transparent;
-            border: none;
-            color: var(--sidebar-bg);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        #sidebarToggleTop:hover { color: var(--sidebar-hover); background: #eaecf4; border-radius: 50%; width: 40px; height: 40px; }
+                .app-sidebar.toggled {
+                    left: -250px;
+                }
 
-        .topbar-divider {
-            width: 0;
-            border-right: 1px solid #e3e6f0;
-            height: calc(4.375rem - 2rem);
-            margin: auto 1rem;
-        }
+                .app-sidebar .nav-title {
+                    color: #3f6ad8;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    padding: 1.5rem 1.5rem 0.5rem;
+                    opacity: 0.6;
+                }
 
-        .img-profile { height: 2rem; width: 2rem; border-radius: 50%; }
+                .app-sidebar .nav-link {
+                    color: #343a40;
+                    padding: 0.7rem 1.5rem;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center;
+                    transition: all 0.3s;
+                    border-radius: 8px;
+                    margin: 0.2rem 1rem;
+                    text-decoration: none;
+                }
 
-        /* --- FOOTER --- */
-        footer.sticky-footer {
-            padding: 1.5rem 0;
-            background-color: #fff;
-            box-shadow: 0 -.15rem 1.75rem 0 rgba(58,59,69,.15);
-        }
+                    .app-sidebar .nav-link i {
+                        width: 30px;
+                        font-size: 1.1rem;
+                        color: #a3a8b1;
+                        transition: all 0.3s;
+                    }
+
+                    .app-sidebar .nav-link:hover, .app-sidebar .nav-link.active {
+                        background: #e0f3ff;
+                        color: #3f6ad8;
+                    }
+
+                        .app-sidebar .nav-link:hover i, .app-sidebar .nav-link.active i {
+                            color: #3f6ad8;
+                        }
+
+            /* --- MAIN CONTENT --- */
+            .app-main {
+                margin-left: 250px;
+                padding: 30px;
+                transition: all 0.3s;
+                min-height: calc(100vh - 60px);
+                display: flex;
+                flex-direction: column;
+            }
+
+                .app-main.expanded {
+                    margin-left: 0;
+                }
+
+            /* Tùy chỉnh Nút bấm Sidebar & Tìm kiếm */
+            #sidebarToggleTop {
+                background: transparent;
+                border: none;
+                color: #a3a8b1;
+                font-size: 1.2rem;
+                cursor: pointer;
+                margin-right: 20px;
+                transition: 0.2s;
+            }
+
+                #sidebarToggleTop:hover {
+                    color: #3f6ad8;
+                }
+
+            /* Custom Card giống ArchitectUI */
+            .card {
+                border: none;
+                border-radius: 12px;
+                box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03);
+            }
     </style>
 </head>
 
 <body>
-    <div id="wrapper">
-        <nav id="sidebar">
-            <a class="sidebar-brand" href="/Admin">
-                <i class="fas fa-laugh-wink me-2"></i>
-                <div class="sidebar-brand-text">ADMIN <sup>PRO</sup></div>
+    <header class="app-header">
+        <div class="d-flex align-items-center">
+            <a href="/Admin" class="header-logo">
+                <i class="fas fa-layer-group"></i> ADMIN PRO
             </a>
+            <button id="sidebarToggleTop">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
 
-            <ul class="nav flex-column mt-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/Home/Index">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Tổng Quan</span>
-                    </a>
-                </li>
-                
-                <li class="nav-item mt-2">
-                    <div class="px-3 text-uppercase text-light" style="font-size: 0.7rem; font-weight: 800; opacity: 0.5;">Sản phẩm & Cửa hàng</div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/DanhMuc">
-                        <i class="fas fa-fw fa-tags"></i> <span>Quản lý Danh Mục</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/SanPham">
-                        <i class="fas fa-fw fa-tshirt"></i> <span>Quản lý Sản Phẩm</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/BienTheSanPham">
-                        <i class="fas fa-fw fa-cubes"></i> <span>Kho & Biến thể</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/DanhGia">
-                        <i class="fas fa-fw fa-star"></i> <span>Đánh Giá Khách Hàng</span>
-                    </a>
-                </li>
+            @{
+                var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                bool showSearchBar = false;
+                var searchAction = "";
+                var searchPlaceholder = "";
 
-                <li class="nav-item mt-3">
-                    <div class="px-3 text-uppercase text-light" style="font-size: 0.7rem; font-weight: 800; opacity: 0.5;">Kinh Doanh</div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/DonHang">
-                        <i class="fas fa-fw fa-clipboard-list"></i> <span>Xử lý Đơn Hàng</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/KhachHang">
-                        <i class="fas fa-fw fa-users"></i> <span>Tệp Khách Hàng</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/PhuongThucThanhToan">
-                        <i class="fas fa-fw fa-credit-card"></i> <span>Cổng Thanh Toán</span>
-                    </a>
-                </li>
+                if (currentController == "DonHang")
+                {
+                    showSearchBar = true;
+                    searchAction = "/Admin/DonHang/Index";
+                    searchPlaceholder = "Tìm mã đơn (VD: 1537) hoặc SĐT...";
+                }
+                else if (currentController == "KhachHang")
+                {
+                    showSearchBar = true;
+                    searchAction = "/Admin/KhachHang/Index";
+                    searchPlaceholder = "Tìm tên, SĐT hoặc Email khách...";
+                }
+                else if (currentController == "SanPham")
+                {
+                    showSearchBar = true;
+                    searchAction = "/Admin/SanPham/Index";
+                    searchPlaceholder = "Tìm tên sản phẩm...";
+                }
+            }
 
-                <li class="nav-item mt-3">
-                    <div class="px-3 text-uppercase text-light" style="font-size: 0.7rem; font-weight: 800; opacity: 0.5;">Hệ Thống</div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/TaiKhoan">
-                        <i class="fas fa-fw fa-user-shield"></i> <span>Tất cả Tài Khoản</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Admin/QuanTriVien">
-                        <i class="fas fa-fw fa-user-tie"></i> <span>Nhân sự Quản Trị</span>
-                    </a>
-                </li>
-                
-                <li class="nav-item mt-auto mb-3 border-0 text-center px-3 pt-4">
-                    </li>
-            </ul>
-        </nav>
-
-        <div id="content-wrapper">
-            <nav class="topbar">
-                <div class="d-flex align-items-center">
-                    <button id="sidebarToggleTop">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    
-                    @{
-                        // Tự động nhận diện xem Admin đang đứng ở Controller nào
-                        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
-                        
-                        // Mặc định biến hiển thị là false (ẩn)
-                        bool showSearchBar = false;
-                        var searchAction = ""; 
-                        var searchPlaceholder = "";
-
-                        // Chỉ bật thanh tìm kiếm khi ở đúng các trang cần thiết
-                        if (currentController == "DonHang")
-                        {
-                            showSearchBar = true;
-                            searchAction = "/Admin/DonHang/Index";
-                            searchPlaceholder = "Tìm mã đơn (VD: 1537) hoặc SĐT...";
-                        }
-                        else if (currentController == "KhachHang")
-                        {
-                            showSearchBar = true;
-                            searchAction = "/Admin/KhachHang/Index";
-                            searchPlaceholder = "Tìm tên, SĐT hoặc Email khách...";
-                        }
-                        else if (currentController == "SanPham")
-                        {
-                            showSearchBar = true;
-                            searchAction = "/Admin/SanPham/Index";
-                            searchPlaceholder = "Tìm tên sản phẩm...";
-                        }
-                    }
-
-                    @if (showSearchBar)
-                    {
-                        <form action="@searchAction" method="get" class="d-none d-sm-inline-block form-inline ms-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" name="searchKeyword" class="form-control bg-light border-0 small" placeholder="@searchPlaceholder" aria-label="Search" value="@ViewBag.SearchKeyword" style="border-radius: 5px 0 0 5px;">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit" style="border-radius: 0 5px 5px 0;">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
+            @if (showSearchBar)
+            {
+                <form action="@searchAction" method="get" class="d-none d-md-flex align-items-center ms-4">
+                    <div class="input-group" style="width: 350px;">
+                        <input type="text" name="searchKeyword" class="form-control bg-light border-0" placeholder="@searchPlaceholder" value="@ViewBag.SearchKeyword" style="border-radius: 20px 0 0 20px; padding-left: 20px;">
+                        <button class="btn btn-light bg-light border-0" type="submit" style="border-radius: 0 20px 20px 0; color: #3f6ad8;">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
+                </form>
+            }
+        </div>
 
-                <ul class="navbar-nav d-flex flex-row align-items-center mb-0 list-unstyled">
-                    <li class="nav-item mx-1 position-relative me-3">
-                        <a class="nav-link text-gray-400" href="#" style="color: #d1d3e2; font-size: 1.2rem;">
-                            <i class="fas fa-bell fa-fw text-secondary"></i>
-                            <span class="position-absolute top-25 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" style="width: 10px; height: 10px;"></span>
-                        </a>
-                    </li>
-                    
-                    <div class="topbar-divider"></div>
-
-                    <li class="nav-item dropdown pe-3">
-                        <a class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="me-2 d-none d-lg-inline text-gray-600 small fw-bold">Admin Manager</span>
-                            <img class="img-profile shadow-sm" src="https://ui-avatars.com/api/?name=Admin&background=4e73df&color=fff" alt="Admin Avatar">
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" style="min-width: 200px;">
-                            <li><a class="dropdown-item py-2" href="/Admin/TaiKhoan/HoSo"><i class="fas fa-user fa-sm fa-fw me-2 text-muted"></i> Thông tin tài khoản</a></li>
-                            <li><a class="dropdown-item py-2" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-muted"></i> Cài đặt hệ thống</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            
-                            <li>
-                                <form asp-controller="TaiKhoan" asp-action="Logout" asp-area="" method="post" class="m-0 p-0">
-                                    <button type="submit" class="dropdown-item py-2 text-danger fw-bold border-0 bg-transparent w-100 text-start" style="cursor: pointer;">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i> Đăng xuất
-                                    </button>
-                                </form>
-                            </li>
-                            </ul>
+        <div class="d-flex align-items-center">
+            <div class="dropdown">
+                <a class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-end me-3 d-none d-md-block">
+                        <div class="fw-bold text-dark" style="font-size: 0.9rem;">Nguyễn Thành Hiếu</div>
+                        <div class="text-muted" style="font-size: 0.75rem;">Giám Đốc</div>
+                    </div>
+                    <img class="rounded-circle shadow-sm" src="https://ui-avatars.com/api/?name=Thanh+Hieu&background=3f6ad8&color=fff" alt="Admin Avatar" width="40">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3" style="border-radius: 12px;">
+                    <li><a class="dropdown-item py-2" href="/Admin/TaiKhoan/HoSo"><i class="fas fa-user fa-sm fa-fw me-2 text-muted"></i> Hồ sơ</a></li>
+                    <li><a class="dropdown-item py-2" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-muted"></i> Cài đặt</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form asp-controller="TaiKhoan" asp-action="Logout" asp-area="" method="post" class="m-0 p-0">
+                            <button type="submit" class="dropdown-item py-2 text-danger fw-bold border-0 bg-transparent w-100 text-start">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i> Đăng xuất
+                            </button>
+                        </form>
                     </li>
                 </ul>
-            </nav>
-
-            <main class="flex-grow-1 p-4">
-                @if (TempData["Success"] != null)
-                {
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert">
-                        <i class="fas fa-check-circle me-2"></i> @TempData["Success"]
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                }
-                @if (TempData["Error"] != null)
-                {
-                    <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert">
-                        <i class="fas fa-exclamation-triangle me-2"></i> @TempData["Error"]
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                }
-
-                @RenderBody()
-            </main>
-
-            <footer class="sticky-footer mt-auto">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto fw-bold text-muted">
-                        <span>Bản quyền &copy; FASHION STORE ADMIN 2026</span>
-                    </div>
-                </div>
-            </footer>
+            </div>
         </div>
-    </div>
+    </header>
+
+    <nav class="app-sidebar" id="sidebar">
+        <ul class="nav flex-column mt-3 list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Home/Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i> <span>Tổng Quan</span>
+                </a>
+            </li>
+            
+            <li class="nav-title">Sản phẩm & Cửa hàng</li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/DanhMuc">
+                    <i class="fas fa-fw fa-tags"></i> <span>Quản lý Danh Mục</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/SanPham">
+                    <i class="fas fa-fw fa-tshirt"></i> <span>Quản lý Sản Phẩm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/BienTheSanPham">
+                    <i class="fas fa-fw fa-cubes"></i> <span>Kho & Biến thể</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/DanhGia">
+                    <i class="fas fa-fw fa-star"></i> <span>Đánh Giá Khách Hàng</span>
+                </a>
+            </li>
+
+            <li class="nav-title">Kinh Doanh</li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/DonHang">
+                    <i class="fas fa-fw fa-clipboard-list"></i> <span>Xử lý Đơn Hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/KhachHang">
+                    <i class="fas fa-fw fa-users"></i> <span>Tệp Khách Hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/PhuongThucThanhToan">
+                    <i class="fas fa-fw fa-credit-card"></i> <span>Cổng Thanh Toán</span>
+                </a>
+            </li>
+
+            <li class="nav-title">Hệ Thống</li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/TaiKhoan">
+                    <i class="fas fa-fw fa-user-shield"></i> <span>Tất cả Tài Khoản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/QuanTriVien">
+                    <i class="fas fa-fw fa-user-tie"></i> <span>Nhân sự Quản Trị</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="app-main" id="mainContent">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" style="border-radius: 10px;" role="alert">
+                <i class="fas fa-check-circle me-2"></i> @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" style="border-radius: 10px;" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i> @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @RenderBody()
+
+        <footer class="mt-auto pt-4 pb-2 text-center text-muted small fw-medium">
+            Bản quyền &copy; FASHION STORE ADMIN 2026 - Phát triển bởi Nguyễn Thành Hiếu
+        </footer>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Nút bấm thu gọn menu
-            const toggleBtn = document.getElementById("sidebarToggleTop");
-            const sidebar = document.getElementById("sidebar");
+        // Nút bấm thu gọn menu
+        const toggleBtn = document.getElementById("sidebarToggleTop");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
             
-            toggleBtn.addEventListener("click", function() {
-                sidebar.classList.toggle("toggled");
-            });
+        toggleBtn.addEventListener("click", function() {
+        sidebar.classList.toggle("toggled");
+        mainContent.classList.toggle("expanded");
+        });
 
-            // Tự động làm sáng menu đang được chọn (Active state)
-            const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('#sidebar .nav-link');
-            navLinks.forEach(link => {
-                // Kiểm tra xem href của link có nằm trong url hiện tại không
-                if(currentPath.includes(link.getAttribute('href')) && link.getAttribute('href') !== '/Admin') {
-                    link.classList.add('active');
-                }
-            });
+        // Tự động active menu chuẩn xác (giữ nguyên logic của bạn)
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('#sidebar .nav-link');
+        navLinks.forEach(link => {
+        if(currentPath.includes(link.getAttribute('href')) && link.getAttribute('href') !== '/Admin') {
+        link.classList.add('active');
+        } else if (currentPath === '/Admin' && link.getAttribute('href') === '/Admin/Home/Index') {
+        link.classList.add('active'); // Xử lý riêng cho trang chủ
+        }
+        });
         });
     </script>
 

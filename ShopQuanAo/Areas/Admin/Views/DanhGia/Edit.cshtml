@@ -3,27 +3,71 @@
     ViewData["Title"] = "Duyệt Đánh Giá";
 }
 
-<div class="card shadow border-0 col-md-6 mx-auto mt-4">
-    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-warning">Kiểm duyệt đánh giá</h6></div>
-    <div class="card-body">
-        <div class="alert alert-info">
-            <strong>Sản phẩm:</strong> @Model.SanPham.TenSP <br />
-            <strong>Nội dung khách viết:</strong> "@Model.NoiDung"
-        </div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-shield-alt me-2"></i>Kiểm Duyệt Đánh Giá</h4>
+        <div class="text-muted small mt-1">Quyết định hiển thị hoặc ẩn đánh giá trên trang sản phẩm.</div>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm fw-medium">
+        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+    </a>
+</div>
 
-        <form asp-action="Edit" method="post">
-            <input type="hidden" name="id" value="@Model.MaDanhGia" />
-            <div class="mb-4">
-                <label class="form-label fw-bold">Trạng thái hiển thị trên web:</label>
-                <select name="TrangThai" class="form-select" asp-for="TrangThai">
-                    <option value="1">Cho phép hiển thị</option>
-                    <option value="0">Ẩn đánh giá này</option>
-                </select>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="main-card card border-0 mb-4">
+            <div class="card-body p-4 p-md-5">
+                
+                <div class="bg-light p-4 rounded-4 mb-4 position-relative">
+                    <i class="fas fa-quote-right fa-3x text-muted opacity-10 position-absolute top-0 end-0 m-3"></i>
+                    
+                    <div class="text-muted small fw-bold text-uppercase mb-1">Đánh giá cho sản phẩm:</div>
+                    <h5 class="fw-bold text-primary mb-3">@Model.SanPham.TenSP</h5>
+                    
+                    <div class="mb-2">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= Model.DiemSao)
+                            {
+                                <i class="fas fa-star text-warning"></i>
+                            }
+                            else
+                            {
+
+                                <i class="far fa-star text-warning"></i>
+                            }
+                        }
+                    </div>
+                    
+                    <p class="text-dark fst-italic mb-0 fs-5">"@Model.NoiDung"</p>
+                    
+                    @if (!string.IsNullOrEmpty(Model.HinhAnh))
+                    {
+                        <div class="mt-3">
+                            <img src="@Model.HinhAnh" class="rounded shadow-sm border" style="max-height: 100px;" alt="Ảnh đính kèm" />
+                        </div>
+                    }
+                </div>
+
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" name="id" value="@Model.MaDanhGia" />
+                    
+                    <div class="mb-5 border-top pt-4">
+                        <label class="form-label fw-bold text-muted small text-uppercase">Trạng thái hiển thị trên Web <span class="text-danger">*</span></label>
+                        <select name="TrangThai" class="form-select form-select-lg bg-light border-0" asp-for="TrangThai">
+                            <option value="1">🟢 Cho phép hiển thị (Duyệt)</option>
+                            <option value="0">🔴 Ẩn đánh giá này (Chặn)</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button type="submit" class="btn btn-warning text-dark px-5 py-2 fw-bold shadow-sm w-100" style="border-radius: 8px;">
+                            <i class="fas fa-save me-2"></i> Lưu Trạng Thái
+                        </button>
+                    </div>
+                </form>
+
             </div>
-            <div class="d-flex justify-content-between">
-                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
-                <button type="submit" class="btn btn-warning fw-bold"><i class="fas fa-save"></i> Cập nhật</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

@@ -1,0 +1,99 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ShopQuanAo.Data;
+using ShopQuanAo.Models;
+using X.PagedList; // KHI KHAI BÁO THƯ VIỆN NÀY LÀ BẮT BUỘC
+
+namespace ShopQuanAo.Areas.Admin.Controllers
+{
+    [Area("Admin")]
+    public class KhachHangController : Controller
+    {
+        private readonly ShopQuanAoContext _context;
+
+        public KhachHangController(ShopQuanAoContext context)
+        {
+            _context = context;
+        }
+
+
+        // 1. HIỂN THỊ DANH SÁCH & PHÂN TRANG KHÁCH HÀNG
+
+        public IActionResult Index(string searchKeyword, int? page)
+        {
+            // Thiết lập mặc định: Mở trang 1, mỗi trang hiển thị 10 khách hàng
+            int pageNumber = page ?? 1;
+            int pageSize = 10;
+
+            // Kéo theo bảng TaiKhoan để lấy được Email và Trạng Thái đăng nhập
+            // DÙNG AsNoTracking() ĐỂ GIẢI PHÓNG RAM CHO SERVER CỰC KỲ QUAN TRỌNG
+            var query = _context.KhachHangs
+                .Include(k => k.TaiKhoan)
+                .AsNoTracking();
+
+            // Chức năng tìm kiếm: Lọc theo Tên, SĐT hoặc Email
+            if (!string.IsNullOrEmpty(searchKeyword))
+            {
+                searchKeyword = searchKeyword.Trim();
+
+                query = query.Where(k =>
+                    k.HoTen.Contains(searchKeyword) ||
+                    k.SoDienThoai.Contains(searchKeyword) ||
+                    k.TaiKhoan.Email.Contains(searchKeyword)
+                );
+            }
+
+            // Sắp xếp người mới nhất lên đầu
+            query = query.OrderByDescending(k => k.MaTK);
+
+            // GỌI HÀM PHÂN TRANG (Nó sẽ tự dịch ra lệnh OFFSET FETCH trong SQL)
+            var pagedData = query.ToPagedList(pageNumber, pageSize);
+
+            ViewBag.SearchKeyword = searchKeyword;
+
+            return View(pagedData); // Trả về PagedList thay vì List thông thường
+        }
+
+
+        // 2. XEM CHI TIẾT VÀ KHÓA/MỞ KHÓA TÀI KHOẢN (EDIT)
+        // (Phần này giữ nguyên code cũ của bạn vì nó đã chuẩn rồi)
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var khachHang = await _context.KhachHangs
+                .Include(k => k.TaiKhoan)
+                .FirstOrDefaultAsync(k => k.MaTK == id);
+
+            if (khachHang == null) return NotFound();
+            return View(khachHang);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, int DiemTichLuy, int TrangThai)
+        {
+            var khachHang = await _context.KhachHangs
+                .Include(k => k.TaiKhoan)
+                .FirstOrDefaultAsync(k => k.MaTK == id);
+
+            if (khachHang == null) return NotFound();
+
+            try
+            {
+                khachHang.DiemTichLuy = DiemTichLuy;
+                khachHang.TaiKhoan.TrangThai = TrangThai;
+
+                _context.Update(khachHang);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Cập nhật thông tin khách hàng thành công!";
+            }
+            catch (DbUpdateException)
+            {
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi lưu dữ liệu!";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}

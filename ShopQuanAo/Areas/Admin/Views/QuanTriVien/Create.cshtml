@@ -3,51 +3,75 @@
     ViewData["Title"] = "Thêm Quản trị viên";
 }
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-user-plus me-2"></i>Thêm Quản Trị Viên</h4>
+        <div class="text-muted small mt-1">Khởi tạo hồ sơ nhân sự và cấp tài khoản truy cập Admin.</div>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm fw-medium">
+        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+    </a>
+</div>
 
-<div class="card shadow border-0 col-md-8 mx-auto mt-4">
-    <div class="card-header bg-white py-3"><h6 class="m-0 font-weight-bold text-primary">Thông tin Quản trị viên mới</h6></div>
-    <div class="card-body">
+<div class="row justify-content-center">
+    <div class="col-lg-8">
         <form asp-action="Create">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label asp-for="HoTen" class="form-label fw-bold">Họ và tên</label>
-                    <input asp-for="HoTen" class="form-control" required />
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+            
+            <div class="main-card card border-0 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <h6 class="fw-bold mb-4 border-bottom pb-2 text-dark"><i class="fas fa-id-badge text-muted me-2"></i>Thông tin cá nhân</h6>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="HoTen" class="form-label fw-bold text-muted small text-uppercase">Họ và tên <span class="text-danger">*</span></label>
+                            <input asp-for="HoTen" class="form-control form-control-lg bg-light border-0" required autocomplete="off" />
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="ChucVu" class="form-label fw-bold text-muted small text-uppercase">Chức vụ <span class="text-danger">*</span></label>
+                            <input asp-for="ChucVu" class="form-control form-control-lg bg-light border-0" placeholder="VD: Kế toán, Quản lý kho..." required autocomplete="off" />
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <label asp-for="SoDienThoai" class="form-label fw-bold text-muted small text-uppercase">Số điện thoại <span class="text-danger">*</span></label>
+                            <input asp-for="SoDienThoai" class="form-control form-control-lg bg-light border-0" required autocomplete="off" />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="NgayVaoLam" class="form-label fw-bold text-muted small text-uppercase">Ngày vào làm <span class="text-danger">*</span></label>
+                            <input asp-for="NgayVaoLam" type="date" class="form-control form-control-lg bg-light border-0" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                        </div>
+                    </div>
+
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-4 mt-5 mb-4 border border-primary border-opacity-25">
+                        <h6 class="fw-bold mb-3 text-primary"><i class="fas fa-shield-alt me-2"></i>Tài khoản đăng nhập hệ thống</h6>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark small">Tên đăng nhập <span class="text-danger">*</span></label>
+                            <input name="TenDangNhap" class="form-control bg-white border-0 shadow-sm" placeholder="Viết liền không dấu" required autocomplete="off" />
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label class="form-label fw-bold text-dark small">Mật khẩu cấp phát <span class="text-danger">*</span></label>
+                                <input name="MatKhau" type="text" class="form-control bg-white border-0 shadow-sm" placeholder="Mật khẩu mặc định" required autocomplete="off" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-dark small">Email liên hệ <span class="text-danger">*</span></label>
+                                <input name="Email" type="email" class="form-control bg-white border-0 shadow-sm" placeholder="Email nhận thông báo" required autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center pt-3 border-top">
+                        <button type="submit" class="btn btn-primary px-5 py-3 fw-bold shadow-sm w-100" style="border-radius: 8px;">
+                            <i class="fas fa-check-circle me-2"></i> Hoàn tất thiết lập
+                        </button>
+                    </div>
+
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label asp-for="ChucVu" class="form-label fw-bold">Chức vụ</label>
-                    <input asp-for="ChucVu" class="form-control" placeholder="VD: Quản lý kho, Kế toán..." required />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label asp-for="SoDienThoai" class="form-label fw-bold">Số điện thoại</label>
-                    <input asp-for="SoDienThoai" class="form-control" required />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label asp-for="NgayVaoLam" class="form-label fw-bold">Ngày vào làm</label>
-                    <input asp-for="NgayVaoLam" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
-                </div>
-            </div>
-            <hr />
-            <h6 class="text-muted mb-3">Thông tin tài khoản đăng nhập</h6>
-            <div class="mb-3">
-                <label class="form-label fw-bold">Tên đăng nhập</label>
-                <input name="TenDangNhap" class="form-control" required />
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label fw-bold">Mật khẩu</label>
-                    <input name="MatKhau" type="text" class="form-control" required />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label fw-bold">Email</label>
-                    <input name="Email" type="email" class="form-control" required />
-                </div>
-            </div>
-            <div class="d-flex justify-content-between mt-4">
-                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
-                <button type="submit" class="btn btn-primary fw-bold">Hoàn tất thiết lập</button>
             </div>
         </form>
     </div>

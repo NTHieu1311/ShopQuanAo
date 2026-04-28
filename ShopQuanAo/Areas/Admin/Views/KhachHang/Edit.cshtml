@@ -1,64 +1,103 @@
 ﻿@model ShopQuanAo.Models.KhachHang
 @{
-    ViewData["Title"] = "Chi tiết Khách Hàng";
+    ViewData["Title"] = "Hồ sơ Khách Hàng";
 }
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-id-card me-2"></i>Hồ sơ Khách Hàng</h4>
+        <div class="text-muted small mt-1">Chi tiết tài khoản và quyền quản trị.</div>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm fw-medium">
+        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+    </a>
+</div>
+
 <div class="row">
-    <div class="col-md-7">
-        <div class="card shadow border-0 mb-4">
-            <div class="card-header bg-white py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Hồ sơ khách hàng</h6>
-            </div>
-            <div class="card-body">
-                <table class="table table-borderless">
-                    <tr><th width="30%">Họ và tên:</th><td class="fw-bold">@Model.HoTen</td></tr>
-                    <tr><th>Tên đăng nhập:</th><td>@Model.TaiKhoan.TenDangNhap</td></tr>
-                    <tr><th>Email:</th><td>@Model.TaiKhoan.Email</td></tr>
-                    <tr><th>Số điện thoại:</th><td>@Model.SoDienThoai</td></tr>
-                    <tr><th>Địa chỉ:</th><td>@Model.DiaChi</td></tr>
-                    <tr><th>Ngày sinh:</th><td>@(Model.NgaySinh?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")</td></tr>
-                    <tr><th>Ngày tạo TK:</th><td>@Model.TaiKhoan.NgayTao.ToString("dd/MM/yyyy HH:mm")</td></tr>
-                </table>
+    <div class="col-lg-7 mb-4">
+        <div class="main-card card border-0 h-100">
+            <div class="card-body p-4 p-md-5">
+                
+                <div class="text-center mb-4 pb-3 border-bottom">
+                    <img src="https://ui-avatars.com/api/?name=@Uri.EscapeDataString(Model.HoTen)&background=e0f3ff&color=3f6ad8&rounded=true&size=100"
+                         class="rounded-circle shadow-sm mb-3 border border-3 border-white" alt="Avatar" />
+                    <h5 class="fw-bold text-dark mb-1">@Model.HoTen</h5>
+                    <div class="text-muted small"><i class="fas fa-user-circle me-1"></i> @Model.TaiKhoan.TenDangNhap</div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted small text-uppercase fw-bold">Email liên hệ</div>
+                    <div class="col-sm-8 text-dark fw-medium">@Model.TaiKhoan.Email</div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted small text-uppercase fw-bold">Số điện thoại</div>
+                    <div class="col-sm-8 text-dark fw-medium">@Model.SoDienThoai</div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted small text-uppercase fw-bold">Ngày sinh</div>
+                    <div class="col-sm-8 text-dark fw-medium">@(Model.NgaySinh?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")</div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted small text-uppercase fw-bold">Địa chỉ giao hàng</div>
+                    <div class="col-sm-8 text-dark fw-medium">@Model.DiaChi</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 text-muted small text-uppercase fw-bold">Ngày tham gia</div>
+                    <div class="col-sm-8 text-dark fw-medium">@Model.TaiKhoan.NgayTao.ToString("dd/MM/yyyy HH:mm")</div>
+                </div>
+                
             </div>
         </div>
     </div>
 
-    <div class="col-md-5">
-        <div class="card shadow border-0 mb-4 border-left-warning">
-            <div class="card-header bg-white py-3">
-                <h6 class="m-0 font-weight-bold text-warning">Quyền Quản Trị</h6>
-            </div>
-            <div class="card-body">
+    <div class="col-lg-5 mb-4">
+        <div class="main-card card border-0 h-100 bg-light">
+            <div class="card-body p-4">
+                
+                <h6 class="fw-bold mb-4 border-bottom pb-2 text-warning"><i class="fas fa-user-shield me-2"></i>Quyền Quản Trị</h6>
+                
                 <form asp-action="Edit" method="post">
                     <input type="hidden" name="id" value="@Model.MaTK" />
                     
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Điểm tích lũy (Có thể cộng/trừ điểm thủ công):</label>
-                        <input type="number" name="DiemTichLuy" class="form-control text-warning fw-bold fs-5" value="@Model.DiemTichLuy" />
+                    <div class="mb-4 bg-white p-3 rounded-3 shadow-sm border">
+                        <label class="form-label fw-bold text-muted small text-uppercase mb-2">Điểm Tích Lũy</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-warning text-dark border-warning"><i class="fas fa-star"></i></span>
+                            <input type="number" name="DiemTichLuy" class="form-control text-warning fw-bold fs-5 border-warning" value="@Model.DiemTichLuy" />
+                        </div>
+                        <div class="text-muted small mt-2">
+                            <i class="fas fa-info-circle me-1"></i> Admin có thể cộng/trừ điểm thủ công.
+                        </div>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Trạng thái tài khoản (Đăng nhập):</label>
-                        <select name="TrangThai" class="form-select border-2 @(Model.TaiKhoan.TrangThai == 1 ? "border-success" : "border-danger")">
+                    <div class="mb-5 bg-white p-3 rounded-3 shadow-sm border">
+                        <label class="form-label fw-bold text-muted small text-uppercase mb-2">Trạng Thái Đăng Nhập</label>
+                        <select name="TrangThai" class="form-select form-select-lg fw-bold @(Model.TaiKhoan.TrangThai == 1 ? "bg-success bg-opacity-10 text-success border-success" : "bg-danger bg-opacity-10 text-danger border-danger")">
                             @if (Model.TaiKhoan.TrangThai == 1)
                             {
-                                <option value="1" selected>✅ Đang hoạt động (Bình thường)</option>
-                                <option value="0">❌ Khóa tài khoản (Cấm đăng nhập)</option>
+                                <option value="1" class="text-dark" selected>✅ Đang hoạt động</option>
+                                <option value="0" class="text-dark">❌ Khóa tài khoản</option>
                             }
                             else
                             {
-                                <option value="1">✅ Đang hoạt động (Bình thường)</option>
-                                <option value="0" selected>❌ Khóa tài khoản (Cấm đăng nhập)</option>
+                                <option value="1" class="text-dark">✅ Mở khóa hoạt động</option>
+                                <option value="0" class="text-dark" selected>❌ Đang bị khóa</option>
                             }
                         </select>
-                        <small class="text-muted d-block mt-2">Nếu khóa, khách hàng sẽ không thể đăng nhập để mua hàng được nữa.</small>
+                        <div class="text-danger small mt-2">
+                            <i class="fas fa-exclamation-triangle me-1"></i> Nếu khóa, khách hàng sẽ lập tức bị văng ra và không thể mua hàng.
+                        </div>
                     </div>
 
-                    <div class="d-flex justify-content-between mt-4">
-                        <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
-                        <button type="submit" class="btn btn-warning fw-bold text-dark"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
-                    </div>
+                    <button type="submit" class="btn btn-warning text-dark fw-bold shadow-sm w-100 py-3" style="border-radius: 8px;">
+                        <i class="fas fa-save me-2"></i> Lưu Thay Đổi
+                    </button>
                 </form>
+
             </div>
         </div>
     </div>

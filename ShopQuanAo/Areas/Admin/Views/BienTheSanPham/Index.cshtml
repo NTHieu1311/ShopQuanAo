@@ -3,60 +3,111 @@
     ViewData["Title"] = "Quản lý Biến thể";
 }
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-cubes-stacked me-2"></i>Kho & Biến Thể Sản Phẩm</h4>
+        <div class="text-muted small mt-1">Quản lý màu sắc, kích thước và số lượng tồn kho thực tế.</div>
+    </div>
+    <a asp-action="Create" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm fw-medium">
+        <i class="fas fa-plus me-2"></i>Thêm biến thể
+    </a>
+</div>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
         <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
 
-<div class="card shadow mb-4 border-0">
-    <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách Biến thể Sản phẩm</h6>
-        <a asp-action="Create" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Thêm mới</a>
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th>Sản phẩm gốc</th>
-                    <th>Màu sắc</th>
-                    <th>Kích thước (Size)</th>
-                    <th>Số lượng tồn kho</th>
-                    <th class="text-center">Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+<div class="main-card card border-0 mb-5">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
                     <tr>
-                        <td class="fw-bold text-primary">@item.SanPham.TenSP</td>
-                        <td><span class="badge bg-secondary">@item.MauSac</span></td>
-                        <td><span class="badge bg-dark">@item.KichThuoc</span></td>
-                        <td class="text-center">
-                            @if (item.SoLuongTon > 10)
-                            {
-                                <span class="text-success fw-bold">@item.SoLuongTon</span>
-                            }
-                            else if (item.SoLuongTon > 0)
-                            {
-
-                                <span class="text-warning fw-bold">@item.SoLuongTon (Sắp hết)</span>
-                            }
-                            else
-                            {
-
-                                <span class="text-danger fw-bold">Hết hàng</span>
-                            }
-                        </td>
-                        <td class="text-center">
-                            <a asp-action="Edit" asp-route-id="@item.MaBienThe" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.MaBienThe" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
+                        <th class="border-0 ps-4">Sản Phẩm Gốc</th>
+                        <th class="border-0 text-center">Phân loại (Màu / Size)</th>
+                        <th class="border-0 text-center">Tồn Kho</th>
+                        <th class="border-0 text-end pe-4">Hành động</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-dark fs-6 text-wrap" style="max-width: 300px;">@item.SanPham.TenSP</div>
+                                    <div class="text-muted small">Mã SP: #@item.MaSP</div>
+                                </td>
+                                
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-2">
+                                        <span class="badge bg-light text-dark border px-3 py-2 shadow-sm"><i class="fas fa-palette text-muted me-1"></i> @item.MauSac</span>
+                                        <span class="badge bg-dark text-white px-3 py-2 shadow-sm"><i class="fas fa-ruler text-muted me-1"></i> @item.KichThuoc</span>
+                                    </div>
+                                </td>
+
+                                <td class="text-center">
+                                    @if (item.SoLuongTon > 10)
+                                    {
+                                        <span class="badge rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 fw-bold">
+                                            @item.SoLuongTon
+                                        </span>
+                                    }
+                                    else if (item.SoLuongTon > 0)
+                                    {
+                                        <span class="badge rounded-pill bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-3 py-2 fw-bold">
+                                            @item.SoLuongTon <span class="small fw-normal">(Sắp hết)</span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-3 py-2 fw-bold">
+                                            0 <span class="small fw-normal">(Hết hàng)</span>
+                                        </span>
+                                    }
+                                </td>
+
+                                <td class="text-end pe-4">
+                                    <div class="btn-group shadow-sm" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.MaBienThe" class="btn btn-sm btn-light text-primary border" data-bs-toggle="tooltip" title="Chập nhật kho">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.MaBienThe" class="btn btn-sm btn-light text-danger border" data-bs-toggle="tooltip" title="Xóa">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center py-5">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-cubes-stacked fa-2x text-muted opacity-50"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark">Chưa có biến thể nào</h6>
+                                <p class="text-muted small mb-4">Hãy thêm các phiên bản màu sắc và kích thước cho sản phẩm.</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}

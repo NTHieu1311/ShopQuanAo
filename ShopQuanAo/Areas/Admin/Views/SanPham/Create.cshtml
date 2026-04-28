@@ -4,80 +4,112 @@
     ViewData["Title"] = "Thêm Sản Phẩm Mới";
 }
 
-<div class="card shadow border-0 col-md-10 mx-auto mt-4">
-    <div class="card-header bg-white py-3">
-        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-plus-circle me-1"></i> Thêm Sản Phẩm Mới</h6>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-box-open me-2"></i>Thêm Sản Phẩm Mới</h4>
+        <div class="text-muted small mt-1">Vui lòng điền đầy đủ thông tin để tạo sản phẩm lên hệ thống.</div>
     </div>
-    <div class="card-body p-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
-            
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="mb-3">
-                        <label asp-for="TenSP" class="form-label fw-bold">Tên sản phẩm <span class="text-danger">*</span></label>
-                        <input asp-for="TenSP" class="form-control" placeholder="Nhập tên sản phẩm..." required />
-                        <span asp-validation-for="TenSP" class="text-danger small"></span>
-                    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm fw-medium">
+        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+    </a>
+</div>
 
-                    <div class="mb-3">
-                        <label asp-for="MaDM" class="form-label fw-bold">Thuộc Danh mục <span class="text-danger">*</span></label>
-                        <select asp-for="MaDM" class="form-select" asp-items="@ViewBag.ListDanhMuc" required>
-                            <option value="">-- Vui lòng chọn danh mục --</option>
-                        </select>
-                        <span asp-validation-for="MaDM" class="text-danger small"></span>
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="main-card card border-0 mb-4">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-4 border-bottom pb-2">Thông tin cơ bản</h6>
+                    
+                    <div class="mb-4">
+                        <label asp-for="TenSP" class="form-label fw-bold">Tên sản phẩm <span class="text-danger">*</span></label>
+                        <input asp-for="TenSP" class="form-control form-control-lg bg-light border-0" placeholder="VD: Áo thun Polo nam cổ bẻ..." required />
+                        <span asp-validation-for="TenSP" class="text-danger small mt-1 d-block"></span>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-4">
                             <label asp-for="GiaGoc" class="form-label fw-bold">Giá Gốc (VNĐ) <span class="text-danger">*</span></label>
-                            <input asp-for="GiaGoc" type="number" class="form-control" min="0" required />
-                            <span asp-validation-for="GiaGoc" class="text-danger small"></span>
+                            <div class="input-group">
+                                <input asp-for="GiaGoc" type="number" class="form-control bg-light border-0" min="0" placeholder="0" required />
+                                <span class="input-group-text bg-light border-0 text-muted">₫</span>
+                            </div>
+                            <span asp-validation-for="GiaGoc" class="text-danger small mt-1 d-block"></span>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="GiaBan" class="form-label fw-bold">Giá Bán (VNĐ) <span class="text-danger">*</span></label>
-                            <input asp-for="GiaBan" type="number" class="form-control" min="0" required />
-                            <span asp-validation-for="GiaBan" class="text-danger small"></span>
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="GiaBan" class="form-label fw-bold">Giá Bán / Khuyến mãi (VNĐ) <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input asp-for="GiaBan" type="number" class="form-control bg-light border-0" min="0" placeholder="0" required />
+                                <span class="input-group-text bg-light border-0 text-muted">₫</span>
+                            </div>
+                            <span asp-validation-for="GiaBan" class="text-danger small mt-1 d-block"></span>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label asp-for="MoTaChiTiet" class="form-label fw-bold">Mô tả chi tiết</label>
-                        <textarea asp-for="MoTaChiTiet" class="form-control" rows="5" placeholder="Nhập mô tả sản phẩm..."></textarea>
-                        <span asp-validation-for="MoTaChiTiet" class="text-danger small"></span>
+                    <div class="mb-2">
+                        <label asp-for="MoTaChiTiet" class="form-label fw-bold">Mô tả chi tiết sản phẩm</label>
+                        <textarea asp-for="MoTaChiTiet" class="form-control bg-light border-0" rows="6" placeholder="Nhập bài viết mô tả sản phẩm, chất liệu, hướng dẫn bảo quản..."></textarea>
+                        <span asp-validation-for="MoTaChiTiet" class="text-danger small mt-1 d-block"></span>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-4">
-                    <div class="mb-4 border p-3 rounded bg-light text-center">
-                        <label class="form-label fw-bold w-100 border-bottom pb-2">Hình Ảnh Chính</label>
-                        <input type="file" name="HinhAnh" class="form-control mb-3" accept="image/*" id="imgInput" />
-                        
-                        <img id="imgPreview" src="#" alt="Xem trước ảnh" class="img-fluid d-none rounded shadow-sm border bg-white" style="max-height: 250px; object-fit: contain; width: 100%;" />
+        <div class="col-md-4">
+            <div class="main-card card border-0 mb-4">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-3 border-bottom pb-2">Phân loại & Trạng thái</h6>
+                    
+                    <div class="mb-4">
+                        <label asp-for="MaDM" class="form-label fw-bold text-muted small text-uppercase">Danh mục sản phẩm <span class="text-danger">*</span></label>
+                        <select asp-for="MaDM" class="form-select bg-light border-0" asp-items="@ViewBag.ListDanhMuc" required>
+                            <option value="">-- Chọn danh mục --</option>
+                        </select>
+                        <span asp-validation-for="MaDM" class="text-danger small mt-1 d-block"></span>
                     </div>
 
-                    <div class="mb-4 border p-3 rounded bg-light">
-                        <label asp-for="TrangThai" class="form-label fw-bold border-bottom pb-2 w-100">Trạng thái hiển thị</label>
-                        <select asp-for="TrangThai" class="form-select">
-                            <option value="1" selected>Đang bán</option>
-                            <option value="0">Ngừng bán</option>
+                    <div class="mb-2">
+                        <label asp-for="TrangThai" class="form-label fw-bold text-muted small text-uppercase">Trạng thái hiển thị</label>
+                        <select asp-for="TrangThai" class="form-select bg-light border-0">
+                            <option value="1" selected>🟢 Đang bán (Hiển thị)</option>
+                            <option value="0">🔴 Ngừng bán (Ẩn)</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <hr class="mt-4" />
-            <div class="d-flex justify-content-between align-items-center">
-                <a asp-action="Index" class="btn btn-outline-secondary px-4">
-                    <i class="fas fa-arrow-left me-1"></i> Quay lại
-                </a>
-                <button type="submit" class="btn btn-primary px-5 py-2 fw-bold shadow-sm">
-                    <i class="fas fa-save me-1"></i> Lưu Sản Phẩm
-                </button>
+            <div class="main-card card border-0 mb-4">
+                <div class="card-body p-4 text-center">
+                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-start">Hình Ảnh Chính</h6>
+                    
+                    <div class="upload-zone position-relative rounded-3 p-4 mb-3" style="border: 2px dashed #cbd5e1; background-color: #f8fafc; transition: 0.3s;">
+                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-2 opacity-50"></i>
+                        <p class="text-muted small fw-medium mb-2">Bấm vào đây để chọn ảnh</p>
+                        <input type="file" name="HinhAnh" class="position-absolute top-0 start-0 w-100 h-100" style="opacity: 0; cursor: pointer;" accept="image/*" id="imgInput" required />
+                    </div>
+                    
+                    <div id="previewContainer" class="d-none position-relative">
+                        <img id="imgPreview" src="#" alt="Xem trước ảnh" class="img-fluid rounded-3 shadow-sm" style="max-height: 220px; object-fit: cover; width: 100%; border: 3px solid #fff;" />
+                        <span class="position-absolute top-0 end-0 p-1 bg-danger text-white rounded-circle shadow" style="transform: translate(20%, -20%); width: 25px; height: 25px; line-height: 15px; cursor: pointer;" onclick="removeImage()">
+                            <i class="fas fa-times" style="font-size: 12px;"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+
+    <div class="card main-card border-0 mt-2 mb-5">
+        <div class="card-body p-4 d-flex justify-content-end align-items-center">
+            <a asp-action="Index" class="btn btn-light fw-bold px-4 me-3">Hủy bỏ</a>
+            <button type="submit" class="btn btn-primary px-5 py-2 fw-bold shadow-sm" style="border-radius: 8px;">
+                <i class="fas fa-save me-2"></i> Lưu Sản Phẩm
+            </button>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{
@@ -86,19 +118,27 @@
     }
     
     <script>
-        // JS Xử lý hiển thị ảnh xem trước mượt mà hơn
+        // JS Xử lý hiển thị ảnh xem trước mượt mà
         const imgInput = document.getElementById('imgInput');
         const imgPreview = document.getElementById('imgPreview');
+        const previewContainer = document.getElementById('previewContainer');
+        const uploadZone = document.querySelector('.upload-zone');
 
         imgInput.onchange = evt => {
             const [file] = imgInput.files;
             if (file) {
                 imgPreview.src = URL.createObjectURL(file);
-                imgPreview.classList.remove("d-none");
-            } else {
-                imgPreview.src = "#";
-                imgPreview.classList.add("d-none");
+                previewContainer.classList.remove("d-none");
+                uploadZone.classList.add("d-none"); // Ẩn cái hộp nét đứt đi khi đã có ảnh
             }
         };
+
+        // Hàm xóa ảnh để chọn lại
+        function removeImage() {
+            imgInput.value = ""; // Xóa dữ liệu file
+            imgPreview.src = "#";
+            previewContainer.classList.add("d-none");
+            uploadZone.classList.remove("d-none"); // Hiện lại hộp nét đứt
+        }
     </script>
 }

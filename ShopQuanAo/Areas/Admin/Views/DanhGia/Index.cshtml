@@ -3,81 +3,124 @@
     ViewData["Title"] = "Đánh giá của khách hàng";
 }
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-star-half-alt me-2"></i>Quản Lý Đánh Giá</h4>
+        <div class="text-muted small mt-1">Kiểm duyệt bình luận và phản hồi từ khách hàng.</div>
+    </div>
+</div>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show">
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
         <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
 
-<div class="card shadow border-0">
-    <div class="card-header bg-white py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Quản lý Đánh giá</h6>
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-hover align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th width="15%">Sản phẩm</th>
-                    <th width="15%">Khách hàng</th>
-                    <th width="15%">Số sao</th>
-                    <th width="30%">Nội dung</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="15%" class="text-center">Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+<div class="main-card card border-0 mb-5">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
                     <tr>
-                        <td class="fw-bold text-primary">@item.SanPham.TenSP</td>
-                        <td>@item.TaiKhoan.TenDangNhap<br><small class="text-muted">@item.NgayDanhGia.ToString("dd/MM/yyyy")</small></td>
-                        <td>
-                            @for (int i = 1; i <= 5; i++)
-                            {
-                                if (i <= item.DiemSao)
-                                {
-                                    <i class="fas fa-star text-warning"></i>
-                                }
-                                else
-                                {
-
-                                    <i class="far fa-star text-warning"></i>
-                                }
-                            }
-                        </td>
-                        <td>
-                            @item.NoiDung
-                            @if (!string.IsNullOrEmpty(item.HinhAnh))
-                            {
-                                <br>
-                            
-                                <img src="@item.HinhAnh" style="height: 40px; margin-top:5px; border-radius:4px;" />
-                            }
-                        </td>
-                        <td>
-                            @if (item.TrangThai == 1)
-                            {
-                                <span class="badge bg-success">Đang hiện</span>
-                            }
-                            else
-                            {
-
-                                <span class="badge bg-secondary">Đã ẩn</span>
-                            }
-                        </td>
-                        <td class="text-center">
-                            <a asp-action="Edit" asp-route-id="@item.MaDanhGia" class="btn btn-sm btn-warning" title="Duyệt/Ẩn"><i class="fas fa-eye-slash"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.MaDanhGia" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
+                        <th class="border-0 ps-4 w-20">Sản phẩm</th>
+                        <th class="border-0 w-15">Khách hàng</th>
+                        <th class="border-0 w-10 text-center">Đánh giá</th>
+                        <th class="border-0 w-30">Nội dung</th>
+                        <th class="border-0 w-10 text-center">Trạng thái</th>
+                        <th class="border-0 w-15 text-end pe-4">Hành động</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-        @if (!Model.Any())
-        {
-            <div class="text-center text-muted mt-3">Chưa có đánh giá nào.</div>
-        }
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-dark text-wrap" style="max-width: 200px;">@item.SanPham.TenSP</div>
+                                </td>
+                                
+                                <td>
+                                    <div class="fw-bold text-primary">@item.TaiKhoan.TenDangNhap</div>
+                                    <div class="text-muted small"><i class="far fa-calendar-alt me-1"></i>@item.NgayDanhGia.ToString("dd/MM/yyyy HH:mm")</div>
+                                </td>
+                                
+                                <td class="text-center text-warning fs-6">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= item.DiemSao)
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        }
+                                        else
+                                        {
+
+                                            <i class="far fa-star"></i>
+                                        }
+                                    }
+                                </td>
+                                
+                                <td>
+                                    <div class="text-dark mb-1 fst-italic">"@item.NoiDung"</div>
+                                    @if (!string.IsNullOrEmpty(item.HinhAnh))
+                                    {
+                                        <img src="@item.HinhAnh" class="rounded shadow-sm border mt-1" style="height: 50px; width: 50px; object-fit: cover;" alt="Ảnh đánh giá" />
+                                    }
+                                </td>
+                                
+                                <td class="text-center">
+                                    @if (item.TrangThai == 1)
+                                    {
+                                        <span class="badge rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">
+                                            Hiển thị
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 px-2 py-1">
+                                            Đã ẩn
+                                        </span>
+                                    }
+                                </td>
+                                
+                                <td class="text-end pe-4">
+                                    <div class="btn-group shadow-sm" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.MaDanhGia" class="btn btn-sm btn-light text-warning border" data-bs-toggle="tooltip" title="Kiểm duyệt / Ẩn hiện">
+                                            <i class="fas fa-shield-alt"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.MaDanhGia" class="btn btn-sm btn-light text-danger border" data-bs-toggle="tooltip" title="Xóa đánh giá">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-comment-slash fa-2x text-muted opacity-50"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark">Chưa có đánh giá nào</h6>
+                                <p class="text-muted small mb-0">Hệ thống chưa ghi nhận đánh giá nào từ khách hàng.</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}

@@ -3,32 +3,51 @@
     ViewData["Title"] = "Xóa Tài Khoản";
 }
 
-<div class="card shadow border-0 col-md-6 mx-auto mt-5 border-danger border-top border-4 text-center p-4">
-    <i class="fas fa-user-times fa-3x text-danger mb-3"></i>
-    <h4 class="fw-bold">Xác nhận xóa tài khoản?</h4>
-    
-    <div class="bg-light p-3 rounded mt-3 text-start">
-        <p><strong>Username:</strong> @Model.TenDangNhap</p>
-        <p><strong>Email:</strong> @Model.Email</p>
-        <p class="mb-0"><strong>Ngày tạo:</strong> @Model.NgayTao.ToString("dd/MM/yyyy")</p>
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="col-md-8 col-lg-6">
+        
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 12px; background-color: #fff2f4; color: #d0184d;" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="main-card card border-0">
+            <div class="card-body p-4 p-md-5">
+                
+                <div class="text-center mb-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-user-times fa-2x text-danger"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark">Xác nhận xóa tài khoản?</h4>
+                    <p class="text-muted">Hành động này sẽ vô hiệu hóa hoàn toàn quyền truy cập.</p>
+                </div>
+                
+                <div class="bg-light p-4 rounded-4 mb-4 border-start border-danger border-4">
+                    <p class="mb-2"><strong class="text-muted">Username:</strong> <span class="fw-bold fs-5 text-primary">@Model.TenDangNhap</span></p>
+                    <p class="mb-2"><strong class="text-muted">Email liên hệ:</strong> <span class="fw-medium">@Model.Email</span></p>
+                    <p class="mb-0"><strong class="text-muted">Ngày tạo:</strong> <span class="fw-medium">@Model.NgayTao.ToString("dd/MM/yyyy HH:mm")</span></p>
+                </div>
+
+                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-dark p-3 rounded-3 mb-4 d-flex">
+                    <i class="fas fa-exclamation-triangle text-danger mt-1 me-3 fa-lg"></i>
+                    <div class="small">
+                        <strong>Lưu ý bảo mật:</strong> Hành động này sẽ xóa vĩnh viễn tài khoản khỏi hệ thống. Nếu tài khoản này đã phát sinh giao dịch, hãy cân nhắc sử dụng chức năng <strong>"Khóa tài khoản"</strong> thay vì xóa để bảo toàn dữ liệu lịch sử.
+                    </div>
+                </div>
+
+                <form asp-action="Delete" class="d-flex justify-content-center align-items-center mt-4 border-top pt-4">
+                    <input type="hidden" asp-for="MaTK" />
+                    
+                    <a asp-action="Index" class="btn btn-light fw-bold px-4 me-3">Hủy bỏ</a>
+                    <button type="submit" class="btn btn-danger px-5 py-2 fw-bold shadow-sm" style="border-radius: 8px;">
+                        <i class="fas fa-trash-alt me-2"></i> Xác nhận Xóa
+                    </button>
+                </form>
+
+            </div>
+        </div>
     </div>
-
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger mt-4 text-start">
-            <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-warning mt-4 text-start">
-            <strong>Lưu ý:</strong> Hành động này sẽ xóa vĩnh viễn tài khoản khỏi cơ sở dữ liệu.
-        </div>
-    }
-
-    <form asp-action="Delete" class="mt-4">
-        <input type="hidden" asp-for="MaTK" />
-        <a asp-action="Index" class="btn btn-secondary px-4 me-2">Hủy</a>
-        <button type="submit" class="btn btn-danger px-4">Xác nhận Xóa</button>
-    </form>
 </div>

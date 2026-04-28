@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
+using X.PagedList.Extensions;
 
 namespace ShopQuanAo.Areas.Admin.Controllers
 {
@@ -15,49 +16,44 @@ namespace ShopQuanAo.Areas.Admin.Controllers
 			_context = context;
 		}
 
-		
-		// 1. HIỂN THỊ DANH SÁCH & TÌM KIẾM ĐƠN HÀNG
-		
-		public async Task<IActionResult> Index(string searchKeyword)
-		{
-			// Lấy danh sách đơn hàng (Bao gồm dữ liệu bảng TaiKhoan và ChiTietDonHangs để View không bị lỗi)
-			var query = _context.DonHangs
-				.Include(d => d.TaiKhoan)
-				.Include(d => d.ChiTietDonHangs)
-				.AsQueryable();
 
-			// Nếu Admin có gõ tìm kiếm
-			if (!string.IsNullOrEmpty(searchKeyword))
-			{
-				// Lọc bỏ dấu # đi (nếu Admin quen tay gõ #1537) và xóa khoảng trắng thừa
-				searchKeyword = searchKeyword.Replace("#", "").Trim();
+        public IActionResult Index(string searchKeyword, int? page)
+        {
+            int pageNumber = page ?? 1;
+			int pageSize = 50;
 
-				// Kiểm tra xem Admin đang gõ số (tìm theo Mã Đơn Hàng) hay gõ chữ (tìm theo SĐT/Tên)
-				if (int.TryParse(searchKeyword, out int maDH))
-				{
-					// Tìm chính xác theo Mã đơn hàng
-					query = query.Where(d => d.MaDH == maDH);
-				}
-				else
-				{
-					// Tìm tương đối theo Số điện thoại hoặc Tên người nhận
-					query = query.Where(d => d.SDTNguoiNhan.Contains(searchKeyword) || d.TenNguoiNhan.Contains(searchKeyword));
-				}
-			}
+            var query = _context.DonHangs
+                .Include(d => d.TaiKhoan)
+                .Include(d => d.ChiTietDonHangs)
+                .AsNoTracking();
 
-			// Sắp xếp đơn mới nhất lên đầu và trả về View
-			var donHangs = await query.OrderByDescending(d => d.NgayDat).ToListAsync();
+            if (!string.IsNullOrEmpty(searchKeyword))
+            {
+                // Làm sạch từ khóa
+                searchKeyword = searchKeyword.Replace("#", "").Trim();
 
-			// Trả lại từ khóa để hiển thị trên ô input cho Admin biết đang tìm gì
-			ViewBag.SearchKeyword = searchKeyword;
+                if (int.TryParse(searchKeyword, out int maDH))
+                {
+                    query = query.Where(d => d.MaDH == maDH);
+                }
+                else
+                {
+                    string key = searchKeyword.ToLower();
+                    query = query.Where(d => d.SDTNguoiNhan.Contains(searchKeyword) ||
+                                             d.TenNguoiNhan.ToLower().Contains(key));
+                }
+            }
 
-			return View(donHangs);
-		}
+            // Sắp xếp đơn mới nhất lên đầu
+            var pagedData = query.OrderByDescending(d => d.NgayDat).ToPagedList(pageNumber, pageSize);
 
-		
-		// 2. XEM CHI TIẾT ĐƠN HÀNG
-		
-		public async Task<IActionResult> Details(int? id)
+            ViewBag.SearchKeyword = searchKeyword;
+            return View(pagedData);
+        }
+
+        // 2. XEM CHI TIẾT ĐƠN HÀNG
+
+        public async Task<IActionResult> Details(int? id)
 		{
 			if (id == null) return NotFound();
 

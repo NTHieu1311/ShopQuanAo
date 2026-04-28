@@ -2,70 +2,110 @@
 
 @{
     ViewData["Title"] = "Quản lý Danh Mục";
-    // Nó sẽ tự động dùng cái _Layout.cshtml đẹp đẽ lúc nãy
 }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-tags me-2"></i>Danh sách Danh Mục</h4>
+        <div class="text-muted small mt-1">Phân loại và tổ chức các nhóm sản phẩm trong cửa hàng.</div>
+    </div>
+    <a asp-action="Create" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm fw-medium">
+        <i class="fas fa-plus me-2"></i>Thêm danh mục
+    </a>
+</div>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
         <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-<div class="card shadow mb-4 border-0">
-    <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách Danh Mục</h6>
-        <a asp-action="Create" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Thêm mới
-        </a>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i> @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="card-body">
+}
+
+<div class="main-card card border-0 mb-5">
+    <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                <thead class="table-light">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
                     <tr>
-                        <th>ID</th>
-                        <th>Tên Danh Mục</th>
-                        <th>Mô Tả</th>
-                        <th>Trạng Thái</th>
-                        <th class="text-center">Hành động</th>
+                        <th class="border-0 ps-4 w-10">Mã DM</th>
+                        <th class="border-0 w-30">Tên Danh Mục</th>
+                        <th class="border-0 w-30">Mô Tả</th>
+                        <th class="border-0 text-center w-15">Trạng Thái</th>
+                        <th class="border-0 text-end pe-4 w-15">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4 fw-bold text-muted">#@item.MaDM</td>
+                                <td>
+                                    <div class="fw-bold text-dark fs-6">@item.TenDM</div>
+                                </td>
+                                <td><span class="text-muted text-wrap" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">@(string.IsNullOrEmpty(item.MoTa) ? "Không có mô tả" : item.MoTa)</span></td>
+                                <td class="text-center">
+                                    @if (item.TrangThai == 1)
+                                    {
+                                        <span class="badge rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2">
+                                            <i class="fas fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Hiển thị
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 px-3 py-2">
+                                            <i class="fas fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Đã ẩn
+                                        </span>
+                                    }
+                                </td>
+                                <td class="text-end pe-4">
+                                    <div class="btn-group shadow-sm" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.MaDM" class="btn btn-sm btn-light text-primary border" data-bs-toggle="tooltip" title="Chỉnh sửa">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.MaDM" class="btn btn-sm btn-light text-danger border" data-bs-toggle="tooltip" title="Xóa">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>@item.MaDM</td>
-                            <td class="fw-bold">@item.TenDM</td>
-                            <td>@item.MoTa</td>
-                            <td>
-                                @if (item.TrangThai == 1)
-                                {
-                                    <span class="badge bg-success">Hiển thị</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-secondary">Đã ẩn</span>
-                                }
-                            </td>
-                            <td class="text-center">
-                                <a asp-action="Edit" asp-route-id="@item.MaDM" class="btn btn-sm btn-warning" title="Sửa">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.MaDM" class="btn btn-sm btn-danger" title="Xóa">
-                                    <i class="fas fa-trash"></i>
+                            <td colspan="5" class="text-center py-5">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-folder-open fa-2x text-muted opacity-50"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark">Chưa có danh mục nào</h6>
+                                <p class="text-muted small mb-4">Hãy tạo danh mục đầu tiên để phân loại sản phẩm của bạn.</p>
+                                <a asp-action="Create" class="btn btn-outline-primary rounded-pill px-4">
+                                    <i class="fas fa-plus me-2"></i>Thêm Danh Mục
                                 </a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            
-            @if (!Model.Any())
-            {
-                <div class="alert alert-info text-center mt-3">
-                    Chưa có danh mục nào. Hãy bấm "Thêm mới" để tạo!
-                </div>
-            }
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}
