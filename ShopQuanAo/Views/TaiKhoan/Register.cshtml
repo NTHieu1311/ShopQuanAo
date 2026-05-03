@@ -60,7 +60,17 @@
                                 <label for="SoDienThoai" class="text-muted">Số điện thoại <span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <!-- NEW: Date of Birth field -->
+                                <input type="date" class="form-control rounded-3 shadow-none" name="NgaySinh" id="NgaySinh" placeholder="Ngày sinh">
+                                <label for="NgaySinh" class="text-muted">Ngày sinh (Tùy chọn)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 mb-4">
                             <div class="form-floating">
                                 <input type="text" class="form-control rounded-3 shadow-none" name="DiaChi" id="DiaChi" placeholder="Địa chỉ giao hàng" required>
                                 <label for="DiaChi" class="text-muted">Địa chỉ giao hàng <span class="text-danger">*</span></label>

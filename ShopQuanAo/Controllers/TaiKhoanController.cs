@@ -79,16 +79,19 @@ namespace ShopQuanAo.Controllers
             return View();
         }
 
-        
+
         // 2. ĐĂNG KÝ (Dành cho Khách hàng)
-        
+
+        // 2. ĐĂNG KÝ (Dành cho Khách hàng)
+
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(string TenDangNhap, string MatKhau, string Email, string HoTen, string SoDienThoai, string DiaChi)
+        // Added DateTime? NgaySinh here
+        public async Task<IActionResult> Register(string TenDangNhap, string MatKhau, string Email, string HoTen, string SoDienThoai, string DiaChi, DateTime? NgaySinh)
         {
             // Kiểm tra trùng Tên đăng nhập
             if (await _context.TaiKhoans.AnyAsync(t => t.TenDangNhap == TenDangNhap))
@@ -128,7 +131,7 @@ namespace ShopQuanAo.Controllers
                 SoDienThoai = SoDienThoai,
                 DiaChi = DiaChi,
                 DiemTichLuy = 0,
-                NgaySinh = DateTime.Now // Tạm thời gán mặc định
+                NgaySinh = NgaySinh // Now correctly assigned from the form input
             };
             _context.KhachHangs.Add(khachHang);
             await _context.SaveChangesAsync();
@@ -137,9 +140,8 @@ namespace ShopQuanAo.Controllers
             return RedirectToAction("Login");
         }
 
-        
         // 3. ĐĂNG XUẤT
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

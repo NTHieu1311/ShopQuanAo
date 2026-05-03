@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -179,6 +180,29 @@
                     searchAction = "/Admin/SanPham/Index";
                     searchPlaceholder = "Tìm tên sản phẩm...";
                 }
+
+                // LẤY DỮ LIỆU NGƯỜI DÙNG ĐỘNG
+                string tenHienThi = "Quản trị viên";
+                string chucVu = "Admin";
+
+                try
+                {
+                    // Lấy từ Session (Dành cho đồ án hay dùng Session lưu đăng nhập)
+                    // Bạn có thể sửa "TenDangNhap" thành đúng key Session bạn đang dùng ở trang Login
+                    var sessionName = Context.Session?.GetString("TenDangNhap") ?? Context.Session?.GetString("TenAdmin");
+                    if (!string.IsNullOrEmpty(sessionName)) tenHienThi = sessionName;
+                    
+                    var sessionRole = Context.Session?.GetString("ChucVu");
+                    if (!string.IsNullOrEmpty(sessionRole)) chucVu = sessionRole;
+                }
+                catch { }
+
+                // Lấy từ Cookie Authentication (Nếu bạn code chuẩn theo ASP.NET Core Identity)
+                if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    tenHienThi = User.Identity.Name ?? tenHienThi;
+                    chucVu = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value ?? chucVu;
+                }
             }
 
             @if (showSearchBar)
@@ -198,10 +222,11 @@
             <div class="dropdown">
                 <a class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-end me-3 d-none d-md-block">
-                        <div class="fw-bold text-dark" style="font-size: 0.9rem;">Nguyễn Thành Hiếu</div>
-                        <div class="text-muted" style="font-size: 0.75rem;">Giám Đốc</div>
+                        <div class="fw-bold text-dark" style="font-size: 0.9rem;">@tenHienThi</div>
+                        <div class="text-muted" style="font-size: 0.75rem;">@chucVu</div>
                     </div>
-                    <img class="rounded-circle shadow-sm" src="https://ui-avatars.com/api/?name=Thanh+Hieu&background=3f6ad8&color=fff" alt="Admin Avatar" width="40">
+                    <!-- Truyền tenHienThi vào link tự sinh ảnh Avatar -->
+                    <img class="rounded-circle shadow-sm" src="https://ui-avatars.com/api/?name=@Uri.EscapeDataString(tenHienThi)&background=3f6ad8&color=fff" alt="Admin Avatar" width="40">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3" style="border-radius: 12px;">
                     <li><a class="dropdown-item py-2" href="/Admin/TaiKhoan/HoSo"><i class="fas fa-user fa-sm fa-fw me-2 text-muted"></i> Hồ sơ</a></li>
@@ -317,7 +342,7 @@
         mainContent.classList.toggle("expanded");
         });
 
-        // Tự động active menu chuẩn xác (giữ nguyên logic của bạn)
+       
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('#sidebar .nav-link');
         navLinks.forEach(link => {

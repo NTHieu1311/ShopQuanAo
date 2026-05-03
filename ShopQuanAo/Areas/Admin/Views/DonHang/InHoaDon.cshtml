@@ -1,8 +1,9 @@
 ﻿@model ShopQuanAo.Models.DonHang
-@{
-    // Tắt Layout chung của Admin để trang in trắng tinh giống tờ A4
+@{    
+    // Tắt Layout chung của Admin để trang in trắng tinh giống tờ A4    
     Layout = null; 
 }
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -119,7 +120,18 @@
                         </div>
                         <div class="col-md-6">
                             <p class="mb-2"><strong>Ngày đặt hàng:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
-                            <p class="mb-0"><strong>Thanh toán:</strong> Thu tiền khi nhận hàng (COD)</p>
+                            <p class="mb-0">
+                                <strong>Thanh toán:</strong> 
+                                @* KIỂM TRA LOGIC ĐỂ HIỂN THỊ ĐÚNG CHỮ VNPAY HOẶC COD *@
+                                @if (Model.GiaoDichThanhToans != null && Model.GiaoDichThanhToans.Any(g => g.TrangThaiGiaoDich == 1))
+                                {
+                                    <span class="text-success fw-bold">Đã thanh toán (VNPay)</span>
+                                }
+                                else
+                                {
+                                    <span>Thu tiền khi nhận hàng (COD)</span>
+                                }
+                            </p>
                         </div>
                         <div class="col-12 mt-3 pt-3 border-top">
                             <p class="mb-0"><strong>Địa chỉ giao:</strong> @Model.DiaChiGiao</p>
@@ -180,16 +192,19 @@
         </div>
 
         <div class="row mt-4 pt-3 text-center">
+            <!-- Đã dời Model.TenNguoiNhan sang đúng cột của Khách hàng -->
             <div class="col-6">
                 <p class="fw-bold mb-1">Khách hàng</p>
                 <p class="text-muted fst-italic small mb-5">(Ký, ghi rõ họ tên)</p>
                 <div style="height: 60px;"></div>
+                <p class="fw-bold">@Model.TenNguoiNhan</p>
             </div>
             <div class="col-6">
                 <p class="fw-bold mb-1">Người lập phiếu</p>
                 <p class="text-muted fst-italic small mb-5">(Ký, ghi rõ họ tên)</p>
                 <div style="height: 60px;"></div>
-                <p class="fw-bold">@Model.TenNguoiNhan</p> </div>
+                <p class="fw-bold">Fashion Store</p> 
+            </div>
         </div>
         
         <div class="text-center mt-5 pt-4 border-top">
@@ -200,6 +215,5 @@
         </div>
 
     </div>
-
 </body>
 </html>

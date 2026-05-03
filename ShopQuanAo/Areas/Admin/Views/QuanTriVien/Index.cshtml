@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ShopQuanAo.Models.QuanTriVien>
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<ShopQuanAo.Models.QuanTriVien>
 @{
     ViewData["Title"] = "Danh sách Quản trị viên";
 }
@@ -13,10 +14,20 @@
     </a>
 </div>
 
+<!-- THÔNG BÁO THÀNH CÔNG -->
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
         <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- THÔNG BÁO LỖI (KHI CỐ TÌNH TỰ XÓA) -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i> @TempData["ErrorMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
@@ -71,9 +82,26 @@
                                         <a asp-action="Edit" asp-route-id="@item.MaTK" class="btn btn-sm btn-light text-primary border" data-bs-toggle="tooltip" title="Cập nhật hồ sơ">
                                             <i class="fas fa-pen"></i>
                                         </a>
-                                        <a asp-action="Delete" asp-route-id="@item.MaTK" class="btn btn-sm btn-light text-danger border" data-bs-toggle="tooltip" title="Xóa nhân sự">
-                                            <i class="fas fa-user-minus"></i>
-                                        </a>
+
+                                        @{
+                                            // Lấy tên đăng nhập của Admin hiện tại để kiểm tra
+                                            string currentLogin = Context.Session.GetString("TenDangNhap") ?? User.Identity?.Name;
+                                        }
+
+                                        @* Kiểm tra: Nếu KHÔNG PHẢI là mình thì mới cho hiện nút Xóa *@
+                                        @if (item.TaiKhoan?.TenDangNhap != currentLogin)
+                                        {
+                                            <a asp-action="Delete" asp-route-id="@item.MaTK" class="btn btn-sm btn-light text-danger border" data-bs-toggle="tooltip" title="Xóa nhân sự">
+                                                <i class="fas fa-user-minus"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            @* Hiển thị nút bị mờ (Disabled) nếu là chính mình *@
+                                            <button class="btn btn-sm btn-light text-muted border" data-bs-toggle="tooltip" title="Bạn không thể xóa chính mình" disabled>
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        }
                                     </div>
                                 </td>
                             </tr>

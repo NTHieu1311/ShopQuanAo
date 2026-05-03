@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShopQuanAo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+073e54a29d96f59aba3971ed71889eb014c7151e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e5eccd7a918d7ea56cc8bd7b974f4a17c59a39f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShopQuanAo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShopQuanAo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

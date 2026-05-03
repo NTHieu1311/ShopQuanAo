@@ -35,9 +35,7 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         {
             ModelState.Remove("TaiKhoan");
 
-            
             // KIỂM TRA TRÙNG LẶP TRƯỚC KHI LƯU
-            
             bool trungTenDangNhap = _context.TaiKhoans.Any(t => t.TenDangNhap == TenDangNhap);
             if (trungTenDangNhap)
             {
@@ -51,7 +49,6 @@ namespace ShopQuanAo.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Email này đã được sử dụng cho tài khoản khác!");
                 return View(quanTriVien);
             }
-            
 
             if (ModelState.IsValid)
             {
@@ -141,6 +138,18 @@ namespace ShopQuanAo.Areas.Admin.Controllers
             if (qtv != null)
             {
                 var tk = qtv.TaiKhoan;
+
+                // --- BẢO MẬT: CHẶN TỰ XÓA CHÍNH MÌNH TẠI ĐÂY ---
+                // Lấy tên đăng nhập hiện tại từ Session hoặc Identity
+                string currentLogin = HttpContext.Session.GetString("TenDangNhap") ?? User.Identity?.Name;
+
+                if (tk?.TenDangNhap == currentLogin)
+                {
+                    TempData["ErrorMessage"] = "Lỗi bảo mật: Bạn không thể tự xóa tài khoản của chính mình!";
+                    return RedirectToAction(nameof(Index));
+                }
+                // -----------------------------------------------
+
                 _context.QuanTriViens.Remove(qtv);
                 if (tk != null) _context.TaiKhoans.Remove(tk); // Xóa luôn tài khoản liên kết
                 await _context.SaveChangesAsync();

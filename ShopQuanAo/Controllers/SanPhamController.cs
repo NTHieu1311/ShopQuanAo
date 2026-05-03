@@ -4,14 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Data;
 using ShopQuanAo.Models;
 using System.Security.Claims;
-using ShopQuanAo.Helpers; 
+using ShopQuanAo.Helpers;
 
 namespace ShopQuanAo.Controllers
 {
     public class SanPhamController : Controller
     {
         private readonly ShopQuanAoContext _context;
-        // [ĐÃ SỬA]: Bỏ IWebHostEnvironment và thay bằng CloudinaryHelper
         private readonly CloudinaryHelper _cloudinaryHelper;
 
         public SanPhamController(ShopQuanAoContext context, CloudinaryHelper cloudinaryHelper)
@@ -20,9 +19,7 @@ namespace ShopQuanAo.Controllers
             _cloudinaryHelper = cloudinaryHelper;
         }
 
-        
         // 1. HIỂN THỊ DANH SÁCH SẢN PHẨM (CÓ LỌC & PHÂN TRANG)
-        
         public async Task<IActionResult> Index(string category, string keyword, decimal? minPrice, decimal? maxPrice, string color, string size, int page = 1)
         {
             var query = _context.SanPhams
@@ -43,8 +40,7 @@ namespace ShopQuanAo.Controllers
 
             if (!string.IsNullOrEmpty(category))
             {
-                var cat = category.Trim().ToLower(); // Ép từ khóa trên URL về chữ thường
-                // Ép luôn tên Danh Mục trong DB về chữ thường để so sánh
+                var cat = category.Trim().ToLower();
                 query = query.Where(s => s.DanhMuc != null && s.DanhMuc.TenDM.ToLower().Contains(cat));
             }
             if (minPrice.HasValue) query = query.Where(s => s.GiaBan >= minPrice.Value);
@@ -83,9 +79,7 @@ namespace ShopQuanAo.Controllers
             return View(sanPhams);
         }
 
-        
         // 2. TRANG CHI TIẾT SẢN PHẨM
-        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -116,12 +110,29 @@ namespace ShopQuanAo.Controllers
                 .Take(4)
                 .ToListAsync();
 
+            // =========================================================
+            // KIỂM TRA QUYỀN ĐÁNH GIÁ (ĐÃ MUA VÀ NHẬN HÀNG THÀNH CÔNG)
+            // =========================================================
+            bool canReview = false;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (!string.IsNullOrEmpty(userIdClaim) && int.TryParse(userIdClaim, out int maTK))
+                {
+                    // Lọc đơn hàng của user này có trạng thái 3 (Hoàn thành) và chứa MaSP hiện tại
+                    canReview = await _context.DonHangs
+                        .Where(d => d.MaTK == maTK && d.TrangThaiDH == 3)
+                        .SelectMany(d => d.ChiTietDonHangs)
+                        .AnyAsync(ct => ct.BienTheSanPham.MaSP == id);
+                }
+            }
+            ViewBag.CanReview = canReview;
+            // =========================================================
+
             return View(sanPham);
         }
 
-        
         // 3. THÊM ĐÁNH GIÁ SẢN PHẨM CÓ UPLOAD ẢNH (CLOUD)
-        
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> ThemDanhGia(int MaSP, int DiemSao, string NoiDung, IFormFile HinhAnhUpload)
@@ -145,11 +156,10 @@ namespace ShopQuanAo.Controllers
             }
 
             // 2. Xử lý Upload file ảnh Lên Cloudinary
-            string duongDanAnh = ""; // Mặc định không có ảnh
+            string duongDanAnh = "";
 
             if (HinhAnhUpload != null && HinhAnhUpload.Length > 0)
             {
-                // [ĐÃ SỬA]: Thay thế toàn bộ code lưu ảnh rườm rà bằng đúng 1 dòng gọi Cloudinary!
                 duongDanAnh = await _cloudinaryHelper.UploadImageAsync(HinhAnhUpload, "FashionStore/DanhGias");
             }
 
@@ -161,7 +171,7 @@ namespace ShopQuanAo.Controllers
                 MaDH = donHangHopLe.MaDH,
                 DiemSao = DiemSao,
                 NoiDung = NoiDung ?? "Không có nội dung",
-                HinhAnh = duongDanAnh, // <--- Cập nhật đường dẫn ảnh trên Cloudinary
+                HinhAnh = duongDanAnh,
                 NgayDanhGia = DateTime.Now,
                 TrangThai = 1
             };

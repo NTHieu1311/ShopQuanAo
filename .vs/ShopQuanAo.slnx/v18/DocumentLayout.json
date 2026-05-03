@@ -3,16 +3,112 @@
   "WorkspaceRootPath": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\helpers\\mahoahelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\helpers\\mahoahelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\donhang\\inhoadon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\donhang\\inhoadon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\sanpham\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\sanpham\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\sanpham\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\sanpham\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\thanhtoan\\thanhcong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\thanhtoan\\thanhcong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\thanhtoan\\congthanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\thanhtoan\\congthanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\taikhoan\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\taikhoan\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\quantrivien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\quantrivien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\quantrivien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\quantrivien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\quantriviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\quantriviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\taikhoan\\hoso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\taikhoan\\hoso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\home\\hethongcuahang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\home\\hethongcuahang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,32 +119,12 @@
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\khachhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\taikhoan\\hoso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\taikhoan\\hoso.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\quantrivien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\quantrivien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\quantrivien\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\quantrivien\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\donhang\\inhoadon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\donhang\\inhoadon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\phuongthucthanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -69,10 +145,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\taikhoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\taikhoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\quantrivien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\quantrivien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\quantrivien\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -163,10 +235,6 @@
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\shared\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -175,24 +243,8 @@
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\services\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\services\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\quantriviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\areas\\admin\\controllers\\quantriviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\areas\\admin\\controllers\\bienthesanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -203,24 +255,8 @@
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\filters\\blockadminattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\filters\\blockadminattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\taikhoan\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\taikhoan\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\taikhoan\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -235,22 +271,10 @@
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\models\\vnpaylibrary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\helpers\\mahoahelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\helpers\\mahoahelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nthan\\.nuget\\packages\\epplus\\7.0.5\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nthan\\.nuget\\packages\\epplus\\8.5.1\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\home\\hethongcuahang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\home\\hethongcuahang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\sanpham\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\sanpham\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -259,10 +283,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\thanhtoan\\congthanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\thanhtoan\\congthanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -291,10 +311,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\phuongthucthanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\models\\phuongthucthanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -327,14 +343,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\sanpham\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|solutionrelative:shopquanao\\views\\sanpham\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36B4DF0-5859-8FDA-1E3E-01B7E9DE78B6}|ShopQuanAo\\ShopQuanAo.csproj|c:\\users\\nthan\\desktop\\quanao\\shopquanao\\shopquanao\\views\\taikhoan\\donhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -386,228 +394,224 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAUwIAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:43:04.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SanPhamController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\SanPhamController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\SanPhamController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\SanPhamController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Controllers\\SanPhamController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAJMAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T00:45:41.877Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAUwGYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:54:26.004Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MaHoaHelper.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Helpers\\MaHoaHelper.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Helpers\\MaHoaHelper.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Helpers\\MaHoaHelper.cs",
+              "RelativeToolTip": "ShopQuanAo\\Helpers\\MaHoaHelper.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowBYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T01:07:41.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GioHangController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\GioHangController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\GioHangController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\GioHangController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Controllers\\GioHangController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAswI4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T12:22:41.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "DonHangController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\DonHangController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\DonHangController.cs",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\DonHangController.cs",
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\DonHangController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBYAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAiwI4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T10:42:13.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TaiKhoanController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
-              "ViewState": "AgIAAO0AAAAAAAAAAAAqwAYBAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T10:56:50.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KhachHangController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAzwBUAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T10:53:55.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:42:13.668Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\appsettings.json",
-              "RelativeDocumentMoniker": "ShopQuanAo\\appsettings.json",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\appsettings.json",
-              "RelativeToolTip": "ShopQuanAo\\appsettings.json",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-31T00:57:36.496Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HoSo.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
-              "ViewState": "AgIAABkAAAAAAAAAAAAmwCEAAACAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T04:36:44.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAmwBUAAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T11:07:04.085Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAmwCwAAABpAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Index.cshtml",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAYwLgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T11:05:34.904Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:43:04.435Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "InHoaDon.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\InHoaDon.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\InHoaDon.cshtml",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\InHoaDon.cshtml",
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\InHoaDon.cshtml",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAmwEsAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAYwNoAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T11:17:18.703Z",
+              "WhenOpened": "2026-04-04T11:17:18.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAcwOcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T00:03:38.711Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 9,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Details.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\SanPham\\Details.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Details.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\SanPham\\Details.cshtml",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAAAFUBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T12:09:44.408Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAmwNEAAABFAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T01:59:07.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T09:08:41.132Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 5,
+              "Title": "ThanhToanController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\ThanhToanController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\ThanhToanController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\ThanhToanController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Controllers\\ThanhToanController.cs",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAYwAQBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T01:00:38.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACwAAAAxAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\ThanhToan\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\ThanhToan\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAGoAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:47:22.929Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAkwHAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:57:52.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAkwG4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:57:35.423Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAkwEUAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:58:08.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T01:24:17.894Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAGAAAAAAAAAA==",
+              "Title": "SanPhamController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\SanPhamController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\SanPhamController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\SanPhamController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Controllers\\SanPhamController.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAUwLkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T00:45:41.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\SanPham\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\SanPham\\Index.cshtml",
+              "ViewState": "AgIAAAkBAAAAAAAAAAAiwA4BAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-28T11:57:59.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T02:22:54.591Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
+              "ViewState": "AgIAADgAAAAAAAAAAAAkwFsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T11:27:51.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ThanhCong.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\ThanhCong.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\ThanhToan\\ThanhCong.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\ThanhCong.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\ThanhToan\\ThanhCong.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-01T01:39:10.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CongThanhToan.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T01:01:40.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "KhachHang.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\KhachHang.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Models\\KhachHang.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\KhachHang.cs",
+              "RelativeToolTip": "ShopQuanAo\\Models\\KhachHang.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAowBAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T00:52:28.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TaiKhoanController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\TaiKhoanController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\TaiKhoanController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\TaiKhoanController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Controllers\\TaiKhoanController.cs",
+              "ViewState": "AgIAADEBAAAAAAAAAAAcwI4AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:26:38.205Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Index.cshtml",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAowIYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T11:05:34.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Edit.cshtml",
@@ -615,12 +619,215 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Edit.cshtml",
               "ViewState": "AgIAAC4AAAAAAAAAAAAkwEMAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T11:06:46.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T11:06:46.706Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
+              "Title": "QuanTriVienController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAowKUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:00:43.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAANUAAAAAAAAAAAAuwNEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T01:59:07.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "HoSo.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\HoSo.cshtml",
+              "ViewState": "AgIAABkAAAAAAAAAAAAuwCEAAACAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T04:36:44.79Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "VnPayService.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Services\\VnPayService.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Services\\VnPayService.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Services\\VnPayService.cs",
+              "RelativeToolTip": "ShopQuanAo\\Services\\VnPayService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAuwBoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T01:13:17.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "HeThongCuaHang.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAuwGUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T02:32:26.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Program.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Program.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Program.cs",
+              "RelativeToolTip": "ShopQuanAo\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T01:15:03.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADwBAAAAAAAAAAAowE4BAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T01:43:01.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\appsettings.json",
+              "RelativeDocumentMoniker": "ShopQuanAo\\appsettings.json",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\appsettings.json",
+              "RelativeToolTip": "ShopQuanAo\\appsettings.json",
+              "ViewState": "AgIAAAIAAAAAAAAAAABRwAIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-31T00:57:36.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "KhachHangController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\KhachHangController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwBUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T10:53:55.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "TaiKhoanController.cs",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\TaiKhoanController.cs",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAqwAYBAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T10:56:50.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Index.cshtml",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAUwGYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T10:54:26.004Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Delete.cshtml",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAmwBUAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T11:07:04.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Index.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAIBJwCwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T10:47:22.929Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Create.cshtml",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAkwHAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T10:57:52.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Index.cshtml",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAkwG4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T10:57:35.423Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Edit.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAkwEUAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T10:58:08.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
+              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
+              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\TaiKhoan\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-28T11:57:59.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Create.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Create.cshtml",
@@ -628,25 +835,23 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\QuanTriVien\\Create.cshtml",
               "ViewState": "AgIAADgAAAAAAAAAAAAkwE0AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T07:48:41.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T07:48:41.858Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 37,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Delete.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Delete.cshtml",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Delete.cshtml",
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Delete.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwA8AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:48:16.338Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:48:16.338Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 38,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Edit.cshtml",
@@ -654,12 +859,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Edit.cshtml",
               "ViewState": "AgIAACAAAAAAAAAAAAAkwDUAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:47:55.832Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:47:55.832Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 39,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Create.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Create.cshtml",
@@ -667,12 +871,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\PhuongThucThanhToan\\Create.cshtml",
               "ViewState": "AgIAAB8AAAAAAAAAAAAkwDQAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:47:41.344Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:47:41.344Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 40,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Edit.cshtml",
@@ -680,12 +883,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\KhachHang\\Edit.cshtml",
               "ViewState": "AgIAAE8AAAAAAAAAAAAkwGcAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:54:48.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:54:48.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 41,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Details.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Details.cshtml",
@@ -693,12 +895,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DonHang\\Details.cshtml",
               "ViewState": "AgIAAJMAAAAAAAAAAAAkwKUAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:43:30.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:43:30.839Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 42,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Delete.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Delete.cshtml",
@@ -706,12 +907,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Delete.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:52:04.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:52:04.393Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 43,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Edit.cshtml",
@@ -719,12 +919,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Edit.cshtml",
               "ViewState": "AgIAADMAAAAAAAAAAAAkwEgAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:51:50.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:51:50.282Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 44,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Index.cshtml",
@@ -732,12 +931,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhGia\\Index.cshtml",
               "ViewState": "AgIAAGgAAAAAAAAAAAAkwH0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T10:51:31.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T10:51:31.215Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 45,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Delete.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Delete.cshtml",
@@ -745,12 +943,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Delete.cshtml",
               "ViewState": "AgIAACYAAAAAAAAAAAAkwDgAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:49:31.521Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:49:31.521Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 46,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Edit.cshtml",
@@ -758,12 +955,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Edit.cshtml",
               "ViewState": "AgIAACUAAAAAAAAAAAAkwDoAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:49:13.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:49:13.719Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 47,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Create.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Create.cshtml",
@@ -771,12 +967,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Create.cshtml",
               "ViewState": "AgIAACIAAAAAAAAAAAAkwDcAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:48:38Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:48:38Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 48,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Index.cshtml",
@@ -784,12 +979,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\BienTheSanPham\\Index.cshtml",
               "ViewState": "AgIAAF4AAAAAAAAAAAAkwHAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:48:10.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:48:10.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 49,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Delete.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Delete.cshtml",
@@ -797,12 +991,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Delete.cshtml",
               "ViewState": "AgIAABcAAAAAAAAAAAAkwCYAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:03:12.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:03:12.604Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 50,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Edit.cshtml",
@@ -810,12 +1003,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Edit.cshtml",
               "ViewState": "AgIAADEAAAAAAAAAAAAkwD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:02:44.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:02:44.882Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 51,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Create.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Create.cshtml",
@@ -823,12 +1015,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Create.cshtml",
               "ViewState": "AgIAACYAAAAAAAAAAAAkwD0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:02:24.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:02:24.569Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 52,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Index.cshtml",
@@ -836,12 +1027,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\DanhMuc\\Index.cshtml",
               "ViewState": "AgIAAFkAAAAAAAAAAAAkwG4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T01:49:58.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T01:49:58.259Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 53,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Index.cshtml",
@@ -849,12 +1039,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Index.cshtml",
               "ViewState": "AgIAACcAAAAAAAAAAAAkwIQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:16:17.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:16:17.828Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 54,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Edit.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Edit.cshtml",
@@ -862,12 +1051,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Edit.cshtml",
               "ViewState": "AgIAAIgAAAAAAAAAAAAkwJoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:21:45.351Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:21:45.351Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 55,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Delete.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Delete.cshtml",
@@ -875,12 +1063,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Delete.cshtml",
               "ViewState": "AgIAAEEAAAAAAAAAAAAkwFMAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:22:12.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:22:12.161Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 56,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Create.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Create.cshtml",
@@ -888,12 +1075,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\SanPham\\Create.cshtml",
               "ViewState": "AgIAABQAAAAAAAAAAAAkwIYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T02:16:57.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T02:16:57.474Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 57,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Shared\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\Shared\\Index.cshtml",
@@ -901,25 +1087,11 @@
               "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\Shared\\Index.cshtml",
               "ViewState": "AgIAACYAAAAAAAAAAAAkwCgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T01:43:13.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-31T01:43:13.085Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4BAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T01:43:01.581Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 58,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\HomeController.cs",
@@ -931,7 +1103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 59,
               "Title": "SanPhamController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\SanPhamController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\SanPhamController.cs",
@@ -943,7 +1115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 60,
               "Title": "IVnPayService.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Services\\IVnPayService.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Services\\IVnPayService.cs",
@@ -955,43 +1127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "VnPayService.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Services\\VnPayService.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Services\\VnPayService.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Services\\VnPayService.cs",
-              "RelativeToolTip": "ShopQuanAo\\Services\\VnPayService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwCIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T01:13:17.57Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Program.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Program.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Program.cs",
-              "RelativeToolTip": "ShopQuanAo\\Program.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAABkAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T01:15:03.325Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "ThanhToanController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\ThanhToanController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\ThanhToanController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\ThanhToanController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Controllers\\ThanhToanController.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAcwIAAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T01:00:38.476Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 61,
               "Title": "BienTheSanPhamController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\BienTheSanPhamController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\BienTheSanPhamController.cs",
@@ -1003,55 +1139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "QuanTriVienController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Areas\\Admin\\Controllers\\QuanTriVienController.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAA9wJwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T11:00:43.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\TaiKhoan\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T11:27:51.081Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "GioHangController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\GioHangController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\GioHangController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\GioHangController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Controllers\\GioHangController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAgwEsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T12:22:41.175Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "TaiKhoanController.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\TaiKhoanController.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\TaiKhoanController.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\TaiKhoanController.cs",
-              "RelativeToolTip": "ShopQuanAo\\Controllers\\TaiKhoanController.cs",
-              "ViewState": "AgIAADkBAAAAAAAAAAAAAPQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T11:26:38.205Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 62,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Controllers\\HomeController.cs",
@@ -1063,31 +1151,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAPEAAAAAAAAAAAAcwBgBAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T00:03:38.711Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 64,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\Login.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Views\\TaiKhoan\\Login.cshtml",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\Login.cshtml",
               "RelativeToolTip": "ShopQuanAo\\Views\\TaiKhoan\\Login.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEAAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAIBJwEAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-03-31T11:27:31.724Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 63,
               "Title": "BlockAdminAttribute.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Filters\\BlockAdminAttribute.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Filters\\BlockAdminAttribute.cs",
@@ -1099,7 +1175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 66,
               "Title": "VnPayLibrary.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\VnPayLibrary.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\VnPayLibrary.cs",
@@ -1111,7 +1187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 65,
               "Title": "dotnet-tools.json",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\dotnet-tools.json",
               "RelativeDocumentMoniker": "ShopQuanAo\\dotnet-tools.json",
@@ -1123,43 +1199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "MaHoaHelper.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Helpers\\MaHoaHelper.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Helpers\\MaHoaHelper.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Helpers\\MaHoaHelper.cs",
-              "RelativeToolTip": "ShopQuanAo\\Helpers\\MaHoaHelper.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAuwBoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T06:55:13.238Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "HeThongCuaHang.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\Home\\HeThongCuaHang.cshtml",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAYwIAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T02:32:26.956Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Details.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\SanPham\\Details.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Details.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\SanPham\\Details.cshtml",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAmwMwAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-31T12:09:44.408Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 67,
               "Title": "readme.txt",
               "DocumentMoniker": "C:\\Users\\nthan\\.nuget\\packages\\epplus\\7.0.5\\readme.txt",
               "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\epplus\\7.0.5\\readme.txt",
@@ -1171,7 +1211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 68,
               "Title": "readme.txt",
               "DocumentMoniker": "C:\\Users\\nthan\\.nuget\\packages\\epplus\\8.5.1\\readme.txt",
               "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\epplus\\8.5.1\\readme.txt",
@@ -1183,19 +1223,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 69,
               "Title": "DonHang.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\DonHang.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\DonHang.cs",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\DonHang.cs",
               "RelativeToolTip": "ShopQuanAo\\Models\\DonHang.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAA9wBMAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAA7wBMAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T00:54:49.656Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 70,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\ErrorViewModel.cs",
@@ -1207,31 +1247,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "CongThanhToan.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\ThanhToan\\CongThanhToan.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T01:01:40.75Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 71,
               "Title": "SanPham.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\SanPham.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\SanPham.cs",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\SanPham.cs",
               "RelativeToolTip": "ShopQuanAo\\Models\\SanPham.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAqwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAA8wBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T00:53:20.135Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 74,
               "Title": "BienTheSanPham.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\BienTheSanPham.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\BienTheSanPham.cs",
@@ -1243,7 +1271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 73,
               "Title": "20260404084534_InitDB.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Migrations\\20260404084534_InitDB.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Migrations\\20260404084534_InitDB.cs",
@@ -1255,7 +1283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 72,
               "Title": "CloudinaryHelper.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Helpers\\CloudinaryHelper.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Helpers\\CloudinaryHelper.cs",
@@ -1267,7 +1295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 75,
               "Title": "TaiKhoan.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\TaiKhoan.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\TaiKhoan.cs",
@@ -1279,7 +1307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 76,
               "Title": "QuanTriVien.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\QuanTriVien.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\QuanTriVien.cs",
@@ -1291,7 +1319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 77,
               "Title": "PhuongThucThanhToan.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\PhuongThucThanhToan.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\PhuongThucThanhToan.cs",
@@ -1303,31 +1331,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "KhachHang.cs",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\KhachHang.cs",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Models\\KhachHang.cs",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\KhachHang.cs",
-              "RelativeToolTip": "ShopQuanAo\\Models\\KhachHang.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA/wA0AAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T00:52:28.264Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 78,
               "Title": "GioHang.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\GioHang.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\GioHang.cs",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\GioHang.cs",
               "RelativeToolTip": "ShopQuanAo\\Models\\GioHang.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAywBYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvxYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T00:53:59.502Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 79,
               "Title": "GiaoDichThanhToan.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\GiaoDichThanhToan.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\GiaoDichThanhToan.cs",
@@ -1339,7 +1355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 80,
               "Title": "DanhMuc.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\DanhMuc.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\DanhMuc.cs",
@@ -1351,7 +1367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 81,
               "Title": "DanhGia.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\DanhGia.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\DanhGia.cs",
@@ -1363,7 +1379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 82,
               "Title": "ChiTietGioHang.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\ChiTietGioHang.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\ChiTietGioHang.cs",
@@ -1375,7 +1391,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 83,
               "Title": "ChiTietDonHang.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\ChiTietDonHang.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\ChiTietDonHang.cs",
@@ -1387,55 +1403,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 84,
               "Title": "CartItem.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\CartItem.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Models\\CartItem.cs",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Models\\CartItem.cs",
               "RelativeToolTip": "ShopQuanAo\\Models\\CartItem.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAA1wAkAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAzwAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T12:22:17.115Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 85,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "ShopQuanAo\\wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\wwwroot\\css\\site.css",
               "RelativeToolTip": "ShopQuanAo\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAkAAAAAAAAAAIBZwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAACBjwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-04-02T09:12:43.113Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAEBVwBIAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T09:08:41.132Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 83,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Index.cshtml",
-              "RelativeDocumentMoniker": "ShopQuanAo\\Views\\SanPham\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\SanPham\\Index.cshtml",
-              "RelativeToolTip": "ShopQuanAo\\Views\\SanPham\\Index.cshtml",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAAwJYAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T02:22:54.591Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 86,
               "Title": "DonHang.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\TaiKhoan\\DonHang.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Views\\TaiKhoan\\DonHang.cshtml",
@@ -1447,7 +1439,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 87,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Views\\GioHang\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Views\\GioHang\\Index.cshtml",
@@ -1459,7 +1451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 88,
               "Title": "DanhGiaController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\DanhGiaController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\DanhGiaController.cs",
@@ -1471,7 +1463,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 90,
               "Title": "PhuongThucThanhToanController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\PhuongThucThanhToanController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\PhuongThucThanhToanController.cs",
@@ -1483,7 +1475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 89,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\_ViewStart.cshtml",
@@ -1495,7 +1487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 93,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Views\\_ViewImports.cshtml",
@@ -1507,7 +1499,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 94,
               "Title": "DanhMucController.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Areas\\Admin\\Controllers\\DanhMucController.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Areas\\Admin\\Controllers\\DanhMucController.cs",
@@ -1519,7 +1511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 91,
               "Title": "20260331010619_InitDB.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\Migrations\\20260331010619_InitDB.cs",
               "RelativeDocumentMoniker": "..\\..\\TTCK\\ShopQuanAo\\ShopQuanAo\\Migrations\\20260331010619_InitDB.cs",
@@ -1530,7 +1522,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 92,
               "Title": "20260331010436_InitDB.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\TTCK\\ShopQuanAo\\ShopQuanAo\\Migrations\\20260331010436_InitDB.cs",
               "RelativeDocumentMoniker": "..\\..\\TTCK\\ShopQuanAo\\ShopQuanAo\\Migrations\\20260331010436_InitDB.cs",
@@ -1541,7 +1533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 95,
               "Title": "ShopQuanAoContext.cs",
               "DocumentMoniker": "C:\\Users\\nthan\\Desktop\\QuanAo\\ShopQuanAo\\ShopQuanAo\\Data\\ShopQuanAoContext.cs",
               "RelativeDocumentMoniker": "ShopQuanAo\\Data\\ShopQuanAoContext.cs",

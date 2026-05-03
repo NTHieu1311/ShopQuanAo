@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Thanh Toán Đơn Hàng";
     var gioHang = ViewBag.GioHang as List<ShopQuanAo.Models.CartItem>;
-    decimal tongTien = ViewBag.TongTien;
+    decimal tongTien = ViewBag.TongTien != null ? ViewBag.TongTien : 0;
     var phuongThucs = ViewBag.PhuongThuc as List<ShopQuanAo.Models.PhuongThucThanhToan>;
 }
 
@@ -10,6 +10,10 @@
     <h2 class="fw-bold mb-4 text-dark"><i class="fas fa-money-check-alt text-danger"></i> Thanh Toán</h2>
 
     <form asp-action="DatHang" method="post">
+        
+        <!-- CỜ ẨN: Phân biệt Mua ngay (true) hay Thanh toán giỏ hàng (false) -->
+        <input type="hidden" name="IsMuaNgay" value="@(ViewBag.IsMuaNgay != null && ViewBag.IsMuaNgay ? "true" : "false")" />
+
         <div class="row">
             <div class="col-md-7">
                 <div class="card shadow-sm border-0 rounded-4 mb-4">
@@ -37,7 +41,7 @@
                 <div class="card shadow-sm border-0 rounded-4 mb-4">
                     <div class="card-header bg-white py-3 border-bottom"><h5 class="mb-0 fw-bold">2. Phương thức thanh toán</h5></div>
                     <div class="card-body p-4">
-                        @if (phuongThucs != null)
+                        @if (phuongThucs != null && phuongThucs.Any())
                         {
                             foreach (var pt in phuongThucs)
                             {
@@ -50,6 +54,10 @@
                                 </div>
                             }
                         }
+                        else
+                        {
+                            <div class="alert alert-warning">Chưa có phương thức thanh toán nào được thiết lập.</div>
+                        }
                     </div>
                 </div>
             </div>
@@ -58,18 +66,21 @@
                 <div class="card shadow-sm border-0 rounded-4 position-sticky" style="top: 100px;">
                     <div class="card-header bg-light py-3 border-bottom"><h5 class="mb-0 fw-bold">Tóm tắt đơn hàng</h5></div>
                     <div class="card-body p-4">
-                        @foreach (var item in gioHang)
+                        @if (gioHang != null && gioHang.Any())
                         {
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="@item.HinhAnh" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
-                                    <div class="ms-3">
-                                        <h6 class="mb-0 text-dark" style="font-size: 0.9rem;">@item.TenSP</h6>
-                                        <small class="text-muted">Màu: @item.MauSac | Size: @item.KichThuoc x <strong>@item.SoLuong</strong></small>
+                            foreach (var item in gioHang)
+                            {
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.HinhAnh" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                        <div class="ms-3">
+                                            <h6 class="mb-0 text-dark" style="font-size: 0.9rem;">@item.TenSP</h6>
+                                            <small class="text-muted">Màu: @item.MauSac | Size: @item.KichThuoc x <strong>@item.SoLuong</strong></small>
+                                        </div>
                                     </div>
+                                    <span class="fw-bold text-danger text-end">@item.ThanhTien.ToString("#,##0") đ</span>
                                 </div>
-                                <span class="fw-bold text-danger text-end">@item.ThanhTien.ToString("#,##0") đ</span>
-                            </div>
+                            }
                         }
                         
                         <hr class="my-4">

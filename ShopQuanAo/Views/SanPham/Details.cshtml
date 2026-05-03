@@ -121,7 +121,9 @@
                         <button type="submit" class="btn btn-outline-danger btn-lg w-50 fw-bold rounded-pill p-3" id="btnThemGio">
                             <i class="fas fa-cart-plus fs-5 me-2"></i> THÊM VÀO GIỎ
                         </button>
-                        <button type="submit" formaction="/GioHang/MuaNgay" class="btn btn-danger btn-lg w-50 fw-bold rounded-pill p-3 shadow" id="btnMuaNgay">
+                        
+                        <!-- ĐÃ SỬA: CHUYỂN HƯỚNG SANG MUA NGAY TRỰC TIẾP, KHÔNG QUA GIỎ HÀNG -->
+                        <button type="submit" formaction="/ThanhToan/MuaNgayTrucTiep" class="btn btn-danger btn-lg w-50 fw-bold rounded-pill p-3 shadow" id="btnMuaNgay">
                             MUA NGAY
                         </button>
                     </div>
@@ -155,7 +157,7 @@
             
             <div class="tab-pane fade" id="review" role="tabpanel">
                 
-                @if (User.Identity.IsAuthenticated)
+                @if (ViewBag.CanReview != null && ViewBag.CanReview == true)
                 {
                     <div class="bg-light p-4 rounded-4 mb-5 border">
                         <h5 class="fw-bold mb-3">Viết đánh giá của bạn</h5>
@@ -188,7 +190,7 @@
                             
                             <div class="mb-4">
                                 <label class="form-label fw-bold text-muted"><i class="fas fa-camera me-2"></i>Thêm hình ảnh thực tế (Tùy chọn)</label>
-                                <input type="file" name="HinhAnhUpload" class="form-control bg-white" accept="image/png, image/jpeg, image/jpg">
+                                <input type="file" name="HinhAnhUpload" id="HinhAnhUpload" class="form-control bg-white shadow-sm" accept="image/*" style="cursor: pointer;">                   
                             </div>
                             
                             <button type="submit" class="btn btn-danger rounded-pill px-4 fw-bold">GỬI ĐÁNH GIÁ</button>
@@ -197,14 +199,26 @@
                 }
                 else
                 {
-                    <div class="alert alert-secondary rounded-4 text-center py-4 mb-5">
-                        Vui lòng <a href="/TaiKhoan/Login" class="text-danger fw-bold text-decoration-none">Đăng nhập</a> để viết đánh giá cho sản phẩm này.
+                    <div class="alert alert-secondary rounded-4 p-4 mb-5 d-flex align-items-center">
+                        <i class="fas fa-shopping-bag fa-2x me-3 text-muted"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Chỉ những khách hàng đã mua sản phẩm mới có thể đánh giá</h6>
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <p class="mb-0 small text-muted">Bạn cần đặt mua và nhận hàng thành công để chia sẻ trải nghiệm về sản phẩm này nhé!</p>
+                            }
+                            else
+                            {
+                                <p class="mb-0 small text-muted">Vui lòng <a href="/TaiKhoan/Login" class="text-danger fw-bold text-decoration-none">Đăng nhập</a> và mua sản phẩm để để lại nhận xét.</p>
+                            }
+                        </div>
                     </div>
                 }
 
                 @if (Model.DanhGias.Any())
                 {
                     <div class="row mt-4">
+                        <h5 class="fw-bold mb-4">Đánh giá từ người dùng</h5>
                         @foreach (var dg in Model.DanhGias.OrderByDescending(d => d.NgayDanhGia))
                         {
                             <div class="col-md-12 mb-4 border-bottom pb-3">
@@ -223,7 +237,7 @@
                                         </div>
                                         <p class="mb-2 text-dark" style="font-size: 1.05rem;">@dg.NoiDung</p>
                                         
-                                        @if (!string.IsNullOrEmpty(dg.HinhAnh))
+                                        @if (!string.IsNullOrWhiteSpace(dg.HinhAnh))
                                         {
                                             <div class="mt-2">
                                                 <img src="@dg.HinhAnh" alt="Ảnh đánh giá của khách" class="img-thumbnail shadow-sm" style="max-height: 120px; border-radius: 8px;">

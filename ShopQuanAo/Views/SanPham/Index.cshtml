@@ -15,6 +15,70 @@
     .page-link { color: #2f3542; font-weight: bold; border-radius: 8px; margin: 0 5px; border: none; background: #f1f2f6; }
     .page-item.active .page-link { background-color: #ff4757; color: white; }
     .page-link:hover { background-color: #ff4757; color: white; }
+
+    /* CSS CHO THANH KÉO KHOẢNG GIÁ (DUAL RANGE SLIDER) */
+    .range-slider {
+        position: relative;
+        width: 100%;
+        height: 6px;
+        background-color: #e9ecef;
+        border-radius: 5px;
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    .slider-track {
+        position: absolute;
+        height: 100%;
+        background-color: #ff4757; /* Màu đỏ chủ đạo */
+        border-radius: 5px;
+        z-index: 1;
+        top: 0;
+        bottom: 0;
+    }
+
+    .range-slider input[type="range"] {
+        position: absolute;
+        width: 100%;
+        height: 6px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        top: 0;
+        z-index: 2;
+        margin: 0;
+    }
+
+    /* Tùy chỉnh cục tròn để cầm kéo (Thumb) cho Chrome/Safari */
+    .range-slider input[type="range"]::-webkit-slider-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid #ff4757;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: transform 0.1s;
+    }
+
+    .range-slider input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+    }
+    
+    /* Tùy chỉnh cục tròn cho Firefox */
+    .range-slider input[type="range"]::-moz-range-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid #ff4757;
+        pointer-events: auto;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
 </style>
 
 <div class="container mt-4 mb-5">
@@ -25,20 +89,29 @@
     </div>
 
     <div class="row">
+        <!-- CỘT BÊN TRÁI: BỘ LỌC -->
         <div class="col-lg-3 mb-4">
             <div class="filter-sidebar">
                 <form action="/SanPham/Index" method="get">
                     <input type="hidden" name="keyword" value="@ViewBag.Keyword" />
                     <input type="hidden" name="category" value="@ViewBag.Category" />
 
+                    <!-- KHOẢNG GIÁ ĐÃ ĐƯỢC THAY BẰNG THANH KÉO -->
                     <h5 class="filter-title">Khoảng Giá</h5>
-                    <div class="row g-2 mb-4">
-                        <div class="col-6">
-                            <input type="number" name="minPrice" class="form-control text-center" placeholder="TỪ" value="@ViewBag.MinPrice">
+                    <div class="price-slider-wrapper mb-4">
+                        <div class="d-flex justify-content-between mb-2 fw-bold" style="color: #ff4757; font-size: 0.9rem;">
+                            <span id="min-price-display">0 đ</span>
+                            <span id="max-price-display">2.000.000 đ</span>
                         </div>
-                        <div class="col-6">
-                            <input type="number" name="maxPrice" class="form-control text-center" placeholder="ĐẾN" value="@ViewBag.MaxPrice">
+                        
+                        <div class="range-slider">
+                            <div class="slider-track"></div>
+                            <input type="range" min="0" max="2000000" step="50000" value="@(ViewBag.MinPrice ?? 0)" id="slider-min">
+                            <input type="range" min="0" max="2000000" step="50000" value="@(ViewBag.MaxPrice ?? 2000000)" id="slider-max">
                         </div>
+                        
+                        <input type="hidden" name="minPrice" id="input-minPrice" value="@(ViewBag.MinPrice ?? 0)">
+                        <input type="hidden" name="maxPrice" id="input-maxPrice" value="@(ViewBag.MaxPrice ?? 2000000)">
                     </div>
 
                     <h5 class="filter-title">Màu Sắc</h5>
@@ -83,6 +156,7 @@
             </div>
         </div>
 
+        <!-- CỘT BÊN PHẢI: HIỂN THỊ SẢN PHẨM -->
         <div class="col-lg-9">
             @if (!Model.Any())
             {
@@ -123,6 +197,7 @@
                     }
                 </div>
 
+                <!-- PHÂN TRANG -->
                 @if (totalPages > 1)
                 {
                     <nav aria-label="Page navigation">
@@ -149,3 +224,61 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sliderMin = document.getElementById("slider-min");
+            const sliderMax = document.getElementById("slider-max");
+            const displayMin = document.getElementById("min-price-display");
+            const displayMax = document.getElementById("max-price-display");
+            const inputMinPrice = document.getElementById("input-minPrice");
+            const inputMaxPrice = document.getElementById("input-maxPrice");
+            const sliderTrack = document.querySelector(".slider-track");
+
+            const sliderMaxValue = parseInt(sliderMin.max);
+            const step = parseInt(sliderMin.step);
+
+            function formatCurrency(val) {
+                return new Intl.NumberFormat('vi-VN').format(val) + ' đ';
+            }
+
+            function updateSlider() {
+                let minVal = parseInt(sliderMin.value);
+                let maxVal = parseInt(sliderMax.value);
+
+                // Ngăn chặn 2 cục kéo vượt mặt nhau
+                if (maxVal - minVal < step) {
+                    if (this.id === "slider-min") {
+                        sliderMin.value = maxVal - step;
+                        minVal = parseInt(sliderMin.value);
+                    } else {
+                        sliderMax.value = minVal + step;
+                        maxVal = parseInt(sliderMax.value);
+                    }
+                }
+
+                // Cập nhật text hiển thị
+                displayMin.textContent = formatCurrency(minVal);
+                displayMax.textContent = formatCurrency(maxVal);
+
+                // Cập nhật input ẩn để gửi về Controller
+                inputMinPrice.value = minVal;
+                inputMaxPrice.value = maxVal;
+
+                // Cập nhật dải màu đỏ giữa 2 thanh kéo
+                let percent1 = (minVal / sliderMaxValue) * 100;
+                let percent2 = (maxVal / sliderMaxValue) * 100;
+                sliderTrack.style.left = percent1 + "%";
+                sliderTrack.style.right = (100 - percent2) + "%";
+            }
+
+            // Gắn sự kiện khi kéo thanh trượt
+            sliderMin.addEventListener("input", updateSlider);
+            sliderMax.addEventListener("input", updateSlider);
+
+            // Gọi lần đầu để setup giao diện đúng với ViewBag trả về
+            updateSlider();
+        });
+    </script>
+}
